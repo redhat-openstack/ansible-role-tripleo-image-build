@@ -29,3 +29,6 @@ galaxy_info:
     - development
     - openstack
     - ci
+  dependencies:
+  - parts/kvm
+  - parts/libvirt
