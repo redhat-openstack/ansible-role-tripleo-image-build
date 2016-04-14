@@ -36,6 +36,12 @@ overcloud_packages:
   - openstack-cinder
   - openstack-dashboard
   - openstack-glance
+  - openstack-gnocchi-api
+  - openstack-gnocchi-carbonara
+  - openstack-gnocchi-common
+  - openstack-gnocchi-indexer-sqlalchemy
+  - openstack-gnocchi-metricd
+  - openstack-gnochhi-statsd
   - openstack-heat-api
   - openstack-heat-api-cfn
   - openstack-heat-api-cloudwatch
