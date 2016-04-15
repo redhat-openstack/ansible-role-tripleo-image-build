@@ -28,7 +28,6 @@ virt_customize_cpu: 4
 undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server
-  - python-manila
 undercloud_install_packages:
   - mariadb-server
   - openstack-tempest
@@ -37,6 +36,9 @@ undercloud_install_packages:
   - python-ceilometer-tests
   - python-heat-tests
   - python-ironic-tests
+  - python-keystone-tests
+  - python-manila-tests
+  - python-mistral-tests
   - python-neutron-tests
   - python-sahara-tests
 undercloud_selinux_permissive: true
