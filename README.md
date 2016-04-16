@@ -25,41 +25,41 @@ The defaults for image building are located at defaults/main.yml.  With no param
 
 Setting | Description
 ------- | -----------
-minimal_base_image_url | base RHEL image for undercloud and overcloud
-repo_script | Jinja2 template bash script used to install repositories on base image for binaries via virt-customize
-dib_prepare_script | Jinja2 template bash script used to prepare $virthost for building images.  
+artib_minimal_base_image_url | base RHEL image for undercloud and overcloud
+artib_repo_script | Jinja2 template bash script used to install repositories on base image for binaries via virt-customize
+artib_dib_prepare_script | Jinja2 template bash script used to prepare $virthost for building images.  
 
 ### _Here are the full defaults contained in defaults/main.yml.  Note that most are internal and should not be modified._
 
 ```YAML
-working_dir: /home/oooq-images
+artib_working_dir: /home/oooq-images
 
 # repo_setup vars
-minimal_base_image_url: http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
-minimal_overwrite_existing: no
-base_os: centos7
-release: mitaka
-build_system: delorean
-repo_script: "repo-{{ base_os }}-{{ release }}-{{ build_system }}.sh.j2"
+artib_minimal_base_image_url: http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
+artib_minimal_overwrite_existing: no
+artib_base_os: centos7
+artib_release: mitaka
+artib_build_system: delorean
+artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_release }}-{{ artib_build_system }}.sh.j2"
 
 # package_install vars
-overcloud_base_image_url: "file:///{{ working_dir }}/minimal-base.qcow2"
-overcloud_overwrite_existing: no
-package_install_script: package-install-default.sh.j2
-overcloud_package_list: default_package_list.yml
+artib_overcloud_base_image_url: "file:///{{ artib_working_dir }}/minimal-base.qcow2"
+artib_overcloud_overwrite_existing: no
+artib_package_install_script: package-install-default.sh.j2
+artib_overcloud_package_list: default_package_list.yml
 
 # convert_undercloud vars
-undercloud_base_image_url: "file:///{{ working_dir }}/overcloud-base.qcow2"
-undercloud_overwrite_existing: no
-undercloud_convert_script: undercloud-convert-default.sh.j2
-undercloud_disk_size: 40
-virt_customize_ram: 28000
-virt_customize_cpu: 4
-undercloud_remove_packages:
+artib_undercloud_base_image_url: "file:///{{ artib_working_dir }}/overcloud-base.qcow2"
+artib_undercloud_overwrite_existing: no
+artib_undercloud_convert_script: undercloud-convert-default.sh.j2
+artib_undercloud_disk_size: 40
+artib_virt_customize_ram: 28000
+artib_virt_customize_cpu: 4
+artib_undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server
   - python-manila
-undercloud_install_packages:
+artib_undercloud_install_packages:
   - mariadb-server
   - openstack-tempest
   # -tests packages which contains tempest-style tests
@@ -69,18 +69,18 @@ undercloud_install_packages:
   - python-ironic-tests
   - python-neutron-tests
   - python-sahara-tests
-undercloud_selinux_permissive: true
+artib_undercloud_selinux_permissive: true
 
 # dib_build vars
-dib_workarounds:       true
-dib_workaround_script: dib-workaround-default.sh.j2
-dib_elements_path:     /usr/share/tripleo-image-elements:/usr/share/tripleo-puppet-elements:/usr/share/instack-undercloud/:/usr/share/openstack-heat-templates/software-config/elements/
-dib_prepare_script:    dib-prepare-centos7-default.sh.j2
-dib_remove_epel:       true
-dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
+artib_dib_workarounds:       true
+artib_dib_workaround_script: dib-workaround-default.sh.j2
+artib_dib_elements_path:     /usr/share/tripleo-image-elements:/usr/share/tripleo-puppet-elements:/usr/share/instack-undercloud/:/usr/share/openstack-heat-templates/software-config/elements/
+artib_dib_prepare_script:    dib-prepare-centos7-default.sh.j2
+artib_dib_remove_epel:       true
+artib_dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
 
 # undercloud_inject vars
-overcloud_images:
+artib_overcloud_images:
   - ironic-python-agent.initramfs
   - ironic-python-agent.kernel
   - overcloud-full.initrd
@@ -88,7 +88,7 @@ overcloud_images:
   - overcloud-full.vmlinuz
 
 # fail, ignore, continue.  See http://libguestfs.org/virt-sparsify.1.html
-virt_sparsify_checktmpdir_flag: fail
+artib_virt_sparsify_checktmpdir_flag: fail
 ```
 
 Dependencies
