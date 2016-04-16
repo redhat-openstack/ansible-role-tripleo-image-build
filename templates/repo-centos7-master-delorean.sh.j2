@@ -3,7 +3,7 @@
 
 set -eux
 
-curl -o /etc/yum.repos.d/delorean.repo http://trunk.rdoproject.org/centos7-master/{{ delorean_hash | default('current-passed-ci')}}/delorean.repo
+curl -o /etc/yum.repos.d/delorean.repo http://trunk.rdoproject.org/centos7-master/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo
 
 curl -o /etc/yum.repos.d/delorean-deps.repo http://trunk.rdoproject.org/centos7-master/delorean-deps.repo
 

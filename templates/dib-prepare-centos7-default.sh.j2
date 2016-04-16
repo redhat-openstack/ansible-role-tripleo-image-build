@@ -8,7 +8,7 @@
 #
 set -x
 
-yum install -y {{ dib_release_rpm }}
+yum install -y {{ artib_dib_release_rpm }}
 
 #FIXME(trown) we need a newer diskimage-builder package than what is in the
 # RDO release repo, in the meantime install it from delorean.
@@ -19,7 +19,7 @@ yum install -y instack-undercloud openstack-heat-templates openstack-tripleo-ima
 #FIXME(trown) one of the above packages should have a requires on python-six
 yum install -y python-six
 
-{% if dib_remove_epel %}
+{% if artib_dib_remove_epel %}
 
 # workaround to remove EPEL from images
 # LKS: In the "99-dkms" component?

@@ -5,9 +5,9 @@ set -eux
 
 xfs_growfs -d /dev/sda1
 
-yum remove -y {% for package in undercloud_remove_packages %} {{ package }} {% endfor %}
+yum remove -y {% for package in artib_undercloud_remove_packages %} {{ package }} {% endfor %}
 
-yum install -y {% for package in undercloud_install_packages %} {{ package }} {% endfor %}
+yum install -y {% for package in artib_undercloud_install_packages %} {{ package }} {% endfor %}
 
 useradd stack
 echo "stack ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/stack
@@ -21,6 +21,6 @@ echo "undercloud" > /etc/hostname
 
 chown -R stack:stack /home/stack/
 
-{% if undercloud_selinux_permissive %}
+{% if artib_undercloud_selinux_permissive %}
 sed -i 's/SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 {% endif %}
