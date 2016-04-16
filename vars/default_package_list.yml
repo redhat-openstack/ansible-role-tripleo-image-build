@@ -1,4 +1,4 @@
-overcloud_packages:
+artib_overcloud_packages:
   - automake
   - boost-filesystem
   - boost-program-options
