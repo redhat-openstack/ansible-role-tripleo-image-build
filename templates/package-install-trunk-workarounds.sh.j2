@@ -3,7 +3,7 @@
 
 set -eux
 
-yum install -y {% for package in overcloud_packages %} {{ package }} {% endfor %}
+yum install -y {% for package in artib_overcloud_packages %} {{ package }} {% endfor %}
 
 
 # Trunk Workarounds
