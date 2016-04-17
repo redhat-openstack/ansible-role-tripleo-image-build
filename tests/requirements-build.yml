@@ -1,0 +1,9 @@
+# from galaxy
+#   - src: yatesr.timezone
+ 
+# from GitHub
+   - src: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-image-build
+
+# local files
+#  - src: file:///home/matyoung/ci/cat/ansible-role-tripleo-image-build
+

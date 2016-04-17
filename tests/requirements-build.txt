@@ -1,0 +1,11 @@
+pbr>=1.6
+ansible==2.0.1
+
+# needed for simple provision morsels
+#git+https://git.openstack.org/openstack/tripleo-quickstart
+
+# the build role (which handles libvirt and kvm setup)
+#git+https://github.com/redhat-openstack/ansible-role-tripleo-image-build.git#egg=ansible-role-tripleo-image-build
+
+#to pull in local development changes
+file:///home/matyoung/ci/cat/ansible-role-tripleo-image-build/#egg=ansible-role-tripleo-image-build
