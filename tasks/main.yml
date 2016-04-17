@@ -5,12 +5,14 @@
   file:
     path: "{{ artib_working_dir }}"
     state: absent
+  become: true
 
 - name: Create the working directory
   file:
     path: "{{ artib_working_dir }}"
     state: directory
     mode: 0755
+  become: true
 
 # Get the base image and setup repos
 - include: repo_setup.yml
