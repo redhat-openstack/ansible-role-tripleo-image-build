@@ -103,7 +103,6 @@ artib_undercloud_selinux_permissive: true
 # dib_build vars
 artib_dib_workarounds:       true
 artib_dib_workaround_script: dib-workaround-default.sh.j2
-artib_dib_elements_path:     /usr/share/tripleo-image-elements:/usr/share/tripleo-puppet-elements:/usr/share/instack-undercloud/:/usr/share/openstack-heat-templates/software-config/elements/
 artib_dib_prepare_script:    dib-prepare-centos7-default.sh.j2
 artib_dib_remove_epel:       true
 artib_dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
@@ -119,6 +118,91 @@ artib_overcloud_images:
 # fail, ignore, continue. See http://libguestfs.org/virt-sparsify.1.html
 artib_virt_sparsify_checktmpdir_flag: fail
 ```
+
+The settings for DIB configuration, as well as other more general settings are migrating to 
+declarative inputs to facilitate CI and development scenarios.  The images are built in parallel
+by the playbook.  Here's the default (currently Mitaka, RDO, Centos7)
+
+_./vars/dib-config-centos7-mitaka.yml:_
+
+```YAML
+#
+# images that will be created using disk-image-create.  openstack binaries are installed
+# on these images to produce the final images.
+#
+# the 'env' dict is appended to the env for the disk-image-create calls, and will
+# override values defined in dib_build.yml.
+#
+# More: http://docs.openstack.org/developer/diskimage-builder/
+#
+artib_dib_images:
+
+  ###
+  image_ipa:
+    output_image: ironic-python-agent
+    base_image:   minimal-base.qcow2
+    elements_paths:
+      - /usr/share/tripleo-image-elements
+      - /usr/share/tripleo-puppet-elements
+      - /usr/share/instack-undercloud/
+      - /usr/share/openstack-heat-templates/software-config/elements/
+    elements:
+      - centos7
+      - dhcp-all-interfaces
+      - dynamic-login
+      - selinux-permissive
+      - pip-and-virtualenv-override
+      - ironic-agent
+    projects:
+      - python-hardware-detect
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+    min_tmpfs_size: 5
+    logfile: dib-agent-ramdisk.log
+
+  ###
+  image_overcloud:
+    output_image: overcloud-full.qcow2
+    base_image:   overcloud-base.qcow2
+    elements_paths:
+      - /usr/share/tripleo-image-elements
+      - /usr/share/tripleo-puppet-elements
+      - /usr/share/instack-undercloud/
+      - /usr/share/openstack-heat-templates/software-config/elements/
+    elements:
+      - centos7
+      - baremetal
+      - dhcp-all-interfaces
+      - stable-interface-names
+      - grub2
+      - dynamic-login
+      - selinux-permissive
+      - element-manifest
+      - heat-config-puppet
+      - heat-config-script
+      - hosts
+      - network-gateway
+      - os-net-config
+      - sysctl
+      - hiera
+      - pip-and-virtualenv-override
+    projects:
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+      # Needed for corosync to be able to use hostnames https://bugs.launchpad.net/tripleo/+bug/1447497
+      DIB_CLOUD_INIT_ETC_HOSTS: ''
+    min_tmpfs_size: 5
+    logfile: dib-overcloud-full.log
+
+# undercloud_inject vars
+artib_overcloud_images:
+  - ironic-python-agent.initramfs
+  - ironic-python-agent.kernel
+  - overcloud-full.initrd
+  - overcloud-full.qcow2
+  - overcloud-full.vmlinuz
+```
+
 
 Dependencies
 ------------
