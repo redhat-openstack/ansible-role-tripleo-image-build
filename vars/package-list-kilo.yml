@@ -1,4 +1,5 @@
-overcloud_packages:
+# TODO: this is the mitaka list.  @weshay need results of your ospd7 testing
+artib_overcloud_packages:
   - automake
   - boost-filesystem
   - boost-program-options
