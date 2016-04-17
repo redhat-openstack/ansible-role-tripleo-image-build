@@ -1,0 +1,11 @@
+---
+- name: Add virthost to inventory
+  hosts: localhost
+  roles:
+    - { role: add-inventory-virthost, virthost: "$VIRTHOST" }
+
+- name: Build images using defaults (rdo, mitaka, centos7)
+  hosts: virthost
+  remote_user: root
+  roles:
+    - ansible-role-tripleo-image-build
