@@ -16,6 +16,24 @@
       "revId": "2283fbab99fe6c7b6b38bec8222cd1f5a4320e5e",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_c4b6f5db",
+        "filename": "defaults/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-04-17T03:31:32Z",
+      "side": 1,
+      "message": "makes sense.",
+      "parentUuid": "baa041b7_649e0958",
+      "revId": "2283fbab99fe6c7b6b38bec8222cd1f5a4320e5e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
