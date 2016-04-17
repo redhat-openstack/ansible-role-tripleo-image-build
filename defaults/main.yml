@@ -49,6 +49,40 @@ dib_prepare_script:    dib-prepare-centos7-default.sh.j2
 dib_remove_epel:       true
 dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
 
+# each element of artib_dib_packages_* expand to "-p item" in the calls to dib-image-create
+artib_dib_packages_overcloud:
+  # intentionally empty, but supported
+
+artib_dib_packages_ipa:
+  - python-hardware-detect
+
+# each item of artib_dib_elements_* are passed to disk-image-create as elements
+artib_dib_elements_ipa:
+  - centos7
+  - dhcp-all-interfaces
+  - dynamic-login
+  - selinux-permissive
+  - pip-and-virtualenv-override
+  - ironic-agent
+
+artib_dib_elements_overcloud:
+  - centos7
+  - baremetal
+  - dhcp-all-interfaces
+  - stable-interface-names
+  - grub2
+  - dynamic-login
+  - selinux-permissive
+  - element-manifest
+  - heat-config-puppet
+  - heat-config-script
+  - hosts
+  - network-gateway
+  - os-net-config
+  - sysctl
+  - hiera
+  - pip-and-virtualenv-override
+
 # undercloud_inject vars
 overcloud_images:
   - ironic-python-agent.initramfs

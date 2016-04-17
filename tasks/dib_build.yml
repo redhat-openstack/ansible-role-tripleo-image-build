@@ -45,16 +45,20 @@
 - name: Build the ironic-python-agent ramdisk
   shell: |
     source {{ working_dir }}/dib-optional-env-inject.sh
-    disk-image-create \
-    -a amd64 \
-    -o {{ working_dir }}/ironic-python-agent \
-    centos7 \
-    dhcp-all-interfaces \
-    dynamic-login \
-    selinux-permissive \
-    pip-and-virtualenv-override \
-    ironic-agent \
-    -p python-hardware-detect \
+    disk-image-create -a amd64 -o {{ working_dir }}/ironic-python-agent \
+    \
+    {% if artib_dib_elements_ipa is defined %}
+    {% for eitem in artib_dib_elements_ipa %}
+    {{ eitem }} \
+    {% endfor %}
+    {% endif %}
+    \
+    {% if artib_dib_packages_ipa is defined %}
+    {% for pitem in artib_dib_packages_ipa %}
+    -p {{ pitem }} \
+    {% endfor %}
+    {% endif %}
+    \
     --min-tmpfs 5 2>&1 | tee {{ working_dir }}/dib-agent-ramdisk.log
   environment:
     DIB_LOCAL_IMAGE: "{{ working_dir }}/minimal-base.qcow2"
@@ -67,25 +71,20 @@
 - name: Build overcloud-full image
   shell: |
     source {{ working_dir }}/dib-optional-env-inject.sh
-    disk-image-create \
-    -a amd64 \
-    -o {{ working_dir }}/overcloud-full.qcow2 \
-    centos7 \
-    baremetal \
-    dhcp-all-interfaces \
-    stable-interface-names \
-    grub2 \
-    dynamic-login \
-    selinux-permissive \
-    element-manifest \
-    heat-config-puppet \
-    heat-config-script \
-    hosts \
-    network-gateway \
-    os-net-config \
-    sysctl \
-    hiera \
-    pip-and-virtualenv-override \
+    disk-image-create -a amd64 -o {{ working_dir }}/overcloud-full.qcow2 \
+    \
+    {% if artib_dib_elements_overcloud is defined %}
+    {% for eitem in artib_dib_elements_overcloud %}
+    {{ eitem }} \
+    {% endfor %}
+    {% endif %}
+    \
+    {% if artib_dib_packages_overcloud is defined %}
+    {% for pitem in artib_dib_packages_overcloud %}
+    -p {{ pitem }} \
+    {% endfor %}
+    {% endif %}
+    \
     --min-tmpfs 5 2>&1 | tee {{ working_dir }}/dib-overcloud-full.log
   environment:
     DIB_LOCAL_IMAGE: "{{ working_dir }}/overcloud-base.qcow2"
