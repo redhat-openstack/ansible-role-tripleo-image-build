@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_649e0958",
+        "filename": "defaults/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-04-17T00:18:28Z",
+      "side": 1,
+      "message": "This has no chance of passing with this variable set to /home. The CI job is looking for the image in /var/lib/oooq-images.\n\nI get wanting to make this change just the rename, and a follow-up for changing the default, but we will need to run CI against the follow-up and merge both together.",
+      "revId": "2283fbab99fe6c7b6b38bec8222cd1f5a4320e5e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
