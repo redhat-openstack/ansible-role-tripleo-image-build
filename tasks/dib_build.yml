@@ -35,71 +35,42 @@
   become: true
 
 # handle additional var env based DIB settings
-- name: Optional DIB environmental inject template
+- name: Optional DIB environment inject template
   template:
     src: dib-optional-env-inject.sh.j2
     dest: "{{ artib_working_dir }}/dib-optional-env-inject.sh"
     mode: 0744
   become: true
 
-- name: Build the ironic-python-agent ramdisk
+- name: Build the images using disk-image-create (in parallel).
   shell: |
+    set -x
+    export -p
     source {{ artib_working_dir }}/dib-optional-env-inject.sh
-    disk-image-create \
-    -a amd64 \
-    -o {{ artib_working_dir }}/ironic-python-agent \
-    centos7 \
-    dhcp-all-interfaces \
-    dynamic-login \
-    selinux-permissive \
-    pip-and-virtualenv-override \
-    ironic-agent \
-    -p python-hardware-detect \
-    --min-tmpfs 5 2>&1 | tee {{ artib_working_dir }}/dib-agent-ramdisk.log
+    export -p
+    disk-image-create -a amd64 -o {{ artib_working_dir }}/{{ item.value.output_image }} \
+    {% if item.value.elements is defined %}
+    {{ item.value.elements | join(' ') }} \
+    {% endif %}
+    {% if item.value.projects is defined %}
+    -p {{ item.value.projects | join(' -p ') }} \
+    {% endif %}
+    --min-tmpfs {{ item.value.min_tmpfs_size }} 2>&1 | tee {{ working_dir }}/{{ item.value.logfile }}
   environment:
-    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/minimal-base.qcow2"
+    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/{{ item.value.base_image }}"
+    ELEMENTS_PATH: "{{ item.value.elements_path | join(':') }}"
     DIB_DEFAULT_INSTALLTYPE: package
-    ELEMENTS_PATH: "{{ artib_dib_elements_path }}"
+    {{ item.value.env }}
   async: 3600
   poll: 0
-  register: done_build_ironic
+  register: "async_var_{{ item.key }}"
+  with_dict: "{{ artib_dib_images }}"
 
-- name: Build overcloud-full image
-  shell: |
-    source {{ artib_working_dir }}/dib-optional-env-inject.sh
-    disk-image-create \
-    -a amd64 \
-    -o {{ artib_working_dir }}/overcloud-full.qcow2 \
-    centos7 \
-    baremetal \
-    dhcp-all-interfaces \
-    stable-interface-names \
-    grub2 \
-    dynamic-login \
-    selinux-permissive \
-    element-manifest \
-    heat-config-puppet \
-    heat-config-script \
-    hosts \
-    network-gateway \
-    os-net-config \
-    sysctl \
-    hiera \
-    pip-and-virtualenv-override \
-    --min-tmpfs 5 2>&1 | tee {{ artib_working_dir }}/dib-overcloud-full.log
-  environment:
-    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/overcloud-base.qcow2"
-    DIB_DEFAULT_INSTALLTYPE: package
-    ELEMENTS_PATH: "{{ artib_dib_elements_path }}"
-# Needed for corosync to be able to use hostnames
-# https://bugs.launchpad.net/tripleo/+bug/1447497
-    DIB_CLOUD_INIT_ETC_HOSTS: ''
-
-- name: Async_Poll --> Wait for ironic task completion
+- name: Async_Poll --> Wait for tasks to complete.
   async_status:
-    jid: "{{ done_build_ironic.ansible_job_id }}"
+    jid: "async_var_{{ item.key }}.ansible_job_id"
   register: job_result
   until: job_result.finished
   retries: 720
   delay: 5
-
+  with_dict: "{{ artib_dib_images }}"
