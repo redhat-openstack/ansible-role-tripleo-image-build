@@ -16,7 +16,7 @@ repo_script: "repo-{{ base_os }}-{{ release }}-{{ build_system }}.sh.j2"
 overcloud_base_image_url: "file:///{{ working_dir }}/minimal-base.qcow2"
 overcloud_overwrite_existing: no
 package_install_script: package-install-default.sh.j2
-overcloud_package_list: default_package_list.yml
+overcloud_package_list: "default-package-list-{{ release }}.yml"
 
 # convert_undercloud vars
 undercloud_base_image_url: "file:///{{ working_dir }}/overcloud-base.qcow2"
@@ -50,14 +50,6 @@ dib_elements_path:     /usr/share/tripleo-image-elements:/usr/share/tripleo-pupp
 dib_prepare_script:    dib-prepare-centos7-default.sh.j2
 dib_remove_epel:       true
 dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
-
-# undercloud_inject vars
-overcloud_images:
-  - ironic-python-agent.initramfs
-  - ironic-python-agent.kernel
-  - overcloud-full.initrd
-  - overcloud-full.qcow2
-  - overcloud-full.vmlinuz
 
 # fail, ignore, continue.  See http://libguestfs.org/virt-sparsify.1.html
 virt_sparsify_checktmpdir_flag: fail
