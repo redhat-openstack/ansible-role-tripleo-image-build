@@ -1,0 +1,9 @@
+# from galaxy
+#   - src: user.role
+ 
+# from GitHub
+   - src: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-image-build
+
+# local files
+#  - src: file:///home/me/ci/ansible-role-tripleo-image-build
+
