@@ -18,6 +18,7 @@ galaxy_info:
   description:  Ansible set of tasks for building images for use with tripleo
   company: Red Hat
   license: Apache2
+  owner: redhat-openstack
   min_ansible_version: 1.2
   platforms:
   - name: EL
