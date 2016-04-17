@@ -1,6 +1,5 @@
 ---
-# tasks file for ansible-role-tripleo-image-build
-
+# TODO: add artib_ to variable names
 - name: Delete prior working directory if present
   file:
     path: "{{ working_dir }}"
@@ -21,7 +20,10 @@
 # Use overcloud base image to create undercloud base image
 - include: convert_undercloud.yml
 
-# Use DIB to build the overlcloud-full and IPA images
+# default: vars/dib-config-centos7-mitaka.yml
+- include_vars: "dib-config-{{ base_os }}-{{ release }}.yml"
+
+# Use DIB to build the images (default: overlcloud-full, IPA)
 - include: dib_build.yml
 
 # Inject overcloud-full and IPA images into the undercloud image
