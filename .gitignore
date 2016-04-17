@@ -2,3 +2,4 @@
 *.egg-info
 ansible_role_tripleo_image_build.egg-info
 .idea/*
+.artib/*
