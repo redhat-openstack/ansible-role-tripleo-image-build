@@ -1,5 +1,5 @@
 ---
-#tasks file for ansible-role-tripleo-image-build
+# tasks file for ansible-role-tripleo-image-build
 
 - name: Delete prior working directory if present
   file:
