@@ -1,0 +1,96 @@
+#
+# images that will be created using disk-image-create.  openstack binaries are installed
+# on these images to produce the final images.
+#
+# the 'env' dict is appended to the env for the disk-image-create calls, and will
+# override values defined in dib_build.yml.
+#
+# More: http://docs.openstack.org/developer/diskimage-builder/
+#
+artib_dib_images:
+
+  ###
+  image_ramdisk_ironic:
+    output_image: deploy-ramdisk-ironic
+    base_image:   minimal-base.qcow2
+    elements:
+      - dracut-ramdisk
+      - base
+      - rhel7
+      - deploy-ironic
+      - element-manifest
+      - network-gateway
+      - undercloud-package-install
+      - pip-and-virtualenv-override
+    projects:
+      - python-hardware
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+      DIB_YUM_REPO_CONF: "/etc/yum.repos.d/rhos-release-7-director.repo /etc/yum.repos.d/rhos-release-7.repo /etc/yum.repos.d/rhos-release-rhel-7.2.repo"
+    min_tmpfs_size: 5
+    logfile: dib-create-deploy-ramdisk-ironic.log
+
+  ###
+  image_ramdisk_discovery:
+    output_image: discovery-ramdisk
+    base_image:   minimal-base.qcow2
+    elements:
+      - dracut-ramdisk
+      - base
+      - rhel7
+      - ironic-discoverd-ramdisk-instack
+      - element-manifest
+      - network-gateway
+      - undercloud-package-install
+      - pip-and-virtualenv-override
+    projects:
+      - python-hardware
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+      DIB_YUM_REPO_CONF: "/etc/yum.repos.d/rhos-release-7-director.repo /etc/yum.repos.d/rhos-release-7.repo /etc/yum.repos.d/rhos-release-rhel-7.2.repo"
+    min_tmpfs_size: 5
+    logfile: dib-create-discovery-ramdisk.log
+
+  ###
+  image_overcloud:
+    output_image: overcloud-full.qcow2
+    base_image:   overcloud-base.qcow2
+    elements:
+      - base
+      - rhel7
+      - overcloud-full
+      - overcloud-controller
+      - overcloud-compute
+      - overcloud-ceph-storage
+      - sysctl hosts baremetal
+      - dhcp-all-interfaces
+      - os-collect-config
+      - heat-config-puppet
+      - heat-config-script
+      - puppet-modules
+      - hiera
+      - os-net-config
+      - stable-interface-names
+      - grub2-deprecated
+      - element-manifest
+      - network-gateway
+      - undercloud-package-install
+      - pip-and-virtualenv-override
+    projects:
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+      DIB_YUM_REPO_CONF: "/etc/yum.repos.d/rhos-release-7-director.repo /etc/yum.repos.d/rhos-release-7.repo /etc/yum.repos.d/rhos-release-rhel-7.2.repo"
+      # Needed for corosync to be able to use hostnames https://bugs.launchpad.net/tripleo/+bug/1447497
+      DIB_CLOUD_INIT_ETC_HOSTS: ''
+    min_tmpfs_size: 5
+    logfile: dib-overcloud-full.log
+
+# undercloud_inject vars
+artib_overcloud_images:
+  - deploy-ramdisk-ironic.initramfs
+  - deploy-ramdisk-ironic.kernel
+  - discovery-ramdisk.initramfs
+  - discovery-ramdisk.kernel
+  - overcloud-full.initrd
+  - overcloud-full.qcow2
+  - overcloud-full.vmlinuzu
