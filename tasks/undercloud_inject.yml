@@ -7,7 +7,9 @@
     --upload {{ working_dir }}/{{ item }}:/home/stack
   environment:
     LIBGUESTFS_BACKEND: direct
-  with_items: "{{ overcloud_images }}"
+  with_items: "{{ artib_overcloud_images }}"
+
+# TODO: fix working_dir --> artib_working_dir
 
 - name: Compress undercloud image
   shell: |
@@ -19,16 +21,14 @@
   args:
     chdir: "{{ working_dir }}"
 
-- name: Tar overcloud-full image files
+# TODO: the replace filter to remove .qcow2 seems like a cludge.  Determine if filenames are fixed
+- name: Create Tars of images
+  vars:
+    tar_base_fname: {{ item.value.output_image | replace(".qcow2", "") }}
   shell: |
-    tar -cf overcloud-full.tar overcloud-full*
-    md5sum overcloud-full.tar > overcloud-full.tar.md5
+    tar -cf {{ tar_base_fname }}.tar {{ tar_base_fname }}*
+    md5sum {{ tar_base_fname }}.tar > {{ tar_base_fname }}.tar.md5
   args:
     chdir: "{{ working_dir }}"
+  with_dict: "{{ artib_dib_images }}"
 
-- name: Tar agent ramdisk files
-  shell: |
-    tar -cf ironic-python-agent.tar ironic-python-agent*
-    md5sum ironic-python-agent.tar > ironic-python-agent.tar.md5
-  args:
-    chdir: "{{ working_dir }}"

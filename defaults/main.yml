@@ -51,13 +51,5 @@ dib_prepare_script:    dib-prepare-centos7-default.sh.j2
 dib_remove_epel:       true
 dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
 
-# undercloud_inject vars
-overcloud_images:
-  - ironic-python-agent.initramfs
-  - ironic-python-agent.kernel
-  - overcloud-full.initrd
-  - overcloud-full.qcow2
-  - overcloud-full.vmlinuz
-
 # fail, ignore, continue.  See http://libguestfs.org/virt-sparsify.1.html
 virt_sparsify_checktmpdir_flag: fail
