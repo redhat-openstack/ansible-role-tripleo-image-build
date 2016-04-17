@@ -1,0 +1,69 @@
+#
+# images that will be created using disk-image-create.  openstack binaries are installed
+# on these images to produce the final images.
+#
+# there are 2 images created below.  (ipa, overcloud). The overcloud is used as the base
+# for the undercloud image (hence no undercloud listed).
+#
+# the 'env' dict is appended to the enviornment for the disk-image-create calls, and will
+# override values defined in dib_build.yml.  If ELEMENTS_PATH for example needs to be something
+# other than dib_elements_path
+#
+# More: http://docs.openstack.org/developer/diskimage-builder/
+#
+artib_dib_images:
+
+  ###
+  image_ipa:
+    output_image: ironic-python-agent
+    base_image:   minimal-base.qcow2
+    elements:
+      - centos7
+      - dhcp-all-interfaces
+      - dynamic-login
+      - selinux-permissive
+      - pip-and-virtualenv-override
+      - ironic-agent
+    projects:
+      - python-hardware-detect
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+    min_tmpfs_size: 5
+    logfile: dib-agent-ramdisk.log
+
+  ###
+  image_overcloud:
+    output_image: overcloud-full.qcow2
+    base_image:   overcloud-base.qcow2
+    elements:
+      - centos7
+      - baremetal
+      - dhcp-all-interfaces
+      - stable-interface-names
+      - grub2
+      - dynamic-login
+      - selinux-permissive
+      - element-manifest
+      - heat-config-puppet
+      - heat-config-script
+      - hosts
+      - network-gateway
+      - os-net-config
+      - sysctl
+      - hiera
+      - pip-and-virtualenv-override
+    projects:
+    env:
+      DIB_SHOW_IMAGE_USAGE: 1
+      # Needed for corosync to be able to use hostnames https://bugs.launchpad.net/tripleo/+bug/1447497
+      DIB_CLOUD_INIT_ETC_HOSTS: ''
+    min_tmpfs_size: 5
+    logfile: dib-overcloud-full.log
+
+# undercloud_inject vars
+artib_overcloud_images:
+  - ironic-python-agent.initramfs
+  - ironic-python-agent.kernel
+  - overcloud-full.initrd
+  - overcloud-full.qcow2
+  - overcloud-full.vmlinuz
