@@ -1,0 +1,11 @@
+export ANSIBLE_GATHERING=smart
+export ANSIBLE_COMMAND_WARNINGS=False
+export ANSIBLE_HOST_KEY_CHECKING=False
+export ANSIBLE_FORCE_COLOR=1
+export ANSIBLE_INVENTORY=$OPT_WORKDIR/hosts
+export SSH_CONFIG=$OPT_WORKDIR/ssh.config.ansible
+export ANSIBLE_SSH_ARGS="-F ${SSH_CONFIG}"
+#export ANSIBLE_ROLES_PATH=/usr/lib/python2.7/site-packages/ansible-role-tripleo-image-build:$VIRTUAL_ENV/usr/local/share/ansible-role-tripleo-image-build:$VIRTUAL_ENV/usr/local/share
+
+export ANSIBLE_ROLES_PATH=../..
+
