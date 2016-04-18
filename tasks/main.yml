@@ -21,8 +21,8 @@
 # Use overcloud base image to create undercloud base image
 - include: convert_undercloud.yml
 
-# Use DIB to build the overlcloud-full and IPA images
-- include: dib_build.yml
+# # Use DIB to build the overlcloud-full and IPA images
+- include: dib_build_kilo.yml
 
 # Inject overcloud-full and IPA images into the undercloud image
-- include: undercloud_inject.yml
+- include: undercloud_inject_kilo.yml

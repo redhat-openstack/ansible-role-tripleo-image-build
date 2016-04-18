@@ -57,5 +57,14 @@ overcloud_images:
   - overcloud-full.qcow2
   - overcloud-full.vmlinuz
 
+overcloud_images_kilo:
+  - deploy-ramdisk-ironic.initramfs
+  - deploy-ramdisk-ironic.kernel
+  - discovery-ramdisk.initramfs
+  - discovery-ramdisk.kernel
+  - overcloud-full.initrd
+  - overcloud-full.qcow2
+  - overcloud-full.vmlinuz
+
 # fail, ignore, continue.  See http://libguestfs.org/virt-sparsify.1.html
 virt_sparsify_checktmpdir_flag: fail
