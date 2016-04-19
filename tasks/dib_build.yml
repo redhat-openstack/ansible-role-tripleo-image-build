@@ -35,7 +35,7 @@
   become: true
 
 # handle additional var env based DIB settings
-- name: Optional DIB enviornmental inject template
+- name: Optional DIB environmental inject template
   template:
     src: dib-optional-env-inject.sh.j2
     dest: "{{ working_dir }}/dib-optional-env-inject.sh"
