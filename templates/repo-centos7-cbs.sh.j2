@@ -1,0 +1,8 @@
+#!/bin/bash
+# Repo script to install using centos build system repos
+
+set -eux
+
+yum install -y centos-release-openstack-{{ artib_release }} centos-release-ceph
+
+yum update -y
