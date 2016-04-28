@@ -1,10 +1,11 @@
 ---
-# tasks file for ansible-role-tripleo-image-build
+tasks file for ansible-role-tripleo-image-build
 
 - name: Delete prior working directory if present
   file:
     path: "{{ artib_working_dir }}"
     state: absent
+  when: "{{ artib_start_over }}"
 
 - name: Create the working directory
   file:
