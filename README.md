@@ -96,8 +96,12 @@ artib_undercloud_install_packages:
   - python-ceilometer-tests
   - python-heat-tests
   - python-ironic-tests
+  - python-keystone-tests
+  - python-manila-tests
+  - python-mistral-tests
   - python-neutron-tests
   - python-sahara-tests
+  - python-zaqar-tests
 artib_undercloud_selinux_permissive: true
 
 # dib_build vars
