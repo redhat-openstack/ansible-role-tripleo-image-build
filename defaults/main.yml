@@ -44,6 +44,9 @@ artib_undercloud_install_packages:
 artib_undercloud_selinux_permissive: true
 
 # dib_build vars
+artib_config_location:       "{{ artib_working_dir }}/"
+artib_agent_ramdisk_yaml:    "ironic-python-agent-{{ artib_base_os }}-{{ artib_release }}.yaml"
+artib_overcloud_full_yaml:   "overcloud-full-{{ artib_base_os }}-{{ artib_release }}.yaml"
 artib_dib_workarounds:       true
 artib_dib_workaround_script: dib-workaround-default.sh.j2
 artib_dib_elements_path:     /usr/share/tripleo-image-elements:/usr/share/tripleo-puppet-elements:/usr/share/instack-undercloud/:/usr/share/openstack-heat-templates/software-config/elements/
