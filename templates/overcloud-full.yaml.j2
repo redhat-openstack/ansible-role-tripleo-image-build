@@ -1,0 +1,16 @@
+disk_images:
+  -
+    imagename: overcloud-full
+    arch: amd64
+    type: qcow2
+    distro: {{ artib_overcloud_distro |default(artib_base_os) }}
+    elements:
+      - {{ artib_overcloud_elements }}
+    packages:
+{% for package in artib_overcloud_packages %}
+      - {{ package }}
+{% endfor %}
+    options:
+{% for option in artib_overcloud_options %}
+      - {{ option }}
+{% endfor %}
