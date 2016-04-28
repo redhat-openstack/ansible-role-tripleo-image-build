@@ -1,0 +1,16 @@
+disk_images:
+  -
+    imagename: ironic-python-agent
+    arch: amd64
+    type: qcow2
+    distro: {{ artib_agent_distro |default(artib_base_os) }}
+    elements:
+      - {{ artib_agent_elements }}
+    packages:
+{% for package in artib_agent_packages %}
+      - {{ package }}
+{% endfor %}
+    options:
+{% for option in artib_agent_options %}
+      - {{ option }}     
+{% endfor %}
