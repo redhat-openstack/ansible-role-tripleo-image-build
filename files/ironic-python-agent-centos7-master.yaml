@@ -1,0 +1,12 @@
+disk_images:
+  -
+    imagename: ramdisk_agent
+    arch: amd64
+    type: qcow2
+    distro: centos7
+    elements:
+      - ironic-agent dynamic-login element-manifest network-gateway epel undercloud-package-install pip-and-virtualenv-override
+    packages:
+      - python-hardware-detect
+    options:
+      - "--min-tmpfs=5"
