@@ -1,25 +1,26 @@
 ---
 # tasks file for ansible-role-tripleo-image-build
 
-- name: Delete prior working directory if present
-  file:
-    path: "{{ artib_working_dir }}"
-    state: absent
+# - name: Delete prior working directory if present
+#   file:
+#     path: "{{ artib_working_dir }}"
+#     state: absent
+#   when: "{{ artib_start_over }}"
 
-- name: Create the working directory
-  file:
-    path: "{{ artib_working_dir }}"
-    state: directory
-    mode: 0755
+# - name: Create the working directory
+#   file:
+#     path: "{{ artib_working_dir }}"
+#     state: directory
+#     mode: 0755
 
-# Get the base image and setup repos
-- include: repo_setup.yml
+# # Get the base image and setup repos
+# - include: repo_setup.yml
 
-# Install packages for overcloud base image
-- include: package_install.yml
+# # Install packages for overcloud base image
+# - include: package_install.yml
 
-# Use overcloud base image to create undercloud base image
-- include: convert_undercloud.yml
+# # Use overcloud base image to create undercloud base image
+# - include: convert_undercloud.yml
 
 # Use DIB to build the overlcloud-full and IPA images
 - include: dib_build.yml
