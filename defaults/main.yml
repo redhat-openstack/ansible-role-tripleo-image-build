@@ -3,9 +3,12 @@
 
 # global build vars
 artib_working_dir: /var/lib/oooq-images
+# Whether or not to delete the working directory before starting.
+artib_start_over: true
 
 # repo_setup vars
-artib_minimal_base_image_url: http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
+artib_minimal_base_image_url:
+  http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
 artib_minimal_overwrite_existing: no
 artib_base_os: centos7
 artib_release: mitaka
@@ -13,13 +16,15 @@ artib_build_system: delorean
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
 
 # package_install vars
-artib_overcloud_base_image_url: "file:///{{ artib_working_dir }}/minimal-base.qcow2"
+artib_overcloud_base_image_url:
+  "file:///{{ artib_working_dir }}/minimal-base.qcow2"
 artib_overcloud_overwrite_existing: no
 artib_package_install_script: package-install-default.sh.j2
 artib_overcloud_package_list: default_package_list.yml
 
 # convert_undercloud vars
-artib_undercloud_base_image_url: "file:///{{ artib_working_dir }}/overcloud-base.qcow2"
+artib_undercloud_base_image_url:
+  "file:///{{ artib_working_dir }}/overcloud-base.qcow2"
 artib_undercloud_overwrite_existing: no
 artib_undercloud_convert_script: undercloud-convert-default.sh.j2
 artib_undercloud_disk_size: 40
@@ -43,13 +48,63 @@ artib_undercloud_install_packages:
   - python-sahara-tests
 artib_undercloud_selinux_permissive: true
 
-# dib_build vars
-artib_dib_workarounds:       true
+##################
+# dib_build vars #
+##################
+
+# default templates to use to create the yaml files
+# passed to the tripleo-common image building library
+artib_agent_ramdisk_yaml_template:    "ironic-python-agent.yaml.j2"
+artib_overcloud_full_yaml_template:   "overcloud-full.yaml.j2"
+
+# elements key takes a space-seperated list, while packages key
+# takes a YAML list.
+# (trown) might be something to fix in tripleo-common
+artib_agent_ramdisk_elements: >
+  dhcp-all-interfaces
+  dynamic-login
+  element-manifest
+  ironic-agent
+  network-gateway
+  pip-and-virtualenv-override
+  selinux-permissive
+artib_overcloud_full_elements: >
+  baremetal
+  dhcp-all-interfaces
+  dynamic-login
+  element-manifest
+  grub2
+  hiera
+  heat-config-puppet
+  heat-config-script
+  hosts
+  network-gateway
+  os-net-config
+  pip-and-virtualenv-override
+  selinux-permissive
+  stable-interface-names
+  sysctl
+
+artib_agent_ramdisk_packages:
+  - python-hardware-detect
+artib_overcloud_full_packages: []
+
+artib_agent_ramdisk_options:
+  - "--min-tmpfs=5"
+artib_overcloud_full_options:
+  - "--min-tmpfs=5"
+
+artib_dib_workarounds: true
 artib_dib_workaround_script: dib-workaround-default.sh.j2
-artib_dib_elements_path:     /usr/share/tripleo-image-elements:/usr/share/tripleo-puppet-elements:/usr/share/instack-undercloud/:/usr/share/openstack-heat-templates/software-config/elements/
-artib_dib_prepare_script:    dib-prepare-centos7-default.sh.j2
-artib_dib_remove_epel:       true
-artib_dib_release_rpm:       "http://rdoproject.org/repos/openstack-liberty/rdo-release-liberty.rpm"
+artib_dib_elements_path:
+  - /usr/share/tripleo-image-elements
+  - /usr/share/tripleo-puppet-elements
+  - /usr/share/instack-undercloud/
+  - /usr/share/openstack-heat-templates/software-config/elements/
+artib_dib_prepare_script: dib-prepare-centos7-default.sh.j2
+artib_dib_remove_epel: true
+artib_dib_release_rpm:
+  "http://rdoproject.org/repos/openstack-mitaka/rdo-release-mitaka.rpm"
 
 # undercloud_inject vars
 artib_overcloud_images:
