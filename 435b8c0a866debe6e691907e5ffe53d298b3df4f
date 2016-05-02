@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_e06d2c99",
+        "filename": "defaults/main.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-02T17:52:29Z",
+      "side": 1,
+      "message": "would like to break out to a specific vars file, then have default point to it (e.g. K,L,M,N,...) - rather then bake this into defaults.",
+      "revId": "435b8c0a866debe6e691907e5ffe53d298b3df4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_a03844a1",
+        "filename": "library/tripleo_build_images.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-02T17:52:29Z",
+      "side": 1,
+      "message": "It would be nice/good to include supports_check_mode\u003dTrue. It could provide a simple/terse summary of the inputs (e.g. - what is about to be passed to the tripleo-common image building mechanism).  I think it\u0027s fine to call this a different commit as well.",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "435b8c0a866debe6e691907e5ffe53d298b3df4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_405cd8ec",
+        "filename": "library/tripleo_build_images.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-02T17:52:29Z",
+      "side": 1,
+      "message": "We should return useful details about what was built.  This could require changing ImageBuildManager(fine).  \"Always return useful data, even when there is no change.\" (http://docs.ansible.com/ansible/developing_modules.html#module-checklist).  Plumbing that out helps with above comment about Checked Mode as well.",
+      "range": {
+        "startLine": 51,
+        "startChar": 25,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "435b8c0a866debe6e691907e5ffe53d298b3df4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_204d543e",
+        "filename": "tasks/main.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-02T17:52:29Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 8,
+        "startChar": 12,
+        "endLine": 8,
+        "endChar": 28
+      },
+      "revId": "435b8c0a866debe6e691907e5ffe53d298b3df4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
