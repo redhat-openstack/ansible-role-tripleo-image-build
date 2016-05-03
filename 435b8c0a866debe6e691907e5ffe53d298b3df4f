@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_bb1635ef",
+        "filename": "library/tripleo_build_images.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1005220
+      },
+      "writtenOn": "2016-05-03T07:32:47Z",
+      "side": 1,
+      "message": "please describe here ( under documentation), the options of the module and a short example.",
+      "revId": "435b8c0a866debe6e691907e5ffe53d298b3df4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_a03844a1",
         "filename": "library/tripleo_build_images.py",
         "patchSetId": 7
