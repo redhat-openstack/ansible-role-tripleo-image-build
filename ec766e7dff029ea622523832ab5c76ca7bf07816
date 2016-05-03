@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_ed9f644e",
+        "filename": "tests/requirements-build.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-05-03T13:26:49Z",
+      "side": 1,
+      "message": "This version has multiple bugs that affect this role. Should pin to 2.0.1.",
+      "revId": "ec766e7dff029ea622523832ab5c76ca7bf07816",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_cdaee084",
+        "filename": "tests/requirements-build.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-05-03T13:26:49Z",
+      "side": 1,
+      "message": "I think we probably don\u0027t want to check in your personal home dir here :)",
+      "revId": "ec766e7dff029ea622523832ab5c76ca7bf07816",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8db7b8d7",
+        "filename": "tests/requirements-build.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-05-03T13:26:49Z",
+      "side": 1,
+      "message": "nit: space",
+      "revId": "ec766e7dff029ea622523832ab5c76ca7bf07816",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
