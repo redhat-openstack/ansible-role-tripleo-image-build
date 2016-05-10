@@ -1,7 +1,8 @@
-# UUID            	Group Name
+# UUID                                  	Group Name
 #
-user:halcyondude  	user/Matt Young (halcyondude)
-user:larsks       	user/Lars Kellogg-Stedman (larsks)
-user:rdo-ci-centos	user/rdo-ci-centos
-user:trown        	user/John Trowbridge (trown)
-user:weshayutin   	user/wes hayutin (weshayutin)
+f3ecf61dbf829bba93bb94096fa20ed29f0768aa	rdo-ci-group
+user:halcyondude                        	user/Matt Young (halcyondude)
+user:larsks                             	user/Lars Kellogg-Stedman (larsks)
+user:rdo-ci-centos                      	user/rdo-ci-centos
+user:trown                              	user/John Trowbridge (trown)
+user:weshayutin                         	user/wes hayutin (weshayutin)
