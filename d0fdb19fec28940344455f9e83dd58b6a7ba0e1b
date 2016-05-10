@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_1c16224c",
+        "filename": "defaults/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-10T06:09:38Z",
+      "side": 1,
+      "message": "extra \u0027/\u0027, this expands as file:////var/lib/oooq-images/... and fails for me.  Still /boggle at why this worked for me prior to this change but breaks now, but validated that removing the extra / works.",
+      "range": {
+        "startLine": 20,
+        "startChar": 10,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "d0fdb19fec28940344455f9e83dd58b6a7ba0e1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_fc125e56",
+        "filename": "defaults/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-10T06:09:38Z",
+      "side": 1,
+      "message": "extra \u0027/\u0027,see above",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 11
+      },
+      "revId": "d0fdb19fec28940344455f9e83dd58b6a7ba0e1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_dc32faf1",
+        "filename": "defaults/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-10T06:09:38Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 53
+      },
+      "revId": "d0fdb19fec28940344455f9e83dd58b6a7ba0e1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_bc185676",
+        "filename": "tasks/dib_build.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-10T06:09:38Z",
+      "side": 1,
+      "message": "in the current approach (not a shell block) this becomes dead code.  We need the capability to specify additional env parameters.  The old version was sourcing dib-optional-env-inject.sh, is there a new mechanism for this exposed by tripleo-common, or do we need to update the env block directly (via a dict param?)",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 14
+      },
+      "revId": "d0fdb19fec28940344455f9e83dd58b6a7ba0e1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_3a5b2ef8",
+        "filename": "templates/dib-prepare-centos7-default.sh.j2",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-10T06:09:38Z",
+      "side": 1,
+      "message": "I agree.  is there already a issue tracking this?",
+      "range": {
+        "startLine": 16,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "d0fdb19fec28940344455f9e83dd58b6a7ba0e1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
