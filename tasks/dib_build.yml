@@ -42,15 +42,18 @@
     mode: 0744
   become: true
 
-- name: Template yaml definition for the ironic-python-agent ramdisk
-  template:
-    src: "{{ artib_agent_ramdisk_yaml_template }}"
-    dest: "{{ artib_working_dir }}/ironic-python-agent.yaml"
+# TODO: do we need to parameterize the actual template name too?  This is getting silly...\
+# Note: item.key is image name, item.value is params for that image
 
-- name: Template yaml definition for the overcloud-full image
+# annoying that ansible rejected this feature request
+# https://github.com/ansible/ansible/issues/4546
+# http://stackoverflow.com/questions/31142369/how-to-use-template-module-with-different-set-of-variables
+# http://docs.ansible.com/ansible/playbooks_loops.html
+
+- name: Create yaml manifest for DIB invocation (tripleo-common)
   template:
-    src: "{{ artib_overcloud_full_yaml_template }}"
-    dest: "{{ artib_working_dir }}/overcloud-full.yaml"
+    src: "{{ artib_dib_manifest_yaml_template }}"
+    dest: "{{ artib_working_dir }}/dib-manifest.yaml"
 
 - name: Build the ironic-python-agent ramdisk
   tripleo_build_images:
