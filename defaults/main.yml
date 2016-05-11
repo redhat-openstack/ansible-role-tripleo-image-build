@@ -28,11 +28,16 @@ artib_undercloud_base_image_url:
 artib_undercloud_overwrite_existing: no
 artib_undercloud_convert_script: undercloud-convert-default.sh.j2
 artib_undercloud_disk_size: 40
+
+# TODO: these are potentially large, based on initial testing.
 artib_virt_customize_ram: 28000
 artib_virt_customize_cpu: 4
+
+# undercloud == overcloud (+/-) packages
 artib_undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server
+
 artib_undercloud_install_packages:
   - mariadb-server
   - openstack-tempest
@@ -55,59 +60,27 @@ artib_undercloud_selinux_permissive: true
 
 # default templates to use to create the yaml files
 # passed to the tripleo-common image building library
-artib_agent_ramdisk_yaml_template:    "ironic-python-agent.yaml.j2"
-artib_overcloud_full_yaml_template:   "overcloud-full.yaml.j2"
-
-# elements key takes a space-seperated list, while packages key
-# takes a YAML list.
-# (trown) might be something to fix in tripleo-common
-artib_agent_ramdisk_elements: >
-  dhcp-all-interfaces
-  dynamic-login
-  element-manifest
-  ironic-agent
-  network-gateway
-  pip-and-virtualenv-override
-  selinux-permissive
-artib_overcloud_full_elements: >
-  baremetal
-  dhcp-all-interfaces
-  dynamic-login
-  element-manifest
-  grub2
-  hiera
-  heat-config-puppet
-  heat-config-script
-  hosts
-  network-gateway
-  os-net-config
-  pip-and-virtualenv-override
-  selinux-permissive
-  stable-interface-names
-  sysctl
-
-artib_agent_ramdisk_packages:
-  - python-hardware-detect
-artib_overcloud_full_packages: []
-
-artib_agent_ramdisk_options:
-  - "--min-tmpfs=5"
-artib_overcloud_full_options:
-  - "--min-tmpfs=5"
+artib_image_yaml_template: "dib-manifest-centos7-mitaka.yaml.j2"
 
 artib_dib_workarounds: true
 artib_dib_workaround_script: dib-workaround-default.sh.j2
+
 artib_dib_elements_path:
   - /usr/share/tripleo-image-elements
   - /usr/share/tripleo-puppet-elements
   - /usr/share/instack-undercloud/
   - /usr/share/openstack-heat-templates/software-config/elements/
-artib_dib_prepare_script: dib-prepare-centos7-default.sh.j2
-artib_dib_remove_epel: true
-artib_dib_release_rpm:
-  "http://rdoproject.org/repos/openstack-mitaka/rdo-release-mitaka.rpm"
 
-# undercloud_inject vars
+# NOTE: for now this is where the tripleo-common library is installed (from master).
+artib_dib_prepare_script: dib-prepare-centos7-default.sh.j2
+
+artib_dib_remove_epel: true
+
+# "http://rdoproject.org/repos/openstack-mitaka/rdo-release-mitaka.rpm"
+artib_dib_release_rpm:
+  "http://rdoproject.org/repos/openstack-{{ artib_release }}/rdo-release-{{ artib_release }}.rpm"
+
+# these are injected into the undercloud.qcow2
 artib_overcloud_images:
   - ironic-python-agent.initramfs
   - ironic-python-agent.kernel
