@@ -306,7 +306,7 @@ Code reviews and patches are managed by Gerrit here:
 
 [https://review.gerrithub.io/#/q/project:redhat-openstack/ansible-role-tripleo-image-build](https://review.gerrithub.io/#/q/project:redhat-openstack/ansible-role-tripleo-image-build)
 
-Ideas for substantive changes and/or features/targets/requirements, reach out on IRC at #rdo or please submit a blueprint here:
+Ideas for substantive changes and/or features/targets/requirements are heartily welcomed.  Please do reach out on IRC (freenode) at #rdo or #tripleo, or please submit a blueprint here:
 
 [https://github.com/redhat-openstack/ansible-role-tripleo-image-build/blueprints](https://github.com/redhat-openstack/ansible-role-tripleo-image-build/blueprints)
 
