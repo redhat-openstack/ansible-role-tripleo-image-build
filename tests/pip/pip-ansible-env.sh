@@ -15,8 +15,10 @@ export ANSIBLE_ROLES_PATH=$ANSIBLE_ROLES_PATH:$(pwd)/../..
 # to find the artib itself: ansible-role-tripleo-image-build itself
 export ANSIBLE_ROLES_PATH=$ANSIBLE_ROLES_PATH:$(pwd)/../../..
 
-export ANSIBLE_CALLBACK_PLUGINS=test_plugins/callback/profile_tasks
-export ANSIBLE_CALLBACK_WHITELIST=profile_tasks
+export ANSIBLE_CALLBACK_PLUGINS=$(pwd)/plugins/callback/profile_timeline
+export ANSIBLE_CALLBACK_WHITELIST=profile_timeline
 export PROFILE_TASKS_TIMELINE_SUMMARY=1
 
+# for debugging
+export ANSIBLE_KEEP_REMOTE_FILES=1
 
