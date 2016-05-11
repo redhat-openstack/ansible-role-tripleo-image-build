@@ -1,0 +1,36 @@
+
+disk_images:
+  -
+    imagename: ironic-python-agent
+    arch: amd64
+    type: qcow2
+    distro: centos7
+    elements:
+      - dhcp-all-interfaces dynamic-login element-manifest ironic-agent network-gateway pip-and-virtualenv-override selinux-permissive
+    packages:
+      - python-hardware-detect
+    options:
+      - --min-tmpfs=5
+      - env:
+          DIB_SHOW_IMAGE_USAGE: 1
+          DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/minimal-base.qcow2"
+          DIB_DEFAULT_INSTALLTYPE: package
+          ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
+  -
+    imagename: overcloud-full
+    arch: amd64
+    type: qcow2
+    distro: centos7
+    elements:
+      - baremetal dhcp-all-interfaces dynamic-login element-manifest grub2 hiera heat-config-puppet heat-config-script hosts network-gateway os-net-config pip-and-virtualenv-override selinux-permissive stable-interface-names sysctl
+    packages:
+    options:
+      - --min-tmpfs=5
+      - env:
+          DIB_SHOW_IMAGE_USAGE: 1
+          DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/overcloud-base.qcow2"
+          DIB_DEFAULT_INSTALLTYPE: package
+          ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
+          # Needed for corosync to be able to use hostnames
+          # https://bugs.launchpad.net/tripleo/+bug/1447497
+          DIB_CLOUD_INIT_ETC_HOSTS: ''
