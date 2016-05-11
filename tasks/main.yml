@@ -25,5 +25,8 @@
 # Use DIB to build the overlcloud-full and IPA images
 - include: dib_build.yml
 
+# Generate log bundle
+- include: bundle_logs.yml
+
 # Inject overcloud-full and IPA images into the undercloud image
 - include: undercloud_inject.yml

@@ -36,5 +36,6 @@
     --smp {{ artib_virt_customize_cpu }}
     -a {{ artib_working_dir }}/undercloud-base.qcow2
     --run {{ artib_working_dir }}/undercloud-convert.sh
+    | tee {{ artib_working_dir }}/undercloud-convert.sh.log
   environment:
     LIBGUESTFS_BACKEND: direct
