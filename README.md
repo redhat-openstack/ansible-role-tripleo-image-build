@@ -225,10 +225,10 @@ artib_undercloud_selinux_permissive: true
 # dib_build vars #
 ##################
 
-# default templates to use to create the yaml files
+# default template to use to create the yaml files
 # passed to the tripleo-common image building library
-artib_agent_ramdisk_yaml_template:    "ironic-python-agent.yaml.j2"
-artib_overcloud_full_yaml_template:   "overcloud-full.yaml.j2"
+artib_dib_manifest_yaml_template:    "tripleo-common-build-image-input.yaml.j2"
+
 
 # elements key takes a space-seperated list, while packages key
 # takes a YAML list.
