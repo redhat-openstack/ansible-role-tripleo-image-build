@@ -11,8 +11,10 @@
 
 - name: Compress undercloud image
   shell: |
-    virt-sparsify --tmp {{ artib_working_dir }} --check-tmpdir {{ artib_virt_sparsify_checktmpdir_flag }} \
-      --compress undercloud-base.qcow2 undercloud.qcow2
+    virt-sparsify --tmp {{ artib_working_dir }}                 \
+      --check-tmpdir {{ artib_virt_sparsify_checktmpdir_flag }} \
+      --compress undercloud-base.qcow2 undercloud.qcow2         \
+      | tee {{ artib_working_dir }}/compress-undercloud.log
     md5sum undercloud.qcow2 > undercloud.qcow2.md5
   environment:
     LIBGUESTFS_BACKEND: direct

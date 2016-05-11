@@ -55,8 +55,8 @@ usage() {
     echo "   -z, --requirements <file>     default: '$REQUIREMENTS', Specify the python setup tools requirements file."
     echo "   -r, --release <release>       default: 'mitaka',  { kilo | liberty | mitaka } "
     echo "   -b, --base_os <os>            default: 'centos7', { centos7 | rhel }"
-    echo "   -u, --base_url <url>          Must be resolvable from \$virthost. Shortcut for: \'-e artib_minimal_base_image_url=<url>\'"
-    echo "   -e, --extra-vars <k=v>, @file Additional Ansible variable.  Supports multiple ('-e name1=val1 -e name2=val2 -e @file"
+    echo "   -u, --base_url <url>          Must be resolvable from \$virthost. Shortcut for: '-e artib_minimal_base_image_url=<url>'"
+    echo "   -e, --extra-vars <k=v>, @file Additional Ansible variable.  Supports multiple: ' -e name1=val1 -e name2=val2 -e @file'"
     echo "   -o, --output <logfile>        tee output to file"
     echo ""
     echo " * Advanced options"
@@ -195,6 +195,8 @@ Host $VIRTHOST
 EOF
 fi
 
+set -x
+
 if [ "$OPT_DEBUG_ANSIBLE" = 1 ]; then
     VERBOSITY=vvvv
 else
@@ -215,6 +217,7 @@ fi
 
 echo "Building images for ${RELEASE:+"$RELEASE "}on host $VIRTHOST"
 echo "Executing Ansible..."
+
 set -x
 
 ansible-playbook -$VERBOSITY $PLAYBOOK \
