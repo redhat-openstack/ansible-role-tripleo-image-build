@@ -18,7 +18,7 @@ clean_virtualenv() {
 }
 
 install_deps () {
-    yum -y install git virtualenv gcc libyaml
+    yum -y install git python-virtualenv gcc libyaml
 }
 
 setup() {
