@@ -20,7 +20,7 @@ artib_overcloud_base_image_url:
   "file:///{{ artib_working_dir }}/minimal-base.qcow2"
 artib_overcloud_overwrite_existing: no
 artib_package_install_script: package-install-default.sh.j2
-artib_overcloud_package_list: default_package_list.yml
+artib_overcloud_package_list: package-list-mitaka.yml
 
 # convert_undercloud vars
 artib_undercloud_base_image_url:
@@ -55,8 +55,7 @@ artib_undercloud_selinux_permissive: true
 
 # default templates to use to create the yaml files
 # passed to the tripleo-common image building library
-artib_agent_ramdisk_yaml_template:    "ironic-python-agent.yaml.j2"
-artib_overcloud_full_yaml_template:   "overcloud-full.yaml.j2"
+artib_image_yaml_template: "tripleo-common-build-image-input.yaml.j2"
 
 # elements key takes a space-seperated list, while packages key
 # takes a YAML list.
