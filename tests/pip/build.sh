@@ -54,8 +54,10 @@ usage() {
     echo "   -p, --playbook <playbook>     default: '$PLAYBOOK', Specify playbook to be executed."
     echo "   -z, --requirements <file>     default: '$REQUIREMENTS', Specify the python setup tools requirements file."
     echo "   -r, --release <release>       default: 'mitaka',  { kilo | liberty | mitaka } "
-    echo "   -o, --base_os <os>            default: 'centos7', { centos7 | rhel }"
+    echo "   -b, --base_os <os>            default: 'centos7', { centos7 | rhel }"
+    echo "   -u, --base_url <url>          Must be resolvable from \$virthost. Shortcut for: \'-e artib_minimal_base_image_url=<url>\'"
     echo "   -e, --extra-vars <file>       Additional Ansible variables.  Supports multiple ('-e f1 -e f2')"
+    echo "   -o, --output <logfile>        tee output to file"
     echo ""
     echo " * Advanced options"
     echo "   -w, --working-dir <directory> Location of ci-ansible-tripleo sources and virtual env"
@@ -87,13 +89,23 @@ while [ "x$1" != "x" ]; do
             shift
             ;;
 
-        --base_os| -o)
+        --base_os|-b)
             BASE_OS=$2
             shift
             ;;
 
+        --base_url|-u)
+            OPT_BASE_URL=$2
+            shift
+            ;;
+
         --extra-vars|-e)
-            EXTRA_VARS_FILE="$EXTRA_VARS_FILE-e @$2 "
+            EXTRA_VARS_FILE="$EXTRA_VARS_FILE -e @$2 "
+            shift
+            ;;
+
+        --output|-o)
+            OPT_OUTPUT_FILE=$2
             shift
             ;;
 
@@ -183,15 +195,28 @@ Host $VIRTHOST
 EOF
 fi
 
+set -x
+
 if [ "$OPT_DEBUG_ANSIBLE" = 1 ]; then
     VERBOSITY=vvvv
 else
     VERBOSITY=vv
 fi
 
+if [ -n "$OPT_OUTPUT_FILE" ]; then
+    OUTFILE=" | tee $OPT_OUTPUT_FILE"
+else
+    OUTFILE=""
+fi
+
+if [ -n "$OPT_BASE_URL" ]; then
+    BASE_URL=" -e artib_minimal_base_image_url=$OPT_BASE_URL"
+else
+    BASE_URL=""
+fi
+
 echo "Building images for ${RELEASE:+"$RELEASE "}on host $VIRTHOST"
 echo "Executing Ansible..."
-set -x
 
 ansible-playbook -$VERBOSITY $PLAYBOOK \
     -e ansible_python_interpreter=/usr/bin/python \
@@ -199,5 +224,7 @@ ansible-playbook -$VERBOSITY $PLAYBOOK \
     -e virthost=$VIRTHOST \
     -e artib_base_os=$BASE_OS \
     -e artib_release=$RELEASE \
-    $EXTRA_VARS_FILE
+    $EXTRA_VARS_FILE \
+    $BASE_URL \
+    $OUTFILE
 
