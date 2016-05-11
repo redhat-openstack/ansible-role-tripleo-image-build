@@ -18,11 +18,12 @@ via Ansible Galaxy
 ------------------
 ```bash
 ansible-galaxy -v install -p roles-from-galaxy -r requirements-build.yml
+
 - extracting ansible-role-tripleo-image-build to roles-from-galaxy/ansible-role-tripleo-image-build
 - ansible-role-tripleo-image-build was installed successfully
 ```
 
-[requirements-build.yml](https://github.com/redhat-openstack/ansible-role-tripleo-image-build/blob/master/tests/pip/requirements-build.yml)
+[requirements-build.yml](https://github.com/redhat-openstack/ansible-role-tripleo-image-build/blob/master/tests/galaxy/requirements-build.yml)
 ```YAML
 # from GitHub
    - src: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-image-build
@@ -56,7 +57,9 @@ via ARTIB test script (tests/build.sh)
 --------------------------------------
 
 In addition to the methods described above to reference and/or import this role into your own project, a sample script
-provided that allows for creating images directly from a clone of this git repository.
+provided that allows for creating images directly from a clone of this git repository.  If you have ideas on how to make
+this role better (and want to contribute) please see below for details on how to submit a patch.  build.sh is likely the
+easiest way to iterate on this role locally.
 
 [build.sh](https://github.com/redhat-openstack/ansible-role-tripleo-image-build/blob/master/tests/pip/build.sh)
 ```bash
@@ -89,6 +92,9 @@ Full options for build.sh
 
 Example Playbook
 ----------------
+
+Note: this sample playbook leverages [a simple role](https://github.com/redhat-openstack/ansible-role-tripleo-image-build/tree/master/tests/pip/roles/add-inventory-virthost) that dynamically adds $VIRTHOST (via 'virthost') to the Ansible inventory.
+
 ```YAML
   hosts: localhost
   roles:
@@ -308,7 +314,6 @@ Ideas for substantive changes and/or features/targets/requirements, reach out on
 
 ```bash
 $ git clone ssh://github.com/redhat-openstack/ansible-role-tripleo-image-build
-  ...
 $ cd ansible-role-tripleo-image-build/
 $ git review -s
 Creating a git remote called "gerrit" that maps to:
