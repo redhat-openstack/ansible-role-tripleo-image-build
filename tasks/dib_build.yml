@@ -11,6 +11,7 @@
     --smp {{ artib_virt_customize_cpu }}
     -a {{ artib_working_dir }}/overcloud-base.qcow2
     --run {{ artib_working_dir }}/dib-workaround.sh
+    | tee {{ artib_working_dir }}/dib-workaround.sh.log
   environment:
     LIBGUESTFS_BACKEND: direct
   when: artib_dib_workarounds
@@ -23,7 +24,8 @@
 
 - name: Run DIB prep script
   shell: >
-    {{ artib_working_dir }}/dib-prepare-script.sh
+    {{ artib_working_dir }}/dib-prepare-script.sh | tee
+    {{ artib_working_dir }}/dib-prepare-script.sh.log
   become: true
 
 - name: ensure we can sudo without requiring tty for async tasks
@@ -34,55 +36,16 @@
     backup: yes
   become: true
 
-# handle additional var env based DIB settings
-- name: Optional DIB environmental inject template
+# default is templates/dib-manifest-centos7-mitaka.yaml.j2
+- name: Create yaml manifest for DIB invocation (tripleo-common)
   template:
-    src: dib-optional-env-inject.sh.j2
-    dest: "{{ artib_working_dir }}/dib-optional-env-inject.sh"
-    mode: 0744
-  become: true
+    src: "{{ artib_image_yaml_template }}"
+    dest: "{{ artib_working_dir }}/dib-manifest.yml"
 
-- name: Template yaml definition for the ironic-python-agent ramdisk
-  template:
-    src: "{{ artib_agent_ramdisk_yaml_template }}"
-    dest: "{{ artib_working_dir }}/ironic-python-agent.yaml"
-
-- name: Template yaml definition for the overcloud-full image
-  template:
-    src: "{{ artib_overcloud_full_yaml_template }}"
-    dest: "{{ artib_working_dir }}/overcloud-full.yaml"
-
-- name: Build the ironic-python-agent ramdisk
+- name: Build the images
   tripleo_build_images:
     config_files:
-      - "{{ artib_working_dir }}/ironic-python-agent.yaml"
+      - "{{ artib_working_dir }}/dib-manifest.yml"
     output_directory: "{{ artib_working_dir }}"
-  environment:
-    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/minimal-base.qcow2"
-    DIB_DEFAULT_INSTALLTYPE: package
-    ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
-  async: 3600
-  poll: 0
-  register: done_build_ironic
 
-- name: Build the overcloud-full image
-  tripleo_build_images:
-    config_files:
-      - "{{ artib_working_dir }}/overcloud-full.yaml"
-    output_directory: "{{ artib_working_dir }}"
-  environment:
-    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/overcloud-base.qcow2"
-    DIB_DEFAULT_INSTALLTYPE: package
-    ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
-# Needed for corosync to be able to use hostnames
-# https://bugs.launchpad.net/tripleo/+bug/1447497
-    DIB_CLOUD_INIT_ETC_HOSTS: ''
-
-- name: Async_Poll --> Wait for ironic task completion
-  async_status:
-    jid: "{{ done_build_ironic.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 720
-  delay: 5
 
