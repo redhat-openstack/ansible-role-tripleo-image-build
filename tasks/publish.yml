@@ -1,0 +1,19 @@
+#
+# publishing types := {direct,  staged}
+#
+# direct: working_dir --> dest
+# staged: working_dir --> localhost --> dest
+#
+# Note: +the publishing role defaults to staged and used used by RDO CI.
+#       +both direct and staged move the files defined in {{ artifacts }}
+#       +direct requires identity file for dest
+#
+
+- include: publish-direct.yml
+  when: publish_type == "direct"
+
+- include: publish-staged.yml
+  when: publish_type == "staged"
+
+
+
