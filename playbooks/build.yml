@@ -1,0 +1,14 @@
+---
+- include: provision.yml
+
+- name: Rebuild inventory
+  hosts: localhost
+  roles:
+    - rebuild-inventory
+
+- name:  Build images using defaults (for now)
+  hosts: virthost
+  gather_facts: yes
+  roles:
+    - ansible-role-tripleo-image-build
+  become: true
