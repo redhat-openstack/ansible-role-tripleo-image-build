@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "baa041b7_050d7fe7",
+        "filename": "defaults/main.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-05-19T19:41:37Z",
+      "side": 1,
+      "message": "I dont love this... liberty/mitaka/master all have the same list... and kilo is EOL. I get we need to be able to allow downstream builds, but would\u0027nt downstream just override this variable?",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_e5117b05",
+        "filename": "defaults/main.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-05-19T19:41:37Z",
+      "side": 1,
+      "message": "This isnt entirely accurate... the image building in tripleo-common is unlikely to be backported. (near zero chance upstream).\n\nHowever, I personally think it is unimportant what we put on the virthost. It is the content of the images that matters.",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_92b79639",
         "filename": "templates/repo-centos7-delorean.sh.j2",
         "patchSetId": 19
@@ -13,6 +47,24 @@
       "writtenOn": "2016-05-19T00:55:58Z",
       "side": 1,
       "message": "FYI.. I have an email out to rel-eng (rcm) regarding installing rdo ceph on rhel.  There may be some package blockers there.",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_c5fb17c0",
+        "filename": "templates/repo-centos7-delorean.sh.j2",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-05-19T19:41:37Z",
+      "side": 1,
+      "message": "this script should be just for centos7-delorean, we could have a different script for rhel7-delorean.",
+      "parentUuid": "baa041b7_92b79639",
       "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
