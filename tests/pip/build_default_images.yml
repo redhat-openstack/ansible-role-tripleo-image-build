@@ -8,6 +8,4 @@
   hosts: virthost
   remote_user: root
   roles:
-    - parts/kvm
-    - parts/libvirt
     - ansible-role-tripleo-image-build
