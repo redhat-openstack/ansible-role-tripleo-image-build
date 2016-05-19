@@ -31,5 +31,5 @@ galaxy_info:
     - openstack
     - ci
   dependencies:
-  - parts/kvm
-  - parts/libvirt
+  - parts/artib-kvm
+  - parts/artib-libvirt
