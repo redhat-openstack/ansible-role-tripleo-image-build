@@ -119,8 +119,8 @@ How does it work?
 -----------------
 
 meta/main.yml pulls in the following dependencies that setup KVM, libvirt, and libguestfs
-* parts/kvm
-* parts/libvirt
+* parts/artib-kvm
+* parts/artib-libvirt
 
 tasks/main.yml After nuking the working directory:
 * (repo_setup.yml)         Get the base image and setup yum repositories
