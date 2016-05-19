@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_92b79639",
+        "filename": "templates/repo-centos7-delorean.sh.j2",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000586
+      },
+      "writtenOn": "2016-05-19T00:55:58Z",
+      "side": 1,
+      "message": "FYI.. I have an email out to rel-eng (rcm) regarding installing rdo ceph on rhel.  There may be some package blockers there.",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
