@@ -1,0 +1,40 @@
+---
+- name:
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+    - name: Check that virthost is set
+      fail:
+        msg: "The variable 'virthost' must be defined prior to running this playbook."
+      when: virthost is not defined
+
+    - name: Ensure local working dir exists
+      file:
+        path: "{{ local_working_dir }}"
+        state: directory
+
+    - name: Create empty ssh config file
+      file:
+        path: "{{ local_working_dir }}/ssh.config.ansible"
+        state: touch
+
+    - name: Add the virthost to the inventory
+      add_host:
+        name: "{{virthost}}"
+        groups: "virthost"
+        ansible_fqdn: "{{ virthost }}"
+        ansible_user: "root"
+        ansible_host: "{{ virthost }}"
+
+- name:  Generate static inventory
+  hosts: virthost
+  gather_facts: yes
+  roles:
+    - tripleo-inventory
+
+- name:  Build Images
+  hosts: virthost
+  gather_facts: no
+  roles:
+    - tripleo-image-build

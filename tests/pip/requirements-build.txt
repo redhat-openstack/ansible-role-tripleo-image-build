@@ -6,5 +6,5 @@ git+https://github.com/redhat-openstack/ansible-role-tripleo-parts.git#egg=ansib
 git+https://github.com/redhat-openstack/ansible-role-tripleo-image-build.git#egg=ansible-role-tripleo-image-build
 
 # to pull in local development changes
-# file:///home/me/ci/ansible-role-tripleo-image-build/#egg=ansible-role-tripleo-image-build
+# file:///home/yourname/ci/cat/ansible-role-tripleo-image-build/#egg=ansible-role-tripleo-image-build
 
