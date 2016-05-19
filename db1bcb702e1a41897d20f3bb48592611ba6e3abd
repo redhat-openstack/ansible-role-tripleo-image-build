@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_25bd23b7",
+        "filename": "defaults/main.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-19T21:29:33Z",
+      "side": 1,
+      "message": "I had thought that up/down stream (rdo vs. rhos) would have the same package list, was trying to reduce clutter for the caller.  Also found it handy to be able to diff package lists, vs building a heirarchy/pipeline (\"newton is mitaka plus ___ minus ___\").  We do need to build kilo images downstream for upgrade testing.\n\nI\u0027m happy to change it to a single hard coded list and \noverride though. {shrug}\n\nIs there a \"source of truth\" re: tripleo and what the package list \"should\" be, that this default will need to be kept in sync with?",
+      "parentUuid": "baa041b7_050d7fe7",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_e5117b05",
         "filename": "defaults/main.yml",
         "patchSetId": 19
@@ -30,6 +48,24 @@
       "writtenOn": "2016-05-19T19:41:37Z",
       "side": 1,
       "message": "This isnt entirely accurate... the image building in tripleo-common is unlikely to be backported. (near zero chance upstream).\n\nHowever, I personally think it is unimportant what we put on the virthost. It is the content of the images that matters.",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_05ae9f80",
+        "filename": "defaults/main.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-19T21:29:33Z",
+      "side": 1,
+      "message": "I concur.  Will change the comment to remove the implication of a backport",
+      "parentUuid": "baa041b7_e5117b05",
       "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -65,6 +101,24 @@
       "side": 1,
       "message": "this script should be just for centos7-delorean, we could have a different script for rhel7-delorean.",
       "parentUuid": "baa041b7_92b79639",
+      "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_e5b29be4",
+        "filename": "templates/repo-centos7-delorean.sh.j2",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-05-19T21:29:33Z",
+      "side": 1,
+      "message": "that was my thinking, one script per 2-tuple {distro, stream} with per-openstack stuff (like \"liberty\") handled within.  the \"rdo on rhel\" (rhel7-delorean.sh.j2) would live in a private repo and be passed in as a param",
+      "parentUuid": "baa041b7_c5fb17c0",
       "revId": "db1bcb702e1a41897d20f3bb48592611ba6e3abd",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
