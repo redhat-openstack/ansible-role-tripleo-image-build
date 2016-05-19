@@ -56,7 +56,8 @@ usage() {
     echo "   -r, --release <release>       default: 'mitaka',  { kilo | liberty | mitaka } "
     echo "   -b, --base_os <os>            default: 'centos7', { centos7 | rhel }"
     echo "   -u, --base_url <url>          Must be resolvable from \$virthost. Shortcut for: \'-e artib_minimal_base_image_url=<url>\'"
-    echo "   -e, --extra-vars <file>       Additional Ansible variables.  Supports multiple ('-e f1 -e f2')"
+    echo "   -e, --extra-vars <k=v>        Additional Ansible variable.  Supports multiple ('-e name1=val1 -e name2=val2"
+    echo "   -ef, --extra-vars-file <file> Additional Ansible variables via file.  Supports multiple ('-ef f1 -ef f2')"
     echo "   -o, --output <logfile>        tee output to file"
     echo ""
     echo " * Advanced options"
@@ -99,8 +100,15 @@ while [ "x$1" != "x" ]; do
             shift
             ;;
 
+       # note: for individual -e values
         --extra-vars|-e)
-            EXTRA_VARS_FILE="$EXTRA_VARS_FILE -e @$2 "
+            EXTRA_VARS+=(" -e $2")
+            shift
+            ;;
+
+        # note: for yaml files (vs values)
+        --extra-vars-file|-ef)
+            EXTRA_VARS_FILE+=(" -e @$2")
             shift
             ;;
 
@@ -224,7 +232,8 @@ ansible-playbook -$VERBOSITY $PLAYBOOK \
     -e virthost=$VIRTHOST \
     -e artib_base_os=$BASE_OS \
     -e artib_release=$RELEASE \
-    $EXTRA_VARS_FILE \
+    ${EXTRA_VARS[@]} \
+    ${EXTRA_VARS_FILE[@]} \
     $BASE_URL \
     $OUTFILE
 
