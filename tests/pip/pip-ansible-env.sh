@@ -13,7 +13,7 @@ export ANSIBLE_ROLES_PATH=$(pwd)
 export ANSIBLE_ROLES_PATH=$ANSIBLE_ROLES_PATH:$(pwd)/../../..
 
 # to find parts/kvm, parts/libvirt in venv
-export ANSIBLE_ROLES_PATH=$ANSIBLE_ROLES_PATH:$VIRTUAL_ENV/usr/local/share
+export ANSIBLE_ROLES_PATH=$ANSIBLE_ROLES_PATH:$VIRTUAL_ENV/usr/local/share/ansible/roles:$VIRTUAL_ENV/usr/local/share
 
 export ANSIBLE_CALLBACK_PLUGINS=$(pwd)/plugins/callback/profile_tasks
 export ANSIBLE_CALLBACK_WHITELIST=profile_tasks
