@@ -93,7 +93,7 @@ while [ "x$1" != "x" ]; do
             ;;
 
         --extra-vars|-e)
-            EXTRA_VARS_FILE="$EXTRA_VARS_FILE-e @$2 "
+            EXTRA_VARS_FILE="$EXTRA_VARS_FILE -e $2"
             shift
             ;;
 
@@ -200,4 +200,3 @@ ansible-playbook -$VERBOSITY $PLAYBOOK \
     -e artib_base_os=$BASE_OS \
     -e artib_release=$RELEASE \
     $EXTRA_VARS_FILE
-
