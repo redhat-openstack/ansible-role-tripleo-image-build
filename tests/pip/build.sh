@@ -99,7 +99,14 @@ while [ "x$1" != "x" ]; do
             shift
             ;;
 
+        # note: for individual -e values (passed along to ansible-playbook)
         --extra-vars|-e)
+            EXTRA_VARS="$EXTRA_VARS -e @2"
+            shift
+            ;;
+
+        # note: this is for yaml files (vs values)
+        --extra-vars-file|-ef)
             EXTRA_VARS_FILE="$EXTRA_VARS_FILE -e @$2 "
             shift
             ;;
@@ -224,6 +231,7 @@ ansible-playbook -$VERBOSITY $PLAYBOOK \
     -e virthost=$VIRTHOST \
     -e artib_base_os=$BASE_OS \
     -e artib_release=$RELEASE \
+    $EXTRA_VARS \
     $EXTRA_VARS_FILE \
     $BASE_URL \
     $OUTFILE
