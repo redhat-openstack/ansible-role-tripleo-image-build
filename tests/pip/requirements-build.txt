@@ -3,8 +3,8 @@ ansible==2.0.1
 setuptools>=11.3
 
 git+https://github.com/redhat-openstack/ansible-role-tripleo-parts.git#egg=ansible-role-tripleo-parts
-git+https://github.com/redhat-openstack/ansible-role-tripleo-image-build.git#egg=ansible-role-tripleo-image-build
+# git+https://github.com/redhat-openstack/ansible-role-tripleo-image-build.git#egg=ansible-role-tripleo-image-build
 
 # to pull in local development changes
-# file:///home/me/ci/ansible-role-tripleo-image-build/#egg=ansible-role-tripleo-image-build
+file:///home/matyoung/ci/cat/ansible-role-tripleo-image-build/#egg=ansible-role-tripleo-image-build
 
