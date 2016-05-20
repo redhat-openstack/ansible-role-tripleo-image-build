@@ -1,3 +1,13 @@
+# artib_publish_artifacts defines list of artifacts to move
+
+# artib_publish: false
+# artib_publish_dest_user:           username
+# artib_publish_dest_host:           resolvable hostname/ip
+# artib_publish_dest_basepath:       host:basepath
+# artib_publish_create_dest_via_ssh: false
+
+# optional
+# publish_dest_key: "localpath/to/your/identity/file"
 - name: install scp
   yum:
     name: openssh-clients
@@ -5,42 +15,42 @@
   become: true
 
 - name: Copy publishing key to source
-  copy: src={{ publish_dest_key }} dest={{ working_dir }}/publish-identity mode=0600
-  when: publish_dest_key is defined
+  copy: src={{ artib_publish_dest_key }} dest={{ artib_working_dir }}/publish-identity mode=0600
+  when: artib_publish_dest_key is defined
 
 - name: create destination directory
   command: >
     ssh
     -o StrictHostKeyChecking=no
 
-    {% if publish_dest_key is defined %}
-    -i {{ working_dir }}/publish-identity
+    {% if artib_publish_dest_key is defined %}
+    -i {{ artib_working_dir }}/publish-identity
     {% endif %}
 
-    {% if publish_dest_user is defined %}
-    {{ publish_dest_user }}@{{ publish_dest_host }}
+    {% if artib_publish_dest_user is defined %}
+    {{ artib_publish_dest_user }}@{{ artib_publish_dest_host }}
     {% else %}
-    {{ publish_dest_host }}
+    {{ artib_publish_dest_host }}
     {% endif %}
 
-    mkdir -p {{ publish_dest_basepath }}
-  when: publish_create_dest_via_ssh
+    mkdir -p {{ artib_publish_dest_basepath }}
+  when: artib_publish_create_dest_via_ssh
 
 - name: Direct publish images and artifacts
   command: >
     scp
     -o StrictHostKeyChecking=no
 
-    {% if publish_dest_key is defined %}
-    -i {{ working_dir }}/publish-identity
+    {% if artib_publish_dest_key is defined %}
+    -i {{ artib_working_dir }}/publish-identity
     {% endif %}
 
-    {{ working_dir }}/{{ item }}
+    {{ artib_working_dir }}/{{ item }}
 
-    {% if publish_dest_user is defined %}
-    {{ publish_dest_user }}@{{ publish_dest_host }}:{{ publish_dest_basepath }}
+    {% if artib_publish_dest_user is defined %}
+    {{ artib_publish_dest_user }}@{{ artib_publish_dest_host }}:{{ artib_publish_dest_basepath }}
     {% else %}
-    {{ publish_dest_host }}:{{ publish_dest_basepath }}
+    {{ artib_publish_dest_host }}:{{ artib_publish_dest_basepath }}
     {% endif %}
-  with_items: "{{ artifacts }}"
+  with_items: "{{ artib_publish_artifacts }}"
 
