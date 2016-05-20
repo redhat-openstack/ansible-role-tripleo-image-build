@@ -30,3 +30,7 @@
 
 # Inject overcloud-full and IPA images into the undercloud image
 - include: undercloud_inject.yml
+
+# Optionally publish images
+- include: publish.yml
+  when: artib_publish
