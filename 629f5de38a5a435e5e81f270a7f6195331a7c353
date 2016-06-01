@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_2a0a678a",
+        "filename": "templates/repo-centos7-pending-test.sh.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000935
+      },
+      "writtenOn": "2016-06-01T16:41:15Z",
+      "side": 1,
+      "message": "That\u0027s the correct repo for pending updates, currently empty b/c updates were released today breaking tripleoci :(",
+      "revId": "629f5de38a5a435e5e81f270a7f6195331a7c353",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
