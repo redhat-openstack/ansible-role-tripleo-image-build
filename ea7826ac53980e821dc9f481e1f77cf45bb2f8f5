@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_a75c704b",
+        "filename": "README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-01T15:40:46Z",
+      "side": 1,
+      "message": "why is this not underneath basic or advanced options?",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_a72350bc",
+        "filename": "README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-01T15:40:46Z",
+      "side": 1,
+      "message": "these will need to be updated to match namespacing changes",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_872e0ca3",
+        "filename": "README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-01T15:40:46Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_471b6481",
+        "filename": "tasks/undercloud_inject.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-01T15:40:46Z",
+      "side": 1,
+      "message": "classically we use \u003cscript execution\u003e \u0026\u003e \u003cname of log file\u003e instead of piping to tee directly.",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_aadb177b",
+        "filename": "tests/pip/pip-ansible-env.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-01T15:40:46Z",
+      "side": 1,
+      "message": "Do you want this on by default?",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
