@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_8a1f33b6",
+        "filename": "README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-01T17:24:03Z",
+      "side": 1,
+      "message": "uhhh...good point.  I\u0027ll capture an issue in github to track fixing it.  What\u0027s there now is the ouput of running build.sh directly.  I would like to tidy that as a discreet commit.",
+      "parentUuid": "baa041b7_a75c704b",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_a72350bc",
         "filename": "README.md",
         "patchSetId": 29
@@ -30,6 +48,24 @@
       "writtenOn": "2016-06-01T15:40:46Z",
       "side": 1,
       "message": "these will need to be updated to match namespacing changes",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_2a7f07e1",
+        "filename": "README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-01T17:24:03Z",
+      "side": 1,
+      "message": "aye.  thanks.",
+      "parentUuid": "baa041b7_a72350bc",
       "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_ca29bbe7",
+        "filename": "tasks/undercloud_inject.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-01T17:24:03Z",
+      "side": 1,
+      "message": "Understood, the output would then not land ansible\u0027s data model, it would only be in the file.  Tools like ARA are a nice option to see the output of a run and I don\u0027t want \"logfile only\" here...",
+      "parentUuid": "baa041b7_471b6481",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_aadb177b",
         "filename": "tests/pip/pip-ansible-env.sh",
         "patchSetId": 29
@@ -81,6 +135,24 @@
       "writtenOn": "2016-06-01T15:40:46Z",
       "side": 1,
       "message": "Do you want this on by default?",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_aa24370c",
+        "filename": "tests/pip/pip-ansible-env.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-01T17:24:03Z",
+      "side": 1,
+      "message": "ooo nice catch!  thanks :)",
+      "parentUuid": "baa041b7_aadb177b",
       "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
