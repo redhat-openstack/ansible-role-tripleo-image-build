@@ -124,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_d9b3d396",
+        "filename": "tasks/undercloud_inject.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-02T17:56:08Z",
+      "side": 1,
+      "message": "addressed with PS 30",
+      "parentUuid": "baa041b7_ca29bbe7",
+      "revId": "ea7826ac53980e821dc9f481e1f77cf45bb2f8f5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_aadb177b",
         "filename": "tests/pip/pip-ansible-env.sh",
         "patchSetId": 29
