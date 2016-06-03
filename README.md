@@ -26,6 +26,7 @@ ansible-galaxy -v install -p roles-from-galaxy -r requirements-build.yml
 [requirements-build.yml](https://github.com/redhat-openstack/ansible-role-tripleo-image-build/blob/master/tests/galaxy/requirements-build.yml)
 ```YAML
 # from GitHub
+   - sec: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-parts
    - src: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-image-build
 
 # local files
@@ -47,6 +48,7 @@ That file might look like this
 pbr>=1.6
 ansible==2.0.1
 
+git+https://github.com/redhat-openstack/ansible-role-tripleo-parts.git#egg=ansible-role-tripleo-parts
 git+https://github.com/redhat-openstack/ansible-role-tripleo-image-build.git#egg=ansible-role-tripleo-image-build
 
 # to pull in local development changes
@@ -118,7 +120,7 @@ This role requires libguestfs, virt-customize, virt-sparsify, and other dependen
 How does it work?
 -----------------
 
-meta/main.yml pulls in the following dependencies that setup KVM, libvirt, and libguestfs
+meta/main.yml pulls in the following dependencies that setup KVM, libvirt, and libguestfs.  These are provided by [ansible-role-tripleo-parts](http://github.com/redhat-openstack/ansible-role-tripleo-parts)
 * parts/kvm
 * parts/libvirt
 
