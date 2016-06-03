@@ -2,6 +2,7 @@
 #   - src: user.role
 
 # from GitHub
+   - src: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-parts
    - src: git+ssh://github.com/redhat-openstack/ansible-role-tripleo-image-build
 
 # local files

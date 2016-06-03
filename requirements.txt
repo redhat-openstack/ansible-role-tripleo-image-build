@@ -1,2 +1,6 @@
 pbr>=1.6
 ansible==2.0.1
+setuptools>=11.3
+
+# TODO: the chaining mechanism we discussed doesn't seem to work as expected.
+# git+https://github.com/redhat-openstack/ansible-role-tripleo-parts.git#egg=ansible-role-tripleo-parts
