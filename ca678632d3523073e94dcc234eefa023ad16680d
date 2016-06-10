@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_2a1120b0",
+        "filename": "playbooks/artib-build.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-06-10T09:47:38Z",
+      "side": 1,
+      "message": "I think sudo should be handled within the role if it\u0027s really needed. If not, then why force it?",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 14
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8af4ac87",
+        "filename": "playbooks/artib-collect-logs.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-06-10T09:47:38Z",
+      "side": 1,
+      "message": "Use tripleo-collect-logs, I changed the path where it installs yesterday: https://github.com/redhat-openstack/ansible-role-tripleo-collect-logs/blob/master/setup.cfg#L25",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_2a2a40e8",
+        "filename": "playbooks/artib-collect-logs.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-06-10T09:47:38Z",
+      "side": 1,
+      "message": "Become is used in the playbook where necessary: https://github.com/redhat-openstack/ansible-role-tripleo-collect-logs/blob/master/tasks/main.yml#L104",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 8
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_aa3e5027",
+        "filename": "setup.cfg",
+        "patchSetId": 25
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-06-10T09:47:38Z",
+      "side": 1,
+      "message": "This part can be dropped from all lines.",
+      "range": {
+        "startLine": 23,
+        "startChar": 65,
+        "endLine": 23,
+        "endChar": 101
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_0a2f7cf7",
+        "filename": "setup.cfg",
+        "patchSetId": 25
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-06-10T09:47:38Z",
+      "side": 1,
+      "message": "Probably this should be now ansible/roles/tripleo-image-build.",
+      "range": {
+        "startLine": 23,
+        "startChar": 20,
+        "endLine": 23,
+        "endChar": 52
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_6a4848cd",
+        "filename": "setup.cfg",
+        "patchSetId": 25
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-06-10T09:47:38Z",
+      "side": 1,
+      "message": "I\u0027d move this up to be alphabetical. ;)",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
