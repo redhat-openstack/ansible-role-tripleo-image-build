@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1239df41",
+        "filename": "playbooks/artib-collect-logs.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-15T19:46:34Z",
+      "side": 1,
+      "message": "this entire playbook just went away, as we\u0027re using collect-logs from a post build step directly, vs via another playbook exported by the image-build role.",
+      "parentUuid": "baa041b7_8af4ac87",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_2a2a40e8",
         "filename": "playbooks/artib-collect-logs.yml",
         "patchSetId": 25
@@ -59,6 +83,30 @@
       "writtenOn": "2016-06-10T09:47:38Z",
       "side": 1,
       "message": "Become is used in the playbook where necessary: https://github.com/redhat-openstack/ansible-role-tripleo-collect-logs/blob/master/tasks/main.yml#L104",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 8
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_f23e7b28",
+        "filename": "playbooks/artib-collect-logs.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-15T19:46:34Z",
+      "side": 1,
+      "message": "see above, but thanks for feedback anyway!",
+      "parentUuid": "baa041b7_2a2a40e8",
       "range": {
         "startLine": 36,
         "startChar": 2,
@@ -117,6 +165,54 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_9245efb4",
+        "filename": "setup.cfg",
+        "patchSetId": 25
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-15T19:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_aa3e5027",
+      "range": {
+        "startLine": 23,
+        "startChar": 65,
+        "endLine": 23,
+        "endChar": 101
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_b248f3cd",
+        "filename": "setup.cfg",
+        "patchSetId": 25
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-15T19:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_0a2f7cf7",
+      "range": {
+        "startLine": 23,
+        "startChar": 20,
+        "endLine": 23,
+        "endChar": 52
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_6a4848cd",
         "filename": "setup.cfg",
         "patchSetId": 25
@@ -128,6 +224,30 @@
       "writtenOn": "2016-06-10T09:47:38Z",
       "side": 1,
       "message": "I\u0027d move this up to be alphabetical. ;)",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "ca678632d3523073e94dcc234eefa023ad16680d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_72114baf",
+        "filename": "setup.cfg",
+        "patchSetId": 25
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-15T19:46:34Z",
+      "side": 1,
+      "message": "Done (shortly)",
+      "parentUuid": "baa041b7_6a4848cd",
       "range": {
         "startLine": 32,
         "startChar": 4,
