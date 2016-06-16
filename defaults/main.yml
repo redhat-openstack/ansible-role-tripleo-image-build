@@ -24,7 +24,7 @@ artib_overcloud_package_list: default_package_list.yml
 
 # convert_undercloud vars
 artib_undercloud_base_image_url:
-  "file:///{{ artib_working_dir }}/overcloud-base.qcow2"
+  "file:///{{ artib_working_dir }}/overcloud-full.qcow2"
 artib_undercloud_overwrite_existing: no
 artib_undercloud_convert_script: undercloud-convert-default.sh.j2
 artib_undercloud_disk_size: 40
@@ -75,21 +75,38 @@ artib_overcloud_full_elements: >
   dhcp-all-interfaces
   dynamic-login
   element-manifest
+  enable-packages-install
   grub2
   hiera
   heat-config-puppet
   heat-config-script
   hosts
   network-gateway
+  os-collect-config
   os-net-config
+  overcloud-ceph-storage
+  overcloud-compute
+  overcloud-controller
+  overcloud-full
   pip-and-virtualenv-override
+  puppet-modules
   selinux-permissive
   stable-interface-names
   sysctl
 
 artib_agent_ramdisk_packages:
   - python-hardware-detect
-artib_overcloud_full_packages: []
+artib_overcloud_full_packages:
+  - python-psutil
+  - python-debtcollector
+  - plotnetcfg
+  - sos
+  - python-networking-cisco
+  - python-UcsSdk
+  - device-mapper-multipath
+  - python-networking-bigswitch
+  - openstack-neutron-bigswitch-lldp
+  - openstack-neutron-bigswitch-agent
 
 artib_agent_ramdisk_options:
   - "--min-tmpfs=5"
