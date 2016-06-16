@@ -16,14 +16,11 @@
 # Get the base image and setup repos
 - include: repo_setup.yml
 
-# Install packages for overcloud base image
-- include: package_install.yml
+# Use DIB to build the overlcloud-full and IPA images
+- include: dib_build.yml
 
 # Use overcloud base image to create undercloud base image
 - include: convert_undercloud.yml
-
-# Use DIB to build the overlcloud-full and IPA images
-- include: dib_build.yml
 
 # Inject overcloud-full and IPA images into the undercloud image
 - include: undercloud_inject.yml
