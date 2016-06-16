@@ -1,20 +1,4 @@
 ---
-# workarounds to not include a bunch of DIB elements with a single line of bash
-- name: Template script with workarounds for overcloud-full image
-  template:
-    src: "{{ artib_dib_workaround_script }}"
-    dest: "{{ artib_working_dir }}/dib-workaround.sh"
-
-- name: DIB workarounds
-  shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
-    --smp {{ artib_virt_customize_cpu }}
-    -a {{ artib_working_dir }}/overcloud-base.qcow2
-    --run {{ artib_working_dir }}/dib-workaround.sh
-  environment:
-    LIBGUESTFS_BACKEND: direct
-  when: artib_dib_workarounds
-
 - name: script to prepare for image building with DIB
   template:
     src: "{{ artib_dib_prepare_script }}"
@@ -71,7 +55,7 @@
       - "{{ artib_working_dir }}/overcloud-full.yaml"
     output_directory: "{{ artib_working_dir }}"
   environment:
-    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/overcloud-base.qcow2"
+    DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/minimal-base.qcow2"
     DIB_DEFAULT_INSTALLTYPE: package
     ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
 # Needed for corosync to be able to use hostnames
