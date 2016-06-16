@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_3e082c91",
+        "filename": "defaults/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-16T15:34:50Z",
+      "side": 1,
+      "message": "What are all of these commented out variables?",
+      "revId": "b205acbdd85a7a38054bb3f5d7fbd1ed65fb19be",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
