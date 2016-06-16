@@ -16,6 +16,24 @@
       "revId": "b205acbdd85a7a38054bb3f5d7fbd1ed65fb19be",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5cdc1946",
+        "filename": "defaults/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-16T18:00:03Z",
+      "side": 1,
+      "message": "They were left as breadcrumbs.  They are optional parameters that are used if defined (and not if not) that one would use to specify destination for the (optional) \"copy images to here when you\u0027re done building them\".  For the downstream jobs we pass them in via -e var\u003dvalue.  They are in the readme, but I wanted to leave them here as well in case someone is reading thru the default variables.",
+      "parentUuid": "baa041b7_3e082c91",
+      "revId": "b205acbdd85a7a38054bb3f5d7fbd1ed65fb19be",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
