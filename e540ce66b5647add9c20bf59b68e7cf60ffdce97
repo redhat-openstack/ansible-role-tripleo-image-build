@@ -16,6 +16,24 @@
       "revId": "e540ce66b5647add9c20bf59b68e7cf60ffdce97",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_dcf029cc",
+        "filename": "tests/pip/build_default_images.yml",
+        "patchSetId": 28
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-06-16T18:03:34Z",
+      "side": 0,
+      "message": "Awesome...someone noticed! {grin}\n\nThese 2 \"rolettes\" were duplicated between tripleo-quickstart and this role.  [1] removes them and migrates them to their own repo.  That was step 1, step 2 is that we\u0027ll also remove them from tripleo-quickstart.  Due to how the chained dependencies work, whomever calls this role (if using the pip mechanism) will need to specify the parts repo.  IN the case of the upstream gates (quickstart), they are found in quickstart\u0027s copy of these roles.\n\n[1] https://github.com/redhat-openstack/ansible-role-tripleo-image-build/commit/8fb27a0b16123ec9229e60944b4c1e25b988da33",
+      "parentUuid": "baa041b7_3ee14cd1",
+      "revId": "e540ce66b5647add9c20bf59b68e7cf60ffdce97",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
