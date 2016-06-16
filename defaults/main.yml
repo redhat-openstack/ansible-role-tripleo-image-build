@@ -35,6 +35,7 @@ artib_undercloud_remove_packages:
   - mariadb-galera-server
 artib_undercloud_install_packages:
   - mariadb-server
+  - python-tripleoclient
   - openstack-tempest
   # -tests packages which contains tempest-style tests
   - python-aodh-tests
