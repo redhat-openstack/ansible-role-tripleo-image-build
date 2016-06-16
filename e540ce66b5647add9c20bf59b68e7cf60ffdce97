@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_3ee14cd1",
+        "filename": "tests/pip/build_default_images.yml",
+        "patchSetId": 28
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1006607
+      },
+      "writtenOn": "2016-06-16T15:29:01Z",
+      "side": 0,
+      "message": "Where did this go? I don\u0027t see it being called elsewhere. Is it no longer needed?",
+      "revId": "e540ce66b5647add9c20bf59b68e7cf60ffdce97",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
