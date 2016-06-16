@@ -345,7 +345,7 @@ To address feedback and iterate on reviews, amend your existing commit (git comm
 License
 -------
 
-Apache2
+Apache 2.0
 
 Author Information
 ------------------
