@@ -57,9 +57,9 @@
 
         mkdir -p /var/log/artib;
         rm -f /var/log/artib/*;
-        cp -v *.log *.sh *.yml /var/log/artib;
+        cp -v *.log *.sh *.yml *.csv /var/log/artib;
 
-        tar -czvf artib-logs.tar.gz *.log *.sh *.yml;
+        tar -czvf artib-logs.tar.gz *.log *.sh *.yml *.csv;
         md5sum artib-logs.tar.gz > artib-logs.tar.gz.md5;
 
         exit 0;

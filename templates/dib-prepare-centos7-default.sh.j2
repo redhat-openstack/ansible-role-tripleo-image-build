@@ -11,6 +11,33 @@ set -x
 
 yum install -y {{ artib_dib_release_rpm }}
 
+yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
+            openstack-tripleo-image-elements openstack-tripleo-puppet-elements
+
+# FIXME(trown) one of the above packages should have a requires on python-six
+yum install -y python-six
+
+yum install -y git
+
+# TODO: remove this when we finally promote master (including tripleo-common)
+#
+#
+# Gerrit / iterative dev.  RPM's are built from gerrit patches.
+#
+# This commit is not yet packaged and present in RDO (yet)
+# https://github.com/openstack/tripleo-common/commit/8ac33fffa5fb072f5008d08d94b08d3d1460b710
+#
+# for now we're pulling it in this way.
+#
+base=https://repos.fedorapeople.org/repos/openstack-m/jenkins/rpm-build
+id=318087
+patch=16
+package=openstack-tripleo-common-999.9.9-99999.noarch.rpm
+rpm=$base/$id/$patch/$package
+
+echo "*** GERRIT PATCH BASED RPM: $rpm"
+yum -v localinstall -y $rpm
+
 #
 # install tripleo-common from trunk master repo. The image building
 # library is only on master, but it is probably worthwhile to backport the two
@@ -19,15 +46,9 @@ yum install -y {{ artib_dib_release_rpm }}
 # get list of currently passing rpm's sorted by modified time descending pull out tripleo-common
 # re: "C=M;O=D" --> https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html#page-header
 #
-base="http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master-tested"
-package=`(curl -s "$base/?C=M;O=D" | egrep -o -m1 '"(openstack-tripleo-common.*.rpm)"' | sed 's/"//g')`
-yum install -y $base/$package
-
-yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
-            openstack-tripleo-image-elements openstack-tripleo-puppet-elements
-
-# FIXME(trown) one of the above packages should have a requires on python-six
-yum install -y python-six
+#base="http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master-tested"
+#package=`(curl -s "$base/?C=M;O=D" | egrep -o -m1 '"(openstack-tripleo-common.*.rpm)"' | sed 's/"//g')`
+#yum install -y $base/$package
 
 {% if artib_dib_remove_epel %}
 
@@ -37,3 +58,5 @@ sed -i '/epel/d' /usr/share/diskimage-builder/elements/centos7/element-deps
 rm -f /usr/share/diskimage-builder/elements/base/install.d/99-dkms
 
 {% endif %}
+
+# git is needed
