@@ -1,9 +1,9 @@
 ---
-# defaults file for ansible-role-tripleo-image-build
 
 # global build vars
 artib_working_dir: /var/lib/oooq-images
-# Whether or not to delete the working directory before starting.
+
+# delete working directory prior to building images.
 artib_start_over: true
 
 # repo_setup vars
@@ -34,6 +34,7 @@ artib_vc_cpu: 4
 artib_vc_verbose: false
 artib_vc_trace: false
 
+# undercloud == overcloud (+/-) packages
 artib_undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server
@@ -60,61 +61,30 @@ artib_undercloud_selinux_permissive: true
 # dib_build vars #
 ##################
 
-# default templates to use to create the yaml files
-# passed to the tripleo-common image building library
-artib_agent_ramdisk_yaml_template:    "ironic-python-agent.yaml.j2"
-artib_overcloud_full_yaml_template:   "overcloud-full.yaml.j2"
+# creates yaml file passed to the tripleo-common image building library
+artib_image_yaml_template: "dib-manifest-default.yaml.j2"
 
-# elements key takes a space-seperated list, while packages key
-# takes a YAML list.
-# (trown) might be something to fix in tripleo-common
-artib_agent_ramdisk_elements: >
-  dhcp-all-interfaces
-  dynamic-login
-  element-manifest
-  ironic-agent
-  network-gateway
-  pip-and-virtualenv-override
-  selinux-permissive
-artib_overcloud_full_elements: >
-  baremetal
-  dhcp-all-interfaces
-  dynamic-login
-  element-manifest
-  grub2
-  hiera
-  heat-config-puppet
-  heat-config-script
-  hosts
-  network-gateway
-  os-net-config
-  pip-and-virtualenv-override
-  selinux-permissive
-  stable-interface-names
-  sysctl
-
-artib_agent_ramdisk_packages:
-  - python-hardware-detect
-artib_overcloud_full_packages: []
-
-artib_agent_ramdisk_options:
-  - "--min-tmpfs=5"
-artib_overcloud_full_options:
-  - "--min-tmpfs=5"
-
+# https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/15
 artib_dib_workarounds: true
 artib_dib_workaround_script: dib-workaround-default.sh.j2
+
 artib_dib_elements_path:
   - /usr/share/tripleo-image-elements
   - /usr/share/tripleo-puppet-elements
   - /usr/share/instack-undercloud/
   - /usr/share/openstack-heat-templates/software-config/elements/
+
+# set up build host (build tools, etc)
 artib_dib_prepare_script: dib-prepare-centos7-default.sh.j2
+
 artib_dib_remove_epel: true
+
+# TODO: currently we build by default with mitaka rpm...though IMHO this should track whatever release we are building
+# "http://rdoproject.org/repos/openstack-{{ artib_release }}/rdo-release-{{ artib_release }}.rpm"
 artib_dib_release_rpm:
   "http://rdoproject.org/repos/openstack-mitaka/rdo-release-mitaka.rpm"
 
-# undercloud_inject vars
+# injected --> undercloud.qcow2
 artib_overcloud_images:
   - ironic-python-agent.initramfs
   - ironic-python-agent.kernel

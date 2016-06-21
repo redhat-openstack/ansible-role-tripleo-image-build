@@ -1,9 +1,28 @@
 ---
-- name: Get the minimal base image
-  get_url:
-    url: '{{ artib_minimal_base_image_url }}'
-    dest: '{{ artib_working_dir }}/minimal-base.qcow2'
-    force: '{{ artib_minimal_overwrite_existing }}'
+
+# TODO: Add image caching here
+# TODO: https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/19
+
+# This task will download the image.  We're using `curl` here
+# rather than `wget` because while `wget` has built-in retry
+# capabilities, it is unable to handle `file://` URLs.  We instead
+# use an ansible `until` loop, combined with curl's `-C-` option
+# to continue interrupted downloads.
+- name: Get image
+  command: >
+    curl -sf -C- -o {{ artib_working_dir }}/minimal-base.qcow2 {{ artib_minimal_base_image_url }}
+  args:
+    chdir: "{{ artib_working_dir }}"
+  register: curl_result
+  until: curl_result.rc not in [18, 56]
+  retries: 20
+  delay: 5
+
+#- name: Get the minimal base image
+#  get_url:
+#    url: '{{ artib_minimal_base_image_url }}'
+#    dest: '{{ artib_working_dir }}/minimal-base.qcow2'
+#    force: '{{ artib_minimal_overwrite_existing }}'
 
 - name: Template script to setup repos in the base image
   template:

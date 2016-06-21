@@ -11,6 +11,12 @@ set -x
 
 yum install -y {{ artib_dib_release_rpm }}
 
+yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
+            openstack-tripleo-image-elements openstack-tripleo-puppet-elements
+
+# FIXME(trown) one of the above packages should have a requires on python-six
+yum install -y python-six
+
 #
 # install tripleo-common from trunk master repo. The image building
 # library is only on master, but it is probably worthwhile to backport the two
@@ -23,12 +29,6 @@ base="http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master-tested"
 package=`(curl -s "$base/?C=M;O=D" | egrep -o -m1 '"(openstack-tripleo-common.*.rpm)"' | sed 's/"//g')`
 yum install -y $base/$package
 
-yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
-            openstack-tripleo-image-elements openstack-tripleo-puppet-elements
-
-# FIXME(trown) one of the above packages should have a requires on python-six
-yum install -y python-six
-
 {% if artib_dib_remove_epel %}
 
 # workaround to remove EPEL from images
@@ -37,3 +37,5 @@ sed -i '/epel/d' /usr/share/diskimage-builder/elements/centos7/element-deps
 rm -f /usr/share/diskimage-builder/elements/base/install.d/99-dkms
 
 {% endif %}
+
+# git is needed
