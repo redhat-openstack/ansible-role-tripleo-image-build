@@ -215,6 +215,7 @@ fi
 
 echo "Building images for ${RELEASE:+"$RELEASE "}on host $VIRTHOST"
 echo "Executing Ansible..."
+
 set -x
 
 ansible-playbook -$VERBOSITY $PLAYBOOK \

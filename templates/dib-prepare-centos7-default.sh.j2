@@ -11,6 +11,14 @@ set -x
 
 yum install -y {{ artib_dib_release_rpm }}
 
+yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
+            openstack-tripleo-image-elements openstack-tripleo-puppet-elements
+
+# FIXME(trown) one of the above packages should have a requires on python-six
+yum install -y python-six
+
+yum install -y git
+
 #
 # install tripleo-common from trunk master repo. The image building
 # library is only on master, but it is probably worthwhile to backport the two
@@ -19,15 +27,18 @@ yum install -y {{ artib_dib_release_rpm }}
 # get list of currently passing rpm's sorted by modified time descending pull out tripleo-common
 # re: "C=M;O=D" --> https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html#page-header
 #
-base="http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master-tested"
-package=`(curl -s "$base/?C=M;O=D" | egrep -o -m1 '"(openstack-tripleo-common.*.rpm)"' | sed 's/"//g')`
+# base="http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master-tested"
+# package=`(curl -s "$base/?C=M;O=D" | egrep -o -m1 '"(openstack-tripleo-common.*.rpm)"' | sed 's/"//g')`
+# yum install -y $base/$package
+
+# Note: presently this ^ is weeks old and does not contain the necessary commit:
+# https://github.com/openstack/tripleo-common/commit/8ac33fffa5fb072f5008d08d94b08d3d1460b710
+#
+# until this is resolved, or the CDN is updated with something containing the commit we need (aug 9, 2016)
+# we will pull this from here (most current passed CI at this time)
+base="https://trunk.rdoproject.org/centos7/97/0d/970d046f1ad304b309a6b6b610faf7a52477fbf1_073a7efe"
+package="openstack-tripleo-common-5.0.0-0.20160812205026.5be0dd8.el7.centos.noarch.rpm"
 yum install -y $base/$package
-
-yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
-            openstack-tripleo-image-elements openstack-tripleo-puppet-elements
-
-# FIXME(trown) one of the above packages should have a requires on python-six
-yum install -y python-six
 
 {% if artib_dib_remove_epel %}
 
@@ -37,3 +48,5 @@ sed -i '/epel/d' /usr/share/diskimage-builder/elements/centos7/element-deps
 rm -f /usr/share/diskimage-builder/elements/base/install.d/99-dkms
 
 {% endif %}
+
+# git is needed
