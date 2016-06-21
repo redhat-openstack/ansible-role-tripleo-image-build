@@ -51,7 +51,7 @@ def tripleo_build_images(config_files, output_directory, skip):
                                     skip=skip)
         manager.build()
     except Exception as e:
-        return ('Fail', e.args)
+        return ('Fail', e)
 
     return ('Success', '')
 
