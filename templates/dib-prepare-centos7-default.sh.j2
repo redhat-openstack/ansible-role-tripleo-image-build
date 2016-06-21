@@ -15,10 +15,26 @@ yum install -y {{ artib_dib_release_rpm }}
 # install tripleo-common from trunk master repo. The image building
 # library is only on master, but it is probably worthwhile to backport the two
 # patches needed to the mitaka branch in RDO
-url=https://trunk.rdoproject.org/centos7-master
-repo=29/d6/29d6f749d7bab01fa3defb0c1c6e1f95b268d665_4dec0972
-package=tripleo-common-2.0.1-0.20160503234526.29d6f74.el7.centos.noarch.rpm
-yum install -y $url/$repo/$package
+#url=https://trunk.rdoproject.org/centos7-master
+#repo=29/d6/29d6f749d7bab01fa3defb0c1c6e1f95b268d665_4dec0972
+#package=tripleo-common-2.0.1-0.20160503234526.29d6f74.el7.centos.noarch.rpm
+# yum install -y $url/$repo/$package
+
+# Gerrit / iterative dev.  RPM's are built from gerrit patches.
+#
+# Add support to image build yaml input to handle env vars
+# https://review.openstack.org/#/c/318087/
+#
+base=https://repos.fedorapeople.org/repos/openstack-m/jenkins/rpm-build
+id=318087
+patch=12
+package=tripleo-common-999.9.9-99999.noarch.rpm
+
+# https://repos.fedorapeople.org/repos/openstack-m/jenkins/rpm-build/318087/9/tripleo-common-999.9.9-99999.noarch.rpm
+rpm=$base/$id/$patch/$package
+
+echo "*** GERRIT PATCH BASED RPM (https://review.openstack.org/#/c/318087): $rpm"
+yum localinstall -y $rpm
 
 yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
             openstack-tripleo-image-elements openstack-tripleo-puppet-elements

@@ -27,3 +27,7 @@
 
 # Inject overcloud-full and IPA images into the undercloud image
 - include: undercloud_inject.yml
+
+# Generate log bundle
+- include: bundle_logs.yml
+
