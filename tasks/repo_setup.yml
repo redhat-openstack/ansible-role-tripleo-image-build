@@ -12,9 +12,10 @@
 
 - name: Setup repos in the base image using virt-customize
   shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
+    virt-customize -v -m {{ artib_virt_customize_ram }}
     --smp {{ artib_virt_customize_cpu }}
     -a {{ artib_working_dir }}/minimal-base.qcow2
-    --run {{ artib_working_dir }}/repo_setup.sh
+    --run  {{ artib_working_dir }}/repo_setup.sh
+    |& tee {{ artib_working_dir }}/repo_setup.sh.log
   environment:
     LIBGUESTFS_BACKEND: direct

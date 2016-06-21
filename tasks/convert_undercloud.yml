@@ -32,9 +32,10 @@
 # LKS: do we really care about smp settings here?
 - name: Convert the overcloud image to an undercloud image
   shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
+    virt-customize -v -m {{ artib_virt_customize_ram }}
     --smp {{ artib_virt_customize_cpu }}
     -a {{ artib_working_dir }}/undercloud-base.qcow2
-    --run {{ artib_working_dir }}/undercloud-convert.sh
+    --run  {{ artib_working_dir }}/undercloud-convert.sh
+    |& tee {{ artib_working_dir }}/undercloud-convert.sh.log
   environment:
     LIBGUESTFS_BACKEND: direct
