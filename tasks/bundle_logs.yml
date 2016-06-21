@@ -1,0 +1,7 @@
+---
+- name: Tar logs and files generated during image build process
+  shell: |
+    tar -czvf artib-logs.tar.gz *.log *.sh *.yml
+    md5sum artib-logs.tar.gz > artib-logs.tar.gz.md5
+  args:
+    chdir: "{{ artib_working_dir }}"
