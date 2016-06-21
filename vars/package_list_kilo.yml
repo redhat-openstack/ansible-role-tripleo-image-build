@@ -1,4 +1,4 @@
-# liberty, mitaka, master
+# kilo
 artib_overcloud_packages:
   - automake
   - boost-filesystem
@@ -37,18 +37,13 @@ artib_overcloud_packages:
   - openstack-cinder
   - openstack-dashboard
   - openstack-glance
-  - openstack-gnocchi-api
-  - openstack-gnocchi-carbonara
-  - openstack-gnocchi-common
-  - openstack-gnocchi-indexer-sqlalchemy
-  - openstack-gnocchi-metricd
-  - openstack-gnocchi-statsd
   - openstack-heat-api
   - openstack-heat-api-cfn
   - openstack-heat-api-cloudwatch
   - openstack-heat-engine
   - openstack-ironic-api
   - openstack-ironic-conductor
+  - openstack-ironic-discoverd
   - openstack-ironic-inspector
   - openstack-keystone
   - openstack-manila
@@ -69,10 +64,10 @@ artib_overcloud_packages:
   - openstack-sahara
   - openstack-selinux
   - openstack-swift-account
-  - openstack-swift-container
   - openstack-swift-object
   - openstack-swift-proxy
   - openstack-tempest
+  - openstack-tuskar
   - openvswitch
   - openwsman-python
   - os-apply-config
@@ -83,6 +78,7 @@ artib_overcloud_packages:
   - pacemaker
   - pacemaker-remote
   - pcs
+  - policycoreutils-devel
   - pystache
   - python-gnocchiclient
   - python-ipaddr
@@ -90,7 +86,7 @@ artib_overcloud_packages:
   - python-openvswitch
   - python-pip
   - python-pbr
-  - python-redis
+  - python-rdomanager-oscplugin
   - python-troveclient
   - python-virtualenv
   - python-zaqarclient
@@ -98,6 +94,7 @@ artib_overcloud_packages:
   - rabbitmq-server
   - redis
   - screen
+  - selinux-policy-devel
   - syslinux
   - targetcli
   - tcpdump
