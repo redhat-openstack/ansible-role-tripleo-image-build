@@ -1,0 +1,11 @@
+---
+- name: Tar logs and files generated during image build process
+  shell: |
+    # dump logs in a sane place so that existing tools (collect-logs) find them.
+    mkdir -p /var/log/artib
+    cp -v *.log *.sh *.yml /var/log/artib
+
+    tar -czvf artib-logs.tar.gz *.log *.sh *.yml
+    md5sum artib-logs.tar.gz > artib-logs.tar.gz.md5
+  args:
+    chdir: "{{ artib_working_dir }}"
