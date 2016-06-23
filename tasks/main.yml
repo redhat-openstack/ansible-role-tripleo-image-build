@@ -70,3 +70,7 @@
 
     - debug: msg="*** Image Generation Process --> Stop ***"
 
+# Optionally publish images
+- include: publish.yml
+  when: artib_publish
+
