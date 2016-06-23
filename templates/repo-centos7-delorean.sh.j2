@@ -17,7 +17,16 @@ yum install -y centos-release-ceph
 # ironic-python-agent project does not actually even gate the stable branch.
 # I am working on getting them to remove the stable branch, which will give us
 # LIO support in liberty delorean.
-yum install -y http://trunk.rdoproject.org/centos7/55/17/5517b8e9aea3ded1052209384b4194d2caa97541_673a78a2/openstack-ironic-python-agent-1.1.1-dev6.el7.centos.noarch.rpm http://trunk.rdoproject.org/centos7/55/17/5517b8e9aea3ded1052209384b4194d2caa97541_673a78a2/python2-ironic-python-agent-1.1.1-dev6.el7.centos.noarch.rpm
+cat <<EOF >> /etc/yum.repos.d/rdo-trunk-mitaka-tested.repo
+[rdo-trunk-mitaka-tested]
+name=CentOS-7 - RDO Trunk mitaka tested
+baseurl=http://buildlogs.centos.org/centos/7/cloud/\$basearch/rdo-trunk-mitaka-tested/
+gpgcheck=0
+enabled=0
+includepkgs=openstack-ironic-python-agent python2-ironic-python-agent python-ironic-lib
+EOF
+yum install -y --enablerepo=rdo-trunk-mitaka-tested openstack-ironic-python-agent python2-ironic-python-agent
+rm -f /etc/yum.repos.d/rdo-trunk-mitaka-tested.repo
 {% endif %}
 
 yum update -y
