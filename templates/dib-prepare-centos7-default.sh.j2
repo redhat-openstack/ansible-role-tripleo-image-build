@@ -17,7 +17,7 @@ yum install -y {{ artib_dib_release_rpm }}
 # patches needed to the mitaka branch in RDO
 url=https://trunk.rdoproject.org/centos7-master
 repo=29/d6/29d6f749d7bab01fa3defb0c1c6e1f95b268d665_4dec0972
-package=tripleo-common-2.0.1-0.20160503234209.29d6f74.el7.centos.noarch.rpm
+package=tripleo-common-2.0.1-0.20160503234526.29d6f74.el7.centos.noarch.rpm
 yum install -y $url/$repo/$package
 
 yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
