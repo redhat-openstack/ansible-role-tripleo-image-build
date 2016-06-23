@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_c981704f",
+        "filename": "templates/dib-prepare-centos7-default.sh.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000935
+      },
+      "writtenOn": "2016-06-23T11:56:14Z",
+      "side": 0,
+      "message": "Wasn\u0027t this package renamed to openstack-tripleo-common ??\n\nhttps://trunk.rdoproject.org/centos7-master/consistent/openstack-tripleo-common-5.0.0-0.20160622171748.2a572fd.el7.centos.noarch.rpm",
+      "revId": "61569ce8cd554c781832e734987b3ff56d44e922",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
