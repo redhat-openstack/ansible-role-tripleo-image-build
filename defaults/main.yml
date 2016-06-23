@@ -91,3 +91,20 @@ artib_overcloud_images:
 
 # fail, ignore, continue.  See http://libguestfs.org/virt-sparsify.1.html
 artib_virt_sparsify_checktmpdir_flag: fail
+
+# artib_publish_dest_user:     username
+# artib_publish_dest_host:     arrakis.hebert.com
+
+# artib_publish_dest_basepath: /var/www/html/yourchoice
+# artib_publish_create_dest_via_ssh: false
+
+artib_publish: false
+artib_publish_artifacts:
+  - undercloud.qcow2
+  - undercloud.qcow2.md5
+  - ironic-python-agent.tar
+  - ironic-python-agent.tar.md5
+  - overcloud-full.tar
+  - overcloud-full.tar.md5
+  - artib-logs.tar.gz
+  - artib-logs.tar.gz.md5
