@@ -12,21 +12,20 @@ yum install -y yum-plugin-priorities
 yum install -y centos-release-ceph
 
 {% if artib_release == 'liberty' %}
-# (trown) Install ironic-python-agent from mitaka delorean for LIO support.
-# We either need to do that or include tgt from EPEL, and upstream
-# ironic-python-agent project does not actually even gate the stable branch.
-# I am working on getting them to remove the stable branch, which will give us
-# LIO support in liberty delorean.
-cat <<EOF >> /etc/yum.repos.d/rdo-trunk-mitaka-tested.repo
-[rdo-trunk-mitaka-tested]
-name=CentOS-7 - RDO Trunk mitaka tested
-baseurl=http://buildlogs.centos.org/centos/7/cloud/\$basearch/rdo-trunk-mitaka-tested/
-gpgcheck=0
+# (trown) Installing ironic-python-agent from mitaka delorean is no longer
+# working. This leaves only the option of installing tgtd from EPEL.
+# This is unfortunate, but liberty does not have too much life left.
+cat <<EOF >> /etc/yum.repos.d/epel-tgtd.repo
+[epel-tgtd]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
+failovermethod=priority
 enabled=0
-includepkgs=openstack-ironic-python-agent python2-ironic-python-agent python-ironic-lib
+gpgcheck=0
+includepkgs=scsi-target-utils perl-Config-General
 EOF
-yum install -y --enablerepo=rdo-trunk-mitaka-tested openstack-ironic-python-agent python2-ironic-python-agent
-rm -f /etc/yum.repos.d/rdo-trunk-mitaka-tested.repo
+yum install -y --enablerepo=epel-tgtd scsi-target-utils
+rm -f /etc/yum.repos.d/epel-tgtd.repo
 {% endif %}
 
 yum update -y
