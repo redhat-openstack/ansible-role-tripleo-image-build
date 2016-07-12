@@ -7,13 +7,13 @@
 
 - name: DIB workarounds
   shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
-    --smp {{ artib_virt_customize_cpu }}
-    -a {{ artib_working_dir }}/overcloud-base.qcow2
-    --run {{ artib_working_dir }}/dib-workaround.sh
+    virt-customize {{ artib_vc_args }} -a overcloud-base.qcow2
+    --run dib-workaround.sh > dib-workaround.sh.log 2>&1
   environment:
     LIBGUESTFS_BACKEND: direct
   when: artib_dib_workarounds
+  args:
+    chdir: "{{ artib_working_dir }}"
 
 - name: script to prepare for image building with DIB
   template:
@@ -22,9 +22,10 @@
     mode: 0744
 
 - name: Run DIB prep script
-  shell: >
-    {{ artib_working_dir }}/dib-prepare-script.sh
+  shell: ./dib-prepare-script.sh > buildhost.dib-prepare-script.sh.log 2>&1
   become: true
+  args:
+    chdir: "{{ artib_working_dir }}"
 
 - name: ensure we can sudo without requiring tty for async tasks
   lineinfile:
