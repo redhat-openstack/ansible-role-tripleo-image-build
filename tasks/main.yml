@@ -13,17 +13,49 @@
     state: directory
     mode: 0755
 
-# Get the base image and setup repos
-- include: repo_setup.yml
+- name: virt-customize args --> memory and cpu
+  set_fact: artib_vc_args="-m {{ artib_vc_ram }} --smp {{ artib_vc_cpu }}"
 
-# Install packages for overcloud base image
-- include: package_install.yml
+- name: virt-customize args --> verbose output
+  set_fact: artib_vc_args="{{ artib_vc_args }} -v"
+  when: artib_vc_verbose
 
-# Use overcloud base image to create undercloud base image
-- include: convert_undercloud.yml
+- name: virt-customize args --> trace/debug output
+  set_fact: artib_vc_args="{{ artib_vc_args }} -x"
+  when: artib_vc_trace
 
-# Use DIB to build the overlcloud-full and IPA images
-- include: dib_build.yml
+- block:
+    # Get the base image and setup repos
+    - include: repo_setup.yml
 
-# Inject overcloud-full and IPA images into the undercloud image
-- include: undercloud_inject.yml
+    # Install packages for overcloud base image
+    - include: package_install.yml
+
+    # Use overcloud base image to create undercloud base image
+    - include: convert_undercloud.yml
+
+    # Use DIB to build the overlcloud-full and IPA images
+    - include: dib_build.yml
+
+    # Inject overcloud-full and IPA images into the undercloud image
+    - include: undercloud_inject.yml
+
+  rescue:
+    - debug: msg='*** Image Build Error ***'
+
+  always:
+    - debug: msg="*** Generating Build Artifacts ***"
+
+    - shell: |
+        virt-cat -a undercloud.qcow2     /tmp/builder.log > builder-undercloud.log 2>&1
+        virt-cat -a overcloud-base.qcow2 /tmp/builder.log |& tee builder-overcloud.log
+
+        virt-ls -a undercloud.qcow2     -lR --csv / > content-undercloud.csv 2>&1
+        virt-ls -a overcloud-full.qcow2 -lR --csv / > content-overcloud.csv  2>&1
+      environment:
+        LIBGUESTFS_BACKEND: direct
+      args:
+        chdir: "{{ artib_working_dir }}"
+
+    - debug: msg="*** Image Build Complete ***"
+
