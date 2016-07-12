@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1a150a3f",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-07-12T16:31:05Z",
+      "side": 1,
+      "message": "Oh okay, I thought these are examples. I don\u0027t see the point of duplicating the content of it here. Maybe just link/mention to the defaults file instead?",
+      "parentUuid": "baa041b7_373d87dd",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_b7a4f74a",
         "filename": "tasks/convert_undercloud.yml",
         "patchSetId": 2
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "No, I specifically want to run these in the event of a failure.  That when they are the most useful :)\n\nIf one of the images doesn\u0027t exist, then that output as well goes to the logs.  I\u0027ve been working on quickstart images for OSP 8,9,10, and now RDO on RHEL (mitaka and master).  When images break I end up having to pull the builder.log from failed images.",
       "parentUuid": "baa041b7_376fc7fd",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_f70a7f25",
+        "filename": "tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-07-12T16:31:05Z",
+      "side": 1,
+      "message": "Okay, I misunderstood. What tripped me up was the word \"complete\". I suggest having a more neutral sounding \"end of the process\" marker, like \"End of image building\" that doesn\u0027t imply success.\n\nI won\u0027t be the last who assumed this incorrectly. :)",
+      "parentUuid": "baa041b7_d7553b1e",
       "range": {
         "startLine": 47,
         "startChar": 0,
