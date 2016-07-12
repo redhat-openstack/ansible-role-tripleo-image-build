@@ -1,8 +1,7 @@
 ---
 - name: Inject overcloud images into undercloud image
   shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
-    --smp {{ artib_virt_customize_cpu }}
+    virt-customize {{ artib_vc_args }}
     -a {{ artib_working_dir }}/undercloud-base.qcow2
     --upload {{ artib_working_dir }}/{{ item }}:/home/stack
   environment:
@@ -11,7 +10,8 @@
 
 - name: Compress undercloud image
   shell: |
-    virt-sparsify --tmp {{ artib_working_dir }} --check-tmpdir {{ artib_virt_sparsify_checktmpdir_flag }} \
+    virt-sparsify --tmp {{ artib_working_dir }} \
+      --check-tmpdir {{ artib_virt_sparsify_checktmpdir_flag }} \
       --compress undercloud-base.qcow2 undercloud.qcow2
     md5sum undercloud.qcow2 > undercloud.qcow2.md5
   environment:

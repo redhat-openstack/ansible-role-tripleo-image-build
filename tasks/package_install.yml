@@ -13,10 +13,11 @@
     dest: "{{ artib_working_dir }}/package-install.sh"
 
 - name: Install the packages in the overcloud image using virt-customize
-  shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
-    --smp {{ artib_virt_customize_cpu }}
-    -a {{ artib_working_dir }}/overcloud-base.qcow2
-    --run {{ artib_working_dir }}/package-install.sh
+  shell: |
+    virt-customize {{ artib_vc_args }} -a overcloud-base.qcow2 \
+      --run package-install.sh |& tee package-install.sh.log
   environment:
     LIBGUESTFS_BACKEND: direct
+  args:
+    chdir: "{{ artib_working_dir }}"
+
