@@ -28,8 +28,12 @@ artib_undercloud_base_image_url:
 artib_undercloud_overwrite_existing: no
 artib_undercloud_convert_script: undercloud-convert-default.sh.j2
 artib_undercloud_disk_size: 40
-artib_virt_customize_ram: 28000
-artib_virt_customize_cpu: 4
+
+artib_vc_ram: 8192
+artib_vc_cpu: 4
+artib_vc_verbose: false
+artib_vc_trace: false
+
 artib_undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server

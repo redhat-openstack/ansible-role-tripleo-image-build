@@ -11,10 +11,8 @@
     dest: "{{ artib_working_dir }}/repo_setup.sh"
 
 - name: Setup repos in the base image using virt-customize
-  shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
-    --smp {{ artib_virt_customize_cpu }}
-    -a {{ artib_working_dir }}/minimal-base.qcow2
-    --run {{ artib_working_dir }}/repo_setup.sh
+  shell: virt-customize {{ artib_vc_args }} -a minimal-base.qcow2 --run repo_setup.sh |& tee repo_setup.sh.log
   environment:
     LIBGUESTFS_BACKEND: direct
+  args:
+    chdir: "{{ artib_working_dir }}"

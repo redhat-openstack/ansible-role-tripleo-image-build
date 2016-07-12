@@ -8,33 +8,35 @@
 - name: Resize undercloud image (create target image)
   command: >
     qemu-img create -f qcow2 -o preallocation=off
-    '{{ artib_working_dir }}/undercloud-resized.qcow2'
+    undercloud-resized.qcow2
     '{{ artib_undercloud_disk_size }}G'
+  args:
+    chdir: "{{ artib_working_dir }}"
 
 - name: Resize undercloud image (call virt-resize)
-  command: >
-    virt-resize --expand /dev/sda1
-    '{{ artib_working_dir }}/undercloud-base.qcow2'
-    '{{ artib_working_dir }}/undercloud-resized.qcow2'
+  command: |
+    virt-resize --expand /dev/sda1 undercloud-base.qcow2 undercloud-resized.qcow2
+  args:
+    chdir: "{{ artib_working_dir }}"
   environment:
     LIBGUESTFS_BACKEND: direct
 
 - name: Resize undercloud image (rename resized image)
-  command: >
-    mv -f {{ artib_working_dir }}/undercloud-resized.qcow2
-    {{ artib_working_dir }}/undercloud-base.qcow2
+  command: |
+    mv -f undercloud-resized.qcow2 undercloud-base.qcow2
+  args:
+    chdir: "{{ artib_working_dir }}"
 
 - name: Template script to convert overcloud image to undercloud
   template:
     src: "{{ artib_undercloud_convert_script }}"
     dest: "{{ artib_working_dir }}/undercloud-convert.sh"
 
-# LKS: do we really care about smp settings here?
 - name: Convert the overcloud image to an undercloud image
-  shell: >
-    virt-customize -m {{ artib_virt_customize_ram }}
-    --smp {{ artib_virt_customize_cpu }}
-    -a {{ artib_working_dir }}/undercloud-base.qcow2
-    --run {{ artib_working_dir }}/undercloud-convert.sh
+  shell: |
+    virt-customize {{ artib_vc_args }} -a undercloud-base.qcow2 \
+    --run  undercloud-convert.sh |& tee undercloud-convert.sh.log
+  args:
+    chdir: "{{ artib_working_dir }}"
   environment:
     LIBGUESTFS_BACKEND: direct
