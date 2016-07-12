@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_7a2c1699",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-07-12T16:37:50Z",
+      "side": 1,
+      "message": "worth considering in a different commit :)  I want to keep this commit focused.  If we want to change the readme (we will) let\u0027s do it in a discreet commit.  As I\u0027m doing some doc work in another context (using this role for downstream images) I would rather defer.",
+      "parentUuid": "baa041b7_1a150a3f",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_b7a4f74a",
         "filename": "tasks/convert_undercloud.yml",
         "patchSetId": 2
@@ -202,6 +226,30 @@
       "side": 1,
       "message": "Okay, I misunderstood. What tripped me up was the word \"complete\". I suggest having a more neutral sounding \"end of the process\" marker, like \"End of image building\" that doesn\u0027t imply success.\n\nI won\u0027t be the last who assumed this incorrectly. :)",
       "parentUuid": "baa041b7_d7553b1e",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5a1dd260",
+        "filename": "tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-07-12T16:37:50Z",
+      "side": 1,
+      "message": "Good feedback.  I\u0027ll post another version that updates it.  Thanks!",
+      "parentUuid": "baa041b7_f70a7f25",
       "range": {
         "startLine": 47,
         "startChar": 0,
