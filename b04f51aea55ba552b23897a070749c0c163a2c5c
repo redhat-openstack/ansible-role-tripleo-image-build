@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_373d87dd",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-07-12T16:13:55Z",
+      "side": 1,
+      "message": "Not sure I understand...the readme documents all of the variables in defaults...",
+      "parentUuid": "baa041b7_97c8d323",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_b7a4f74a",
         "filename": "tasks/convert_undercloud.yml",
         "patchSetId": 2
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_57380bee",
+        "filename": "tasks/convert_undercloud.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-07-12T16:13:55Z",
+      "side": 1,
+      "message": "nice.  I\u0027ll give it a look.",
+      "parentUuid": "baa041b7_b7a4f74a",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_376fc7fd",
         "filename": "tasks/main.yml",
         "patchSetId": 2
@@ -82,6 +130,30 @@
       "writtenOn": "2016-07-12T16:01:38Z",
       "side": 1,
       "message": "These should be just part of the block, as I assume you don\u0027t want to run these if the build fails.\n\nhttp://docs.ansible.com/ansible/playbooks_blocks.html",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_d7553b1e",
+        "filename": "tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-07-12T16:13:55Z",
+      "side": 1,
+      "message": "No, I specifically want to run these in the event of a failure.  That when they are the most useful :)\n\nIf one of the images doesn\u0027t exist, then that output as well goes to the logs.  I\u0027ve been working on quickstart images for OSP 8,9,10, and now RDO on RHEL (mitaka and master).  When images break I end up having to pull the builder.log from failed images.",
+      "parentUuid": "baa041b7_376fc7fd",
       "range": {
         "startLine": 47,
         "startChar": 0,
