@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_f0c84557",
+        "filename": "tasks/convert_undercloud.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-07-13T06:58:32Z",
+      "side": 1,
+      "message": "For the shell block I added I moved it to \u003e   I\u0027ve logged https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/24 to track fixing the rest (different commit)",
+      "parentUuid": "baa041b7_57380bee",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "b04f51aea55ba552b23897a070749c0c163a2c5c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_376fc7fd",
         "filename": "tasks/main.yml",
         "patchSetId": 2
