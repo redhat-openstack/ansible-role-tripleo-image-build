@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_ab2c9202",
+        "filename": "tasks/package_install.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-07-13T09:53:19Z",
+      "side": 1,
+      "message": "This still remained here, but it\u0027s not a big deal.",
+      "range": {
+        "startLine": 16,
+        "startChar": 9,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "4c54d5c3a9e268296f94596f611d9f27a1332e61",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
