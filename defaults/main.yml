@@ -37,6 +37,8 @@ artib_vc_trace: false
 artib_undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server
+  - openstack-sahara*
+  - python2-barbicanclient
 artib_undercloud_install_packages:
   - mariadb-server
   - python-tripleoclient
