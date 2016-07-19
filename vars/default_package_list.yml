@@ -88,6 +88,7 @@ artib_overcloud_packages:
   - python-openvswitch
   - python-pip
   - python-pbr
+  - python-redis
   - python-troveclient
   - python-virtualenv
   - python-zaqarclient
