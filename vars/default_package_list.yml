@@ -4,6 +4,7 @@ artib_overcloud_packages:
   - boost-program-options
   - ceph
   - corosync
+  - crudini
   - docker-registry
   - fence-agents-all
   - gcc-c++
