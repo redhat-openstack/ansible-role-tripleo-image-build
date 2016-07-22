@@ -68,6 +68,7 @@ artib_overcloud_packages:
   - openstack-sahara
   - openstack-selinux
   - openstack-swift-account
+  - openstack-swift-container
   - openstack-swift-object
   - openstack-swift-proxy
   - openstack-tempest
