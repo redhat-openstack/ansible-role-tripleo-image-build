@@ -6,6 +6,7 @@ artib_overcloud_packages:
   - corosync
   - crudini
   - docker-registry
+  - dstat
   - fence-agents-all
   - gcc-c++
   - git
