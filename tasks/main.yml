@@ -43,7 +43,7 @@
     - include: undercloud_inject.yml
 
   rescue:
-    - debug: msg='*** Image Build Error ***'
+    - fail:  msg='*** Image Build Error ***'
 
   always:
     - debug: msg="*** Generating Build Artifacts ***"
