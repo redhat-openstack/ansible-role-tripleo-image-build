@@ -13,6 +13,7 @@ artib_minimal_overwrite_existing: no
 artib_base_os: centos7
 artib_release: mitaka
 artib_build_system: delorean
+artib_image_stage_location: testing
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
 
 # package_install vars
