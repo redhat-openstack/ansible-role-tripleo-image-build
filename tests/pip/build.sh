@@ -41,7 +41,7 @@ setup() {
         git checkout --quiet origin/master
     fi
 
-    pip install -r $REQUIREMENTS
+    pip install --no-cache-dir -r $REQUIREMENTS
 }
 
 # TODO: add flag for OPT_ARTNAME and/or OPT_ARTGITURL
