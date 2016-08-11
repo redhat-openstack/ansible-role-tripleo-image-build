@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_9cc64f98",
+        "filename": "tasks/bundle_logs.yml",
+        "patchSetId": 43
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-11T10:24:20Z",
+      "side": 1,
+      "message": "nitpick: can this be `\u003e`?\n\nreference for why: https://gist.github.com/adarazs/5836e388f5bd26ac644646e3bf0b633a",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 10
+      },
+      "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_5cbc4705",
+        "filename": "tasks/main.yml",
+        "patchSetId": 43
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-11T10:24:20Z",
+      "side": 1,
+      "message": "I\u0027d rather skip this as the collect-logs role will either tar.gz them all or individually gzip them, so this will just make it harder to read them on the artifact server without actually helping with space issues.\n\nAnd then the md5sum part is not necessary either.",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 59
+      },
+      "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
