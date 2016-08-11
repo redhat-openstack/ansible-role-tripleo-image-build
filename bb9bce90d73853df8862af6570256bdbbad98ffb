@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_ca09a985",
+        "filename": "tasks/bundle_logs.yml",
+        "patchSetId": 43
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-11T18:20:44Z",
+      "side": 1,
+      "message": "This was actually dead code and PS 44 will remove it.  The not-dead part (block at end of main.yml) uses |.  Regarding the usage of \u003e vs | for shell blocks in this role generally, I completely agree.  We\u0027ve gotten most of them but there\u0027s still a few left.  This is tracked here:\n\nhttps://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/24",
+      "parentUuid": "baa041b7_9cc64f98",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 10
+      },
+      "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_5cbc4705",
         "filename": "tasks/main.yml",
         "patchSetId": 43
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-11T10:24:20Z",
       "side": 1,
       "message": "I\u0027d rather skip this as the collect-logs role will either tar.gz them all or individually gzip them, so this will just make it harder to read them on the artifact server without actually helping with space issues.\n\nAnd then the md5sum part is not necessary either.",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 59
+      },
+      "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_aa8305ca",
+        "filename": "tasks/main.yml",
+        "patchSetId": 43
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-11T18:20:44Z",
+      "side": 1,
+      "message": "I understand the concern.  Presently we copy logs to /var/log/artib (where collect-logs picks them up).\n\nThe log tarball doesn\u0027t end up in /var/logs (on purpose for the reasons you describe) and is not scooped up by the collect-logs role used in RDO ci (and downsteam/internal RH jobs) but instead is published alongside (optional) the actual images.  a child review (https://review.gerrithub.io/#/c/277420/) picks up the archive when we copy things out post-build.  If you like I can move the tar cmd --\u003e 277420.",
+      "parentUuid": "baa041b7_5cbc4705",
       "range": {
         "startLine": 62,
         "startChar": 8,
