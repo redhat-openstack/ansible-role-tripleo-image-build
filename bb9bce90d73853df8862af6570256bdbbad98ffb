@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_1df5964f",
+        "filename": "tasks/bundle_logs.yml",
+        "patchSetId": 43
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-12T20:39:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_9cc64f98",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 10
+      },
+      "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_5cbc4705",
         "filename": "tasks/main.yml",
         "patchSetId": 43
