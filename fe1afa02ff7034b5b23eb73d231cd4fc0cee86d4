@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_fd2c3203",
+        "filename": "tasks/publish-staged.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-12T16:05:02Z",
+      "side": 1,
+      "message": "I keep looking at this sideways, maybe if we made \n\n{{ release }}/{{ build_system }}/{{ artib_image_stage_location }} \n\nIt\u0027s own variable it would be less busy.",
+      "range": {
+        "startLine": 11,
+        "startChar": 74,
+        "endLine": 11,
+        "endChar": 139
+      },
+      "revId": "fe1afa02ff7034b5b23eb73d231cd4fc0cee86d4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
