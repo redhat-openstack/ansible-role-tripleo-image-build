@@ -117,6 +117,30 @@
       "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_b1793184",
+        "filename": "tasks/main.yml",
+        "patchSetId": 43
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-15T11:16:04Z",
+      "side": 1,
+      "message": "I didn\u0027t realize the role has its own solution for this. Okay then. :)",
+      "parentUuid": "baa041b7_aa8305ca",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 59
+      },
+      "revId": "bb9bce90d73853df8862af6570256bdbbad98ffb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
