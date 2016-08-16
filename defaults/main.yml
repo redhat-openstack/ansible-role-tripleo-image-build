@@ -14,7 +14,14 @@ artib_base_os: centos7
 artib_release: mitaka
 artib_build_system: delorean
 artib_image_stage_location: testing
+
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
+
+artib_reposync_enable: false
+artib_reposync_root: "{{ artib_working_dir }}/repos"
+artib_reposync_repos:
+  - { repo_name: "delorean.repo",      repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo" }
+  - { repo_name: "delorean-deps.repo", repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/delorean-deps.repo" }
 
 # package_install vars
 artib_overcloud_base_image_url:

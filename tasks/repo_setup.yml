@@ -24,6 +24,46 @@
 #    dest: '{{ artib_working_dir }}/minimal-base.qcow2'
 #    force: '{{ artib_minimal_overwrite_existing }}'
 
+#
+# WIP: https://trello.com/c/o6g4kqcc/316-oooq-pipeline-improvements-reposync-reporting-on-deps-and-content-handle-network-hiccups-with-grace
+#
+- block:
+    - debug: msg="*** Image Generation Process --> creating local repos ***"
+
+    - name: Create the root for local repository files
+      file:
+        path: "{{ artib_reposync_root }}"
+        state: directory
+        mode: 0755
+
+    - name: Template yum.conf used to reposync
+      template:
+        src: reposync-yum.conf.j2
+        dest: "{{ artib_reposync_root }}/reposync-yum.conf"
+
+    - name: get repo files
+      shell: curl -Lo  {{ artib_reposync_root }}/reposdir/{{ item.repo_name }} {{ item.repo_url }}
+      with_items: artib_reposync_repos
+
+    - shell: >
+        yum install -y yum-utils createrepo;
+        pushd {{ artib_reposync_root }};
+
+        # pull down the files
+        reposync -c {{ artib_reposync_root }}/reposync-yum.conf -p {{ artib_reposync_root }}/rpms --newest-only --downloadcomps --download-metadata;
+
+        # WIP/TODO: for now the entire everything.  probably can prune to just rpms?
+        virt-copy-in -a minimal-base.qcow2 {{ artib_reposync_root }} /var/lib/artib-reposync;
+
+        # WIP/TODO: copy repo files and alter http:// --> file://, and copy from there instead
+        virt-copy-in -a minimal-base.qcow2 {{ artib_reposync_root }}/reposdir /etc/yum.repos.d
+
+  # end reposync block
+  when: artib_reposync_enable
+
+# WIP:
+
+
 - name: Template script to setup repos in the base image
   template:
     src: "{{ artib_repo_script }}"
