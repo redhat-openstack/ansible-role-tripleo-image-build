@@ -14,10 +14,22 @@ artib_base_os: centos7
 artib_release: mitaka
 artib_build_system: delorean
 artib_image_stage_location: testing
+
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
 
 #swapfile arguments
 artib_swapfile_script: swapfile-create.sh.j2
+
+# reposync arguments
+artib_reposync_enable: false
+artib_reposync_root: "{{ artib_working_dir }}/repos"
+artib_reposync_repos:
+  - repo_name: "delorean"
+    repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo"
+    repo_id: "delorean"
+  - repo_name: "delorean-deps"
+    repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/delorean-deps.repo"
+    repo_id: "*-testing"
 
 # package_install vars
 artib_overcloud_base_image_url:
@@ -28,7 +40,7 @@ artib_overcloud_package_list: default_package_list.yml
 
 # convert_undercloud vars
 artib_undercloud_base_image_url:
-  "file:///{{ artib_working_dir }}/overcloud-base.qcow2"
+  "file:///{{ artib_working_dir }}/minimal-base.qcow2"
 artib_undercloud_overwrite_existing: no
 artib_undercloud_convert_script: undercloud-convert-default.sh.j2
 artib_undercloud_disk_size: 40

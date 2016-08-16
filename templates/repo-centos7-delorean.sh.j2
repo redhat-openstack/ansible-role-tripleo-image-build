@@ -3,9 +3,15 @@
 
 set -eux
 
+{% if artib_reposync_enable %}
+sed -i -e 's%baseurl=.*%baseurl=file:///var/lib/artib-reposync/delorean%' /etc/yum.repos.d/delorean.repo
+sed -i -e 's%baseurl=.*%baseurl=file:///var/lib/artib-reposync/delorean-deps%' /etc/yum.repos.d/delorean-deps.repo
+sed -i -e 's%priority=.*%priority=50%' /etc/yum.repos.d/delorean.repo
+sed -i -e 's%priority=.*%priority=60%' /etc/yum.repos.d/delorean-deps.repo
+{% else %}
 curl -Lo /etc/yum.repos.d/delorean.repo http://trunk.rdoproject.org/centos7-{{ artib_release }}/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo
-
 curl -Lo /etc/yum.repos.d/delorean-deps.repo http://trunk.rdoproject.org/centos7-{{ artib_release }}/delorean-deps.repo
+{% endif %}
 
 yum install -y yum-plugin-priorities
 

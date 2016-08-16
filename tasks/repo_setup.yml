@@ -8,7 +8,7 @@
 # capabilities, it is unable to handle `file://` URLs.  We instead
 # use an ansible `until` loop, combined with curl's `-C-` option
 # to continue interrupted downloads.
-- name: Get image
+- name: Get minimal base image
   command: >
     curl -sfL -C- -o {{ artib_working_dir }}/minimal-base.qcow2 {{ artib_minimal_base_image_url }}
   args:
@@ -18,11 +18,80 @@
   retries: 20
   delay: 5
 
+- name: Make a copy of base image to use for IPA ramdisk
+  copy:
+    dest: "{{ artib_working_dir }}/ipa-base.qcow2"
+    src: "{{ artib_working_dir }}/minimal-base.qcow2"
+    remote_src: True
+
 #- name: Get the minimal base image
 #  get_url:
 #    url: '{{ artib_minimal_base_image_url }}'
 #    dest: '{{ artib_working_dir }}/minimal-base.qcow2'
 #    force: '{{ artib_minimal_overwrite_existing }}'
+
+- block:
+    - debug: msg="*** Image Generation Process --> creating local repos ***"
+
+    - name: Create the root for local repository files
+      file:
+        path: "{{ artib_reposync_root }}/reposdir/"
+        state: directory
+        mode: 0755
+
+    - name: Template yum.conf used to reposync
+      template:
+        src: reposync-yum.conf.j2
+        dest: "{{ artib_reposync_root }}/reposync-yum.conf"
+
+    - name: get repo files and inject them into the base image
+      shell: |
+        curl -Lo  {{ artib_reposync_root }}/reposdir/{{ item.repo_name }}.repo {{ item.repo_url }}
+        virt-copy-in -a minimal-base.qcow2 {{ artib_reposync_root }}/reposdir/{{ item.repo_name }}.repo /etc/yum.repos.d
+      with_items: "{{ artib_reposync_repos }}"
+      environment:
+        LIBGUESTFS_BACKEND: direct
+      args:
+        chdir: "{{ artib_working_dir }}"
+
+    - name: make sure reposync packages are available
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - yum-utils
+        - createrepo
+
+    - name: sync repos to build host
+      shell: |
+        reposync -c {{ artib_reposync_root }}/reposync-yum.conf \
+                 -p {{ artib_reposync_root }}/{{ item.repo_name }} \
+                 -r {{ item.repo_id }} \
+                 --norepopath \
+                 --newest-only
+        createrepo {{ artib_reposync_root }}/{{ item.repo_name }}
+      with_items: "{{ artib_reposync_repos }}"
+      args:
+        chdir: "{{ artib_reposync_root }}"
+
+    - name: make the directory to hold local repos on the base image
+      shell: virt-customize -a minimal-base.qcow2 --mkdir /var/lib/artib-reposync
+      environment:
+        LIBGUESTFS_BACKEND: direct
+      args:
+        chdir: "{{ artib_working_dir }}"
+
+
+    - name: push local repos to the base image
+      shell: virt-copy-in -a minimal-base.qcow2 {{ artib_reposync_root }}/{{ item.repo_name }} /var/lib/artib-reposync
+      with_items: "{{ artib_reposync_repos }}"
+      environment:
+        LIBGUESTFS_BACKEND: direct
+      args:
+        chdir: "{{ artib_working_dir }}"
+
+  # end reposync block
+  when: artib_reposync_enable
 
 - name: Template script to setup repos in the base image
   template:

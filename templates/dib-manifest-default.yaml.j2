@@ -11,7 +11,7 @@ disk_images:
     options:
       - --min-tmpfs=5
     environment:
-        DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/minimal-base.qcow2"
+        DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/ipa-base.qcow2"
         DIB_DEFAULT_INSTALLTYPE: package
         ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
   -
@@ -35,7 +35,7 @@ disk_images:
     options:
       - --min-tmpfs=5
     environment:
-        DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/overcloud-base.qcow2"
+        DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/minimal-base.qcow2"
         DIB_DEFAULT_INSTALLTYPE: package
         ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
         # Needed for corosync to be able to use hostnames
