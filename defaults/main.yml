@@ -14,10 +14,35 @@ artib_base_os: centos7
 artib_release: mitaka
 artib_build_system: delorean
 artib_image_stage_location: testing
+
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
 
 #swapfile arguments
 artib_swapfile_script: swapfile-create.sh.j2
+
+# create local copy of rpm's on build host, and inject into base image directly
+artib_reposync_enable: false
+artib_reposync_localrepo_root: /var/lib/artib-localrepo
+artib_reposync_buildhost_root: "{{ artib_working_dir }}/repos"
+
+artib_reposync_repo_files:
+  - { repo_fname: "delorean.repo",      repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo" }
+  - { repo_fname: "delorean-deps.repo", repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/delorean-deps.repo" }
+
+# WIP: provide mechanism to satisfy scenario #2
+# WIP: https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/32
+# WIP / TODO: @trown details are for discussion / testing only, and will be removed prior to merge
+artib_reposync_repo_invocations:
+  - {
+      repo_tool_uri: "http://rhos-release.virt.bos.redhat.com/repos/rhos-release/rhos-release-latest.noarch.rpm",
+      repo_tool_invoke: "rhos-release -P 10 -p {{ build_id }}",
+      repo_tool_desc: "OSP 10, with build_id specifying a date tag (internal)"
+    }
+
+# note: intentionally not part of files or invocations, to allow priorities to be used and not enforce/imply 1:1
+artib_reposync_names_to_sync:
+  - delorean
+  - delorean-mitaka-testing
 
 # package_install vars
 artib_overcloud_base_image_url:
