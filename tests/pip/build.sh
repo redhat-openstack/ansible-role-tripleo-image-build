@@ -41,7 +41,7 @@ setup() {
         git checkout --quiet origin/master
     fi
 
-    pip install -r $REQUIREMENTS
+    pip install --no-cache-dir -r $REQUIREMENTS
 }
 
 # TODO: add flag for OPT_ARTNAME and/or OPT_ARTGITURL
@@ -220,6 +220,7 @@ set -x
 ansible-playbook -$VERBOSITY $PLAYBOOK \
     -e ansible_python_interpreter=/usr/bin/python \
     -e local_working_dir=$OPT_WORKDIR \
+    -e artib_virt_sparsify_checktmpdir_flag=continue \
     -e virthost=$VIRTHOST \
     -e artib_base_os=$BASE_OS \
     -e artib_release=$RELEASE \
