@@ -14,10 +14,67 @@ artib_base_os: centos7
 artib_release: mitaka
 artib_build_system: delorean
 artib_image_stage_location: testing
+
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
 
 #swapfile arguments
 artib_swapfile_script: swapfile-create.sh.j2
+
+#
+# BEGIN REPOSYNC RELATED DEFAULTS
+#
+
+##
+#
+# create local copy of rpm's on build host, to be used by DIB.  Optionally inject them to base image.
+# There are a few related yet distinct goals:
+#
+#     1. mitigate networking issues by copying all rpm's early and at and just one time, vs. during DIB phases.
+#        This enables simplified debugging of various release related dependency issues.
+#
+#     2. Enable alteration of what a tripleo-quickstart image actually is, while retaining the time/network
+#        optimization of a single (early) copy of rpm's, without requiring that optimization to be a side effect
+#        of a divergent (from upstream tripleo) image format/definition/workflow.
+#
+#     3. create time capsule.  Some inputs (delorean-deps, ceph, etc) are not "locked in time" as delorean is with
+#        a hash, but rather are a moving target by design.  This complicates reproduction and diagnoses of issues.
+#
+#     4. For iterative development and CI workflows, enable caching (on the build host) of RPM's.  Downstream build
+#        servers in our CI farm generally build over and over.  This saves a lot of time and bits on wire
+#
+##
+
+artib_reposync_enable: false
+
+# template yum.conf (passed to reposync)
+artib_reposync_yum_conf: "reposync-yum.conf.j2"
+
+# where on the build host to place files.  These are used in templates/reposync-yum.conf.j2
+artib_reposync_buildhost_root:       "/var/lib/oooq-reposync"
+artib_reposync_buildhost_cachedir:   "{{ artib_reposync_buildhost_root }}/cachedir/$basearch/$releasever"
+artib_reposync_buildhost_persistdir: "{{ artib_reposync_buildhost_root }}/persistdir/$basearch/$releasever"
+artib_reposync_buildhost_reposdir:   "{{ artib_reposync_buildhost_root }}/reposdir"
+
+artib_reposync_repo_files:
+  - { repo_fname: "delorean.repo",      repo: "delorean",                             repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo" }
+  - { repo_fname: "delorean-deps.repo", repo: "delorean-{{ artib_release }}-testing", repo_url: "http://trunk.rdoproject.org/centos7-{{ artib_release }}/delorean-deps.repo" }
+
+# note: intentionally NOT part of files or invocations.
+artib_reposync_repos_to_sync:
+  - delorean
+  - delorean-{{ artib_release }}-testing
+
+# TODO: do we really need this at all?
+# where in the base image to park/inject local repos
+# artib_reposync_localrepo_root: /var/lib/artib-localrepo
+
+# which repositories to actually inject (vs. merely locate on build host)
+artib_reposync_repos_to_inject:
+  - delorean-{{ artib_release }}-testing
+
+#
+# END REPOSYNC RELATED DEFAULTS
+#
 
 # package_install vars
 artib_overcloud_base_image_url:

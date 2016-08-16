@@ -3,9 +3,12 @@
 
 set -eux
 
+{% if artib_reposync_enable %}
+echo "*** note: repo setup is handled by reposync feature"
+{% else %}
 curl -Lo /etc/yum.repos.d/delorean.repo http://trunk.rdoproject.org/centos7-{{ artib_release }}/{{ artib_delorean_hash | default('current-passed-ci')}}/delorean.repo
-
 curl -Lo /etc/yum.repos.d/delorean-deps.repo http://trunk.rdoproject.org/centos7-{{ artib_release }}/delorean-deps.repo
+{% endif %}
 
 yum install -y yum-plugin-priorities
 

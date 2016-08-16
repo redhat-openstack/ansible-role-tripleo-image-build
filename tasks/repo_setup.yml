@@ -8,7 +8,7 @@
 # capabilities, it is unable to handle `file://` URLs.  We instead
 # use an ansible `until` loop, combined with curl's `-C-` option
 # to continue interrupted downloads.
-- name: Get image
+- name: Get minimal base image
   command: >
     curl -sfL -C- -o {{ artib_working_dir }}/minimal-base.qcow2 {{ artib_minimal_base_image_url }}
   args:
@@ -18,11 +18,97 @@
   retries: 20
   delay: 5
 
-#- name: Get the minimal base image
-#  get_url:
-#    url: '{{ artib_minimal_base_image_url }}'
-#    dest: '{{ artib_working_dir }}/minimal-base.qcow2'
-#    force: '{{ artib_minimal_overwrite_existing }}'
+- block:
+    - debug: msg="*** Image Generation Process --> caching local repos ***"
+
+    - name: install packages for reposync related activities
+      yum: name={{ item }} state=latest
+      with_items:
+        - createrepo
+        - yum-utils
+        - rpm-devel
+        - graphviz
+
+    - name: (buildhost) Create the reposync base directory
+      file:
+        path: "{{ artib_reposync_buildhost_root }}"
+        state: directory
+        mode: 0755
+
+    - name: (buildhost) Template yum conf file for reposync
+      template:
+        src: "{{ artib_reposync_yum_conf }}"
+        dest: "{{ artib_reposync_buildhost_root }}/artib_yum.conf"
+
+    - name: (buildhost) Create the reposync repository file location
+      file:
+        path: "{{ artib_reposync_buildhost_reposdir }}"
+        state: directory
+        mode: 0755
+
+    - name: (buildhost) get repo files
+      command: curl -Lo  {{ item.repo_fname }} {{ item.repo_url }};
+      with_items: artib_reposync_repo_files
+      args:
+        chdir: "{{ artib_reposync_buildhost_reposdir }}"
+
+    - name: (buildhost) reposync rpm's
+      shell: >
+        {%if artib_reposync_repos_to_sync %}
+
+        reposync --newest-only --downloadcomps --download-metadata --plugins --delete
+        {% for item in artib_reposync_repos_to_sync %}
+        --repoid={{ item }}
+        {% endfor %}
+        --config={{ artib_reposync_buildhost_root }}/artib_yum.conf
+        --download_path={{ artib_reposync_buildhost_root }} > buildhost-reposync.log 2>&1;
+
+        {% endif %}
+      args:
+        chdir: "{{ artib_working_dir }}"
+
+    - name: (buildhost) create local repo metadata and copies with file:// baseurl
+      shell: >
+        # create metadata for downloaded packages
+        createrepo {{ artib_reposync_buildhost_root }}/{{ item.repo }}
+
+        # make a local copy of repo files, point to newly created repo, copy --> system location
+        local_repo_file={{ artib_working_dir}}/local.{{item.repo_fname}};
+        cp -f {{ item.repo_fname }} $local_repo_file;
+        sed -i -e 's%baseurl=.*%baseurl=file://{{ artib_reposync_buildhost_root }}/{{ item.repo }}%' $local_repo_file;
+        cp -f $local_repo_file /etc/yum.repos.d
+      with_items: artib_reposync_repo_files
+      args:
+        chdir: "{{ artib_reposync_buildhost_reposdir }}"
+
+    - name: recreate yum metadata
+      command: yum clean all || yum makecache
+
+    - name: produce rpmgraph artifacts
+      debug: msg="TODO rpmgraph"
+
+    - name: handle tools that need to be run (rhos-release, ceph, etc)
+      debug: msg="TODO use artib_reposync_repo_invocations to VC install rpm and run"
+
+    - name: inject repo files and perform reposync (on base image)
+      shell: >
+        virt-copy-in -a minimal-base.qcow2 {{ artib_reposync_buildhost_reposdir }}/. /etc/yum.repos.d;
+
+        vccmd="virt-customize {{ artib_vc_args }} -a minimal-base.qcow2 --run-command";
+        $vccmd "yum install -y yum-utils createrepo";
+
+        $vccmd "reposync --newest-only --downloadcomps --download-metadata --download_path={{ artib_reposync_localrepo_root }}
+        {% for item in artib_reposync_names_to_sync %}
+        --repoid={{ item }}
+        {% endfor %}
+        " |& tee minimal-base-reposync.log;
+
+      args:
+        chdir: "{{ artib_working_dir }}"
+      when: false
+
+  # end reposync block
+  when: artib_reposync_enable
 
 - name: Template script to setup repos in the base image
   template:
