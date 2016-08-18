@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_15931e02",
+        "filename": "defaults/main.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-18T15:52:25Z",
+      "side": 1,
+      "message": "Maybe use example.com? https://tools.ietf.org/html/rfc2606#section-3",
+      "range": {
+        "startLine": 100,
+        "startChar": 31,
+        "endLine": 100,
+        "endChar": 49
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_95d96ef7",
+        "filename": "tasks/main.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-18T15:52:25Z",
+      "side": 1,
+      "message": "just a little nitpick, it\u0027s useful to add `|bool` to boolean evaluations as the command line --extra-vars always passes everything as text and there\u0027s no good way around it.",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 21
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_15ec3e91",
+        "filename": "tasks/publish.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-18T15:52:25Z",
+      "side": 1,
+      "message": "Why not just re-purpose this file as the general publish method. Do you expect more methods later?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 9
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
