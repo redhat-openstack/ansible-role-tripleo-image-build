@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_b5a11249",
+        "filename": "defaults/main.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-18T15:59:58Z",
+      "side": 1,
+      "message": "+1 good suggestion",
+      "parentUuid": "baa041b7_15931e02",
+      "range": {
+        "startLine": 100,
+        "startChar": 31,
+        "endLine": 100,
+        "endChar": 49
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_95d96ef7",
         "filename": "tasks/main.yml",
         "patchSetId": 25
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_5591a6f0",
+        "filename": "tasks/main.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-18T15:59:58Z",
+      "side": 1,
+      "message": "ahh cool!  Yeah I\u0027m not thrilled with the ambiguity either...e.g. \"when it\u0027s defined?  when it\u0027s true?\"\n\nso \"when: artib_publish|bool\" ?",
+      "parentUuid": "baa041b7_95d96ef7",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 21
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_15ec3e91",
         "filename": "tasks/publish.yml",
         "patchSetId": 25
@@ -59,6 +107,30 @@
       "writtenOn": "2016-08-18T15:52:25Z",
       "side": 1,
       "message": "Why not just re-purpose this file as the general publish method. Do you expect more methods later?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 9
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_55a88620",
+        "filename": "tasks/publish.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-18T15:59:58Z",
+      "side": 1,
+      "message": "context: https://review.openstack.org/#/c/355720/\n\nI guess the current state of things is suboptimal, and we\u0027ve gone back and forth a few times (prior to oooq being \"official openstack\").  Give oooq: 355720 a read/review and discuss?  Happy to make this work however, We just need to be able to copy artifacts in a clean way, so if we want to add more later (this will continue to be the case) we can just change the build role, not be stuck with having to update all the consumers (upstream and downstream and non-CI alike)",
+      "parentUuid": "baa041b7_15ec3e91",
       "range": {
         "startLine": 1,
         "startChar": 2,
