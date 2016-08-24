@@ -1,0 +1,12 @@
+#!/bin/bash
+# swap file create script to setup centos7 {{ artib_release }} delorean
+
+set -eux
+
+#Add a 4GB swap file to the Undercloud
+sudo dd if=/dev/zero of=/swapfile bs=1M count=0 seek=4096
+sudo mkswap /swapfile
+sudo chmod 600 /swapfile
+#Enable it on start
+echo "/swapfile swap swap defaults 0 0" | sudo tee -a /etc/fstab
+
