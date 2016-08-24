@@ -30,6 +30,9 @@
     # Get the base image and setup repos
     - include: repo_setup.yml
 
+    # Create a swap file
+    - include: swap_file.yml
+
     # Install packages for overcloud base image
     - include: package_install.yml
 
