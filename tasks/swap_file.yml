@@ -1,0 +1,15 @@
+---
+- name: Template script to setup swap in the base image
+  template:
+    src: "{{ artib_swapfile_script }}"
+    dest: "{{ artib_working_dir }}/swapfile-create.sh"
+
+- name: Setup repos in the base image using virt-customize
+  shell: virt-customize {{ artib_vc_args }} -a {{ artib_working_dir }}/{{ item }} --run swapfile-create.sh > swapfile_create.log 2>&1
+  environment:
+    LIBGUESTFS_BACKEND: direct
+  args:
+    chdir: "{{ artib_working_dir }}"
+  with_items:
+    - overcloud-full.qcow2
+    - undercloud-base.qcow2
