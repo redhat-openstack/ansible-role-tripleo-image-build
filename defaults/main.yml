@@ -16,6 +16,9 @@ artib_build_system: delorean
 artib_image_stage_location: testing
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
 
+#swapfile arguments
+artib_swapfile_script: swapfile-create.sh.j2
+
 # package_install vars
 artib_overcloud_base_image_url:
   "file:///{{ artib_working_dir }}/minimal-base.qcow2"
