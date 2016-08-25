@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_8fe02c98",
+        "filename": "templates/swapfile-create.sh.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-25T10:24:12Z",
+      "side": 1,
+      "message": "This will take a considerable amount of time. We should try if the seek method works on our setup (probably it does) which creates a sparse file:\n\n    $ time dd if\u003d/dev/zero of\u003d/tmp/4g-file bs\u003d1k count\u003d4194304\n    4194304+0 records in\n    4194304+0 records out\n    4294967296 bytes (4.3 GB, 4.0 GiB) copied, 77.8708 s, 55.2 MB/s\n    \n    real    1m17.875s\n    user    0m0.480s\n    sys 0m6.276s\n    $ time dd if\u003d/dev/zero of\u003d/tmp/4g-seek bs\u003d1M count\u003d0 seek\u003d4096\n    0+0 records in\n    0+0 records out\n    0 bytes copied, 9.1656e-05 s, 0.0 kB/s\n    \n    real    0m0.002s\n    user    0m0.000s\n    sys 0m0.000s\n    $ ls -l 4g*\n    -rw-r--r-- 1 adarazs adarazs 4294967296 Aug 25 12:02 4g-normal\n    -rw-r--r-- 1 adarazs adarazs 4294967296 Aug 25 12:00 4g-seek\n\nSo I\u0027d recommend using that to shave off at least a minute, but probably a lot more on spinning disks (I have a fast SSD).",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "bbaec7062e9c977199c1ab82a7c699a747062e96",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_af1e50b9",
+        "filename": "templates/swapfile-create.sh.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-25T10:24:12Z",
+      "side": 1,
+      "message": "This comment should go one line lower, but it\u0027s unnecessary anyway to turn on the swap file during the virt-customize execution.\n\nIt\u0027s a barebone VM that get shut down at the end of these commands, so just keep the echo line.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "bbaec7062e9c977199c1ab82a7c699a747062e96",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8f1b8cca",
+        "filename": "templates/swapfile-create.sh.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-08-25T10:24:12Z",
+      "side": 1,
+      "message": "Unnecessary.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "bbaec7062e9c977199c1ab82a7c699a747062e96",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
