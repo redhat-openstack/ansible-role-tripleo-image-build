@@ -10,7 +10,7 @@
 # to continue interrupted downloads.
 - name: Get image
   command: >
-    curl -sf -C- -o {{ artib_working_dir }}/minimal-base.qcow2 {{ artib_minimal_base_image_url }}
+    curl -sfL -C- -o {{ artib_working_dir }}/minimal-base.qcow2 {{ artib_minimal_base_image_url }}
   args:
     chdir: "{{ artib_working_dir }}"
   register: curl_result
