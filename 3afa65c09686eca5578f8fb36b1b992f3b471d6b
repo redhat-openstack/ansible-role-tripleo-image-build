@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_0353c96d",
+        "filename": "tasks/repo_setup.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-29T22:20:54Z",
+      "side": 1,
+      "message": "per discussion with @trown today, need to make sure to set/handle priority correctly in repo files so that gating stuff works correctly.",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 18
+      },
+      "revId": "3afa65c09686eca5578f8fb36b1b992f3b471d6b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
