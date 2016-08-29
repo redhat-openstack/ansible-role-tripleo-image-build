@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_8377d907",
+        "filename": "defaults/main.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-29T22:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_b5a11249",
+      "range": {
+        "startLine": 100,
+        "startChar": 31,
+        "endLine": 100,
+        "endChar": 49
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_95d96ef7",
         "filename": "tasks/main.yml",
         "patchSetId": 25
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "ahh cool!  Yeah I\u0027m not thrilled with the ambiguity either...e.g. \"when it\u0027s defined?  when it\u0027s true?\"\n\nso \"when: artib_publish|bool\" ?",
       "parentUuid": "baa041b7_95d96ef7",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 21
+      },
+      "revId": "76f753be40e43955daced59b6a8e1d2238792066",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_2386cddb",
+        "filename": "tasks/main.yml",
+        "patchSetId": 25
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-08-29T22:08:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa041b7_5591a6f0",
       "range": {
         "startLine": 75,
         "startChar": 8,
