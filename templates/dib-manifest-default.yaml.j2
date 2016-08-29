@@ -5,7 +5,7 @@ disk_images:
     type: qcow2
     distro: {{ artib_agent_ramdisk_distro | default(artib_base_os) }}
     elements:
-      - dhcp-all-interfaces dynamic-login element-manifest ironic-agent network-gateway pip-and-virtualenv-override selinux-permissive
+      - ironic-agent dynamic-login element-manifest network-gateway enable-packages-install pip-and-virtualenv-override selinux-permissive
     packages:
       - python-hardware-detect
     options:
@@ -20,8 +20,18 @@ disk_images:
     type: qcow2
     distro: {{ artib_agent_ramdisk_distro | default(artib_base_os) }}
     elements:
-      - baremetal dhcp-all-interfaces dynamic-login element-manifest grub2 hiera heat-config-puppet heat-config-script hosts network-gateway os-net-config pip-and-virtualenv-override selinux-permissive stable-interface-names sysctl
+      - hosts baremetal dhcp-all-interfaces os-collect-config overcloud-full overcloud-controller overcloud-compute overcloud-ceph-storage heat-config-puppet heat-config-script puppet-modules hiera os-net-config stable-interface-names grub2 element-manifest network-gateway dynamic-login enable-packages-install pip-and-virtualenv-override selinux-permissive
     packages:
+      - python-psutil
+      - python-debtcollector
+      - plotnetcfg
+      - sos
+      - python-networking-cisco
+      - python-UcsSdk
+      - device-mapper-multipath
+      - python-networking-bigswitch
+      - openstack-neutron-bigswitch-lldp
+      - openstack-neutron-bigswitch-agent
     options:
       - --min-tmpfs=5
     environment:
