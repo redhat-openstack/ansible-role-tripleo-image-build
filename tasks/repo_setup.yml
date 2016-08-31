@@ -24,6 +24,22 @@
 #    dest: '{{ artib_working_dir }}/minimal-base.qcow2'
 #    force: '{{ artib_minimal_overwrite_existing }}'
 
+- when: artib_repo_files is defined
+  block:
+  - name: Clear repos directory
+    file: path=/tmp/repos state=absent
+
+  - name: Upload repo files to repos directory
+    copy: src="{{ item }}" dest=/tmp/repos/
+    with_fileglob: "{{ artib_repo_files }}"
+
+  - name: Upload repo files to image
+    shell: virt-copy-in -v -a minimal-base.qcow2  /tmp/repos/* /etc/yum.repos.d/
+    environment:
+      LIBGUESTFS_BACKEND: direct
+    args:
+      chdir: "{{ artib_working_dir }}"
+
 - name: Template script to setup repos in the base image
   template:
     src: "{{ artib_repo_script }}"

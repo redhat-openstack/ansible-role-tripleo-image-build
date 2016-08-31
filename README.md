@@ -187,6 +187,7 @@ artib_vc_trace                    | (default: false) set to true for trace/dbg v
 artib_dib_remove_epel             | if true, removes epel from the DIB elements tree with hostility
 artib_dib_workarounds             | enabled (true) by default, this causes an additional virt-customize pass specifically to massage DIB inputs for temporary workarouds
 artib_dib_workaround_script       | ^ the script for this
+artib_repo_files                  | Repository files for injecting to images and building with them, wildcards are supported: `/tmp/repos/*repo`
 
 Here are the full defaults contained in defaults/main.yml.  Note that most are internal and should not be modified.
 
