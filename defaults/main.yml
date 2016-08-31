@@ -115,3 +115,4 @@ artib_publish_artifacts:
   - overcloud-full.tar.md5
   - artib-logs.tar.gz
   - artib-logs.tar.gz.md5
+artib_repo_files:
