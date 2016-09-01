@@ -1,0 +1,8 @@
+---
+# coming soon: tasks file for leaner, meaner, cleaner ansible-role-tripleo-image-build
+
+- name: placeholder for new main (artib_main.yml)
+  debug: msg="coming soon, ARTIB that produces a time-capsule undercloud (reposync rpm's, no injected images)"
+
+
+
