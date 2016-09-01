@@ -1,0 +1,81 @@
+---
+# (legacy) tasks file for ansible-role-tripleo-image-build
+
+- include_vars: legacy_defaults.yml
+
+- name: Delete prior working directory if present
+  file:
+    path: "{{ artib_working_dir }}"
+    state: absent
+  when: "{{ artib_start_over }}"
+
+- name: Create the working directory
+  file:
+    path: "{{ artib_working_dir }}"
+    state: directory
+    mode: 0755
+
+- name: virt-customize args --> memory and cpu
+  set_fact: artib_vc_args="-m {{ artib_vc_ram }} --smp {{ artib_vc_cpu }}"
+
+- name: virt-customize args --> verbose output
+  set_fact: artib_vc_args="{{ artib_vc_args }} -v"
+  when: artib_vc_verbose
+
+- name: virt-customize args --> trace/debug output
+  set_fact: artib_vc_args="{{ artib_vc_args }} -x"
+  when: artib_vc_trace
+
+- block:
+    - debug: msg="*** Image Generation Process --> Start ***"
+
+    # Get the base image and setup repos
+    - include: legacy_repo_setup.yml
+
+    # Install packages for overcloud base image
+    - include: legacy_package_install.yml
+
+    # Use overcloud base image to create undercloud base image
+    - include: legacy_convert_undercloud.yml
+
+    # Use DIB to build the overlcloud-full and IPA images
+    - include: legacy_dib_build.yml
+
+    # Create a swap file
+    - include: legacy_swap_file.yml
+
+    # Inject overcloud-full and IPA images into the undercloud image
+    - include: legacy_undercloud_inject.yml
+
+  rescue:
+    - fail:  msg='*** Image Build Error ***'
+
+  always:
+    - debug: msg="*** Generating Build Artifacts ***"
+
+    - shell: >
+        virt-cat -a undercloud.qcow2     /tmp/builder.log > builder-undercloud.log 2>&1;
+        virt-cat -a overcloud-base.qcow2 /tmp/builder.log > builder-overcloud.log  2>&1;
+
+        virt-ls -a undercloud.qcow2     -lR --csv / > content-undercloud.csv       2>&1;
+        virt-ls -a overcloud-full.qcow2 -lR --csv / > content-overcloud.csv        2>&1;
+
+        mkdir -p /var/log/artib;
+        rm -f /var/log/artib/*;
+        cp -v *.log *.sh *.yml *.csv /var/log/artib;
+
+        tar -czvf artib-logs.tar.gz *.log *.sh *.yml *.csv;
+        md5sum artib-logs.tar.gz > artib-logs.tar.gz.md5;
+
+        exit 0;
+      environment:
+        LIBGUESTFS_BACKEND: direct
+      args:
+        chdir: "{{ artib_working_dir }}"
+
+    - debug: msg="*** Image Generation Process --> Stop ***"
+
+# Optionally publish images
+- include: legacy_publish.yml
+  when: artib_publish|bool
+
