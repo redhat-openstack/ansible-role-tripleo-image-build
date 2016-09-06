@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_7e6b3186",
+        "filename": "defaults/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-09-06T11:02:20Z",
+      "side": 1,
+      "message": "This new variable needs some documenting in README.md under Role Variables.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 16
+      },
+      "revId": "73572d68233fe4fce15697797365e45c2c6a9b16",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_7ef0d1c9",
+        "filename": "tasks/repo_setup.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-09-06T11:02:20Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be more simple to use \"is defined\" and not have the variable in the defaults? It can be documented in the README",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "73572d68233fe4fce15697797365e45c2c6a9b16",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_3e0489c4",
+        "filename": "tasks/repo_setup.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-09-06T11:02:20Z",
+      "side": 1,
+      "message": "nitpicking: unnecessary line.",
+      "revId": "73572d68233fe4fce15697797365e45c2c6a9b16",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9e1a7517",
+        "filename": "tasks/repo_setup.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001800
+      },
+      "writtenOn": "2016-09-06T11:02:20Z",
+      "side": 1,
+      "message": "You are planning to use something like `/files/from/here/*` as a value? If you will specify individual files, you can just use `with_items:`\n\nhttp://docs.ansible.com/ansible/playbooks_loops.html#id4",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "73572d68233fe4fce15697797365e45c2c6a9b16",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
