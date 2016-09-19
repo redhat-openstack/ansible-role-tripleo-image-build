@@ -15,9 +15,8 @@ chmod 0440 /etc/sudoers.d/stack
 
 mkdir /home/stack/.ssh
 
-echo "127.0.0.1  localhost undercloud" > /etc/hosts
-echo "HOSTNAME=undercloud" >> /etc/sysconfig/network
-echo "undercloud" > /etc/hostname
+hostnamectl set-hostname undercloud
+hostnamectl set-hostname --transient undercloud
 
 chown -R stack:stack /home/stack/
 
