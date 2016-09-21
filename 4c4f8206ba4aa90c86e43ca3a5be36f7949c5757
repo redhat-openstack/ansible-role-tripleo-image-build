@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_9b7811fa",
+        "filename": "templates/repo-centos7-cloudsig-testing.sh.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2016-09-21T18:58:18Z",
+      "side": 1,
+      "message": "if we want this to work for both mitaka and newton it probably needs to be:\n\nhttps://rdoproject.org/repos/openstack-{{ artib_release }}/rdo-release-{{ artib_release }}.rpm",
+      "revId": "4c4f8206ba4aa90c86e43ca3a5be36f7949c5757",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
