@@ -1,0 +1,11 @@
+#!/bin/bash
+# Repo script to install using centos build system repos
+
+set -eux
+
+yum install -y https://rdoproject.org/repos/openstack-newton/rdo-release-{{ artib_release }}.rpm
+yum-config-manager --disable rdo-trunk-{{ artib_release }}-tested
+yum-config-manager --disable openstack-{{ artib_release }}
+yum-config-manager --enable openstack-{{ artib_release }}-testing
+
+yum update -y
