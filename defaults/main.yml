@@ -68,6 +68,9 @@ artib_undercloud_selinux_permissive: true
 # creates yaml file passed to the tripleo-common image building library
 artib_image_yaml_template: "dib-manifest-default.yaml.j2"
 
+# sets the filesystem type for overcloud-full image
+artib_overcloud_fs_type: "xfs"
+
 # https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/15
 artib_dib_workarounds: true
 artib_dib_workaround_script: dib-workaround-default.sh.j2

@@ -35,6 +35,7 @@ disk_images:
     options:
       - --min-tmpfs=5
     environment:
+        FS_TYPE: {{ artib_overcloud_fs_type }}
         DIB_LOCAL_IMAGE: "{{ artib_working_dir }}/overcloud-base.qcow2"
         DIB_DEFAULT_INSTALLTYPE: package
         ELEMENTS_PATH: "{{ artib_dib_elements_path|join(':') }}"
