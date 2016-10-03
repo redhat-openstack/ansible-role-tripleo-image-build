@@ -3,7 +3,7 @@
 
 set -eux
 
-yum install -y https://rdoproject.org/repos/openstack-{{ atrib_release }}/rdo-release-{{ artib_release }}.rpm
+yum install -y https://rdoproject.org/repos/openstack-{{ artib_release }}/rdo-release-{{ artib_release }}.rpm
 yum-config-manager --disable rdo-trunk-{{ artib_release }}-tested
 yum-config-manager --disable openstack-{{ artib_release }}
 yum-config-manager --enable openstack-{{ artib_release }}-testing
