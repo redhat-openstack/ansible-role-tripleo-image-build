@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_29ed0ef0",
+        "filename": "templates/dib-prepare-centos7-default.sh.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000935
+      },
+      "writtenOn": "2016-10-06T10:28:04Z",
+      "side": 1,
+      "message": "@trown is this still relevant, and if backports were done, was there a minor Mitaka release so we can rebuild it for RDO Mitaka stable repo?",
+      "revId": "d9056e785bd64c6edc1123155e9e3495d1ebd63c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
