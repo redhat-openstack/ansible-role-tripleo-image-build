@@ -1,0 +1,7 @@
+Code-Review+2: John Trowbridge <trown@redhat.com>
+Verified+1: John Trowbridge <trown@redhat.com>
+Submitted-by: John Trowbridge <trown@redhat.com>
+Submitted-at: Thu, 06 Oct 2016 10:20:16 -0400
+Reviewed-on: https://review.gerrithub.io/297321
+Project: redhat-openstack/ansible-role-tripleo-image-build
+Branch: refs/heads/master
