@@ -66,9 +66,11 @@
 
         mkdir -p /var/log/artib;
         rm -f /var/log/artib/*;
-        cp -v *.log *.sh *.yml *.csv /var/log/artib;
 
-        tar -czvf artib-logs.tar.gz *.log *.sh *.yml *.csv;
+        interesting_extensions="*.log *.sh *.yml *.csv *.txt";
+        cp -v $interesting_extensions /var/log/artib;
+
+        tar -czvf artib-logs.tar.gz $interesting_extensions;
         md5sum artib-logs.tar.gz > artib-logs.tar.gz.md5;
 
         exit 0;
@@ -82,4 +84,3 @@
 # Optionally publish images
 - include: publish.yml
   when: artib_publish|bool
-

@@ -35,3 +35,20 @@
     LIBGUESTFS_BACKEND: direct
   args:
     chdir: "{{ artib_working_dir }}"
+
+# TODO: revisit/update as part of reposync work
+# TODO: https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/20
+
+- name: Template script to create artifacts listing specific srpms and other diagnostic info
+  template:
+    src: "{{ artib_minimal_base_diagnostic_script }}"
+    dest: "{{ artib_working_dir }}/minimal-base-repo-diagnostic.sh"
+
+- name: Create diagnostic artifacts for minimal base image (repoquery, etc)
+  shell: >
+    virt-customize {{ artib_vc_args }} -a minimal-base.qcow2
+    --run minimal-base-diagnostic.sh > minimal-base-diagnostic.sh.log 2>&1
+  args:
+    chdir: "{{ artib_working_dir }}"
+  environment:
+    LIBGUESTFS_BACKEND: direct
