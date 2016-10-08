@@ -1,0 +1,19 @@
+#!/bin/bash
+# virt-customize script to dump detailed repository and (s)rpm info --> /tmp
+
+# TODO: make output directory a jinja param, so that we can do this for various images (base, ipa, overcloud, undercloud)
+
+yum repolist -v > /tmp/repostats_repolist.txt
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=584525
+# yum (when no tty) is hard coded to 80 cols because bug
+yum list installed -q | tr "\n" "#" | sed -e 's/# / /g' | tr "#" "\n" | awk '{printf "%-60s %-60s %s\n", $1, $2, $3}' > /tmp/repostats_installed.txt
+
+# lines start with *, Loaded, Loading, and end with 'repolist: <number>'| get the first col | get rid of arch if present
+repo_list=`yum repolist -q | tail -n +2 | awk '{print $1;}' | awk '{split($0, a, "/");  print a[1];}'`
+echo $repo_list
+
+for i in $repo_list; do
+    yum repository-packages $i list -q | tr "\n" "#" | sed -e 's/# / /g' | tr "#" "\n" | awk '{printf "%-60s %-60s %s\n", $1, $2, $3}'  > /tmp/repostats_list_$i.txt
+    repoquery --plugins --disablerepo='' --enablerepo=\'$i\' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g' > /tmp/repostats_srckey_$i.txt
+done
