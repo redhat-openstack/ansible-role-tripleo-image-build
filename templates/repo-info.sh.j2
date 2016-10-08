@@ -1,0 +1,16 @@
+#!/bin/bash
+# virt-customize script to dump detailed repository and (s)rpm info --> /tmp
+
+yum repolist -v    > repostats_repolist.txt
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=584525
+yum list installed | tr "\n" "#" | sed -e 's/# / /g' | tr "#" "\n" > repostats_list_installed.txt
+
+# fetch a list of repos, removing the first 2 and last line of output, and stripping the arch if it exists
+repo_list=`yum repolist | head -n -1 | tail -n +3 | awk '{print $1;}' | awk '{split($0, a, "/");  print a[1];}'`
+
+for i in $repo_list; do
+    yum repository-packages $i list > repostats_list_$i.log
+    repoquery --plugins --disablerepo='' --enablerepo=\'$i\' -a --qf '%{sourcerpm}'|sort -u|sed 's/.src.rpm//g' > repostats_srckey_$i.txt
+done
+
