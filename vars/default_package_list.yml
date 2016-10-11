@@ -96,6 +96,7 @@ artib_overcloud_packages:
   - python-troveclient
   - python-virtualenv
   - python-zaqarclient
+  - python2-cradox
   - puppet
   - rabbitmq-server
   - redis
