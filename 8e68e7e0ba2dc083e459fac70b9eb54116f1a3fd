@@ -22,6 +22,30 @@
       "revId": "8e68e7e0ba2dc083e459fac70b9eb54116f1a3fd",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_d45863fb",
+        "filename": "templates/repo-info.sh.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2016-10-11T18:19:43Z",
+      "side": 1,
+      "message": "I\u0027ll do that.  Thanks!",
+      "parentUuid": "baa041b7_74e3d734",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 142
+      },
+      "revId": "8e68e7e0ba2dc083e459fac70b9eb54116f1a3fd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
