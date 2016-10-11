@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_74e3d734",
+        "filename": "templates/repo-info.sh.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1008015
+      },
+      "writtenOn": "2016-10-11T17:42:01Z",
+      "side": 1,
+      "message": "With \"--disablerepo\u003d\u0027\u0027\" no repos are being actually disabled, so we are getting a full repoquery on every repoquery run.\n\nIf you run repoquery for each repo, disabling all repos but \u0027$1\u0027 we don\u0027t get the prioritization logic applied, as we\u0027ll get the full list of packages for each repo, including those with less priority. Maybe a good option is to just run once:\n\nrepoquery --plugins -a --qf \u0027%{repo} %{sourcerpm}\u0027|sort -u\n\nThis will generate a list of \"\u003crepo name\u003e \u003csource rpm\u003e\" for all packages in repos with priorities applied, as:\n\ndelorean openstack-nova-14.0.0-0.20160929203854.59653c6.el7.centos.src.rpm\n\nThis would allow to list the available srpms for each repo and with prioritization easily.",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 142
+      },
+      "revId": "8e68e7e0ba2dc083e459fac70b9eb54116f1a3fd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
