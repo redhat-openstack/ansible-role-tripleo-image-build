@@ -10,18 +10,11 @@ curl -Lo /etc/yum.repos.d/delorean-deps.repo http://trunk.rdoproject.org/centos7
 yum install -y yum-plugin-priorities
 
 # Enable Storage/SIG Ceph repo
-# https://review.openstack.org/#/c/340504/10/scripts/tripleo.sh
 {% if artib_release in ['liberty', 'mitaka'] %}
 rpm -q centos-release-ceph-hammer || sudo yum -y install --enablerepo=extras centos-release-ceph-hammer
 sudo sed -i -e 's%gpgcheck=.*%gpgcheck=0%' /etc/yum.repos.d/CentOS-Ceph-Hammer.repo
-{% endif %}
-
-# https://review.openstack.org/#/c/340504/10/scripts/tripleo.sh
-# TODO(weshayutin): Replace with centos-release-ceph-jewel as above, when available
-{% if artib_release in ['master'] %}
-sudo yum-config-manager --add-repo https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-ceph-jewel/master/CentOS-Ceph-Jewel.repo
-sudo yum-config-manager --disable centos-ceph-jewel
-sudo yum-config-manager --enable centos-ceph-jewel-test
+{% else %}
+rpm -q centos-release-ceph-jewel || sudo yum -y install --enablerepo=extras centos-release-ceph-jewel
 sudo sed -i -e 's%gpgcheck=.*%gpgcheck=0%' /etc/yum.repos.d/CentOS-Ceph-Jewel.repo
 {% endif %}
 
