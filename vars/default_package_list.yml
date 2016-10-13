@@ -90,6 +90,7 @@ artib_overcloud_packages:
   - python-ipaddr
   - python-libguestfs
   - python-openvswitch
+  - python-oslotest
   - python-pip
   - python-pbr
   - python-redis
