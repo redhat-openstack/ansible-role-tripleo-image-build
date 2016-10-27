@@ -3,7 +3,16 @@
 
 set -eux
 
-xfs_growfs -d /dev/sda1
+FS_TYPE=`findmnt -o FSTYPE -fn /`
+
+if [ "$FS_TYPE" = "xfs" ]; then
+    xfs_growfs -d /dev/sda1
+elif [ "$FS_TYPE" = "ext4" ]; then
+    resize2fs /dev/sda1
+else
+    echo "ERROR: Unknown filesystem, cannot resize."
+    exit 1
+fi
 
 yum remove -y {% for package in artib_undercloud_remove_packages %} {{ package }} {% endfor %}
 
