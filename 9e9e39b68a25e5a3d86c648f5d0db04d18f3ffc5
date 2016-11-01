@@ -1,0 +1,8 @@
+Verified+1: <openstack-ci-service+rdo-ci-centos@redhat.com>
+Code-Review+2: Attila Darazs <adarazs@redhat.com>
+Code-Review+1: Juan Antonio Osorio <josorior@redhat.com>
+Submitted-by: Matt Young <myoung@redhat.com>
+Submitted-at: Tue, 01 Nov 2016 10:56:51 -0400
+Reviewed-on: https://review.gerrithub.io/300018
+Project: redhat-openstack/ansible-role-tripleo-image-build
+Branch: refs/heads/master
