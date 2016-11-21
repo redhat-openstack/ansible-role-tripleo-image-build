@@ -4,6 +4,7 @@ artib_overcloud_packages:
   - boost-filesystem
   - boost-program-options
   - ceph
+  - certmonger
   - corosync
   - crudini
   - docker-registry
@@ -13,6 +14,7 @@ artib_overcloud_packages:
   - git
   - haproxy
   - httpd
+  - ipa-client
   - iptables-services
   - ipxe-bootimgs
   - iscsi-initiator-utils
