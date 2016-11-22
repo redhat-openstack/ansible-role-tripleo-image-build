@@ -1,0 +1,7 @@
+Verified+1: <openstack-ci-service+rdo-ci-centos@redhat.com>
+Code-Review+2: John Trowbridge <trown@redhat.com>
+Submitted-by: John Trowbridge <trown@redhat.com>
+Submitted-at: Tue, 22 Nov 2016 13:20:44 -0500
+Reviewed-on: https://review.gerrithub.io/302624
+Project: redhat-openstack/ansible-role-tripleo-image-build
+Branch: refs/heads/master
