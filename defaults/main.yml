@@ -44,6 +44,8 @@ artib_undercloud_remove_packages:
   - mariadb-galera-server
   - openstack-sahara*
   - python2-barbicanclient
+  - python-django-horizon
+
 artib_undercloud_install_packages:
   - mariadb-server
   - python-tripleoclient
