@@ -15,6 +15,12 @@
   args:
     chdir: "{{ artib_working_dir }}"
 
+- name: configure the required repos in build host for image building with DIB
+  shell: bash ./repo_setup.sh > buildhost.repo_setup.sh.log 2>&1
+  become: true
+  args:
+    chdir: "{{ artib_working_dir }}"
+
 - name: script to prepare for image building with DIB
   template:
     src: "{{ artib_dib_prepare_script }}"

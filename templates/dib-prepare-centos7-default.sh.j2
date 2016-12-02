@@ -9,8 +9,6 @@
 #
 set -x
 
-yum install -y {{ artib_dib_release_rpm }}
-
 yum install -y diskimage-builder instack-undercloud openstack-heat-templates \
             openstack-tripleo-image-elements openstack-tripleo-puppet-elements
 
@@ -19,6 +17,7 @@ yum install -y python-six
 
 yum install -y git
 
+{% if artib_release == 'mitaka' %}
 #
 # install tripleo-common from trunk master repo. The image building
 # library is only on master, but it is probably worthwhile to backport the two
@@ -39,6 +38,13 @@ yum install -y git
 base="https://trunk.rdoproject.org/centos7-newton/97/0d/970d046f1ad304b309a6b6b610faf7a52477fbf1_073a7efe"
 package="openstack-tripleo-common-5.0.0-0.20160812205026.5be0dd8.el7.centos.noarch.rpm"
 yum install -y $base/$package
+
+{% else %}
+
+yum install -y openstack-tripleo-common
+
+{% endif %}
+
 
 {% if artib_dib_remove_epel %}
 
