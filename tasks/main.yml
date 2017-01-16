@@ -29,21 +29,27 @@
 
     # Get the base image and setup repos
     - include: repo_setup.yml
+      static: no
 
     # Install packages for overcloud base image
     - include: package_install.yml
+      static: no
 
     # Use overcloud base image to create undercloud base image
     - include: convert_undercloud.yml
+      static: no
 
     # Use DIB to build the overlcloud-full and IPA images
     - include: dib_build.yml
+      static: no
 
     # Create a swap file
     - include: swap_file.yml
+      static: no
 
     # Inject overcloud-full and IPA images into the undercloud image
     - include: undercloud_inject.yml
+      static: no
 
   rescue:
     - fail:  msg='*** Image Build Error ***'
