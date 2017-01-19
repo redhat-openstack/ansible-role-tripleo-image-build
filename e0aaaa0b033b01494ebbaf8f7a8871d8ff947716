@@ -1,0 +1,7 @@
+Code-Review+2: Matt Young <myoung@redhat.com>
+Verified+1: Matt Young <myoung@redhat.com>
+Submitted-by: Matt Young <myoung@redhat.com>
+Submitted-at: Thu, 19 Jan 2017 15:31:43 -0500
+Reviewed-on: https://review.gerrithub.io/343477
+Project: redhat-openstack/ansible-role-tripleo-image-build
+Branch: refs/heads/master
