@@ -13,7 +13,7 @@
       --check-tmpdir "{{ artib_virt_sparsify_checktmpdir_flag }}" \
       --compress undercloud-base.qcow2 undercloud.qcow2
 
-    md5sum undercloud.qcow2 > undercloud.qcow2.md5
+    md5sum -b undercloud.qcow2 > undercloud.qcow2.md5
   environment:
     LIBGUESTFS_BACKEND: direct
   args:
@@ -22,13 +22,13 @@
 - name: Tar overcloud-full image files
   shell: >
     tar -cf overcloud-full.tar overcloud-full* ;
-    md5sum overcloud-full.tar > overcloud-full.tar.md5 ;
+    md5sum -b overcloud-full.tar > overcloud-full.tar.md5 ;
   args:
     chdir: "{{ artib_working_dir }}"
 
 - name: Tar agent ramdisk files
   shell: >
     tar -cf ironic-python-agent.tar ironic-python-agent* ;
-    md5sum ironic-python-agent.tar > ironic-python-agent.tar.md5 ;
+    md5sum -b ironic-python-agent.tar > ironic-python-agent.tar.md5 ;
   args:
     chdir: "{{ artib_working_dir }}"
