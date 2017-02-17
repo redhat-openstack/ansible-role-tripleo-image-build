@@ -1,0 +1,10 @@
+Code-Review+2: Matt Young <myoung@redhat.com>
+Code-Review+1: Alfredo Moralejo <amoralej@redhat.com>
+Code-Review+1: Alan Pevec <alan.pevec@redhat.com>
+Code-Review+2: John Trowbridge <trown@redhat.com>
+Verified+1: John Trowbridge <trown@redhat.com>
+Submitted-by: John Trowbridge <trown@redhat.com>
+Submitted-at: Fri, 17 Feb 2017 08:34:42 -0500
+Reviewed-on: https://review.gerrithub.io/349059
+Project: redhat-openstack/ansible-role-tripleo-image-build
+Branch: refs/heads/master
