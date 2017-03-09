@@ -1,0 +1,7 @@
+Code-Review+2: wes hayutin <weshayutin@gmail.com>
+Verified+1: wes hayutin <weshayutin@gmail.com>
+Submitted-by: wes hayutin <weshayutin@gmail.com>
+Submitted-at: Thu, 09 Mar 2017 12:31:31 -0500
+Reviewed-on: https://review.gerrithub.io/352114
+Project: redhat-openstack/ansible-role-tripleo-image-build
+Branch: refs/heads/master
