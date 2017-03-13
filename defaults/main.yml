@@ -79,6 +79,7 @@ artib_dib_elements_path:
   - /usr/share/tripleo-image-elements
   - /usr/share/tripleo-puppet-elements
   - /usr/share/instack-undercloud/
+  - {% if artib_release == 'mitaka' %}/usr/share/openstack-heat-templates/software-config/elements/{% endif %}
 
 # set up build host (build tools, etc)
 artib_dib_prepare_script: dib-prepare-centos7-default.sh.j2
