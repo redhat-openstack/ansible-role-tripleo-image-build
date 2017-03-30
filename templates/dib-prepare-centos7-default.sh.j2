@@ -59,6 +59,10 @@ yum install -y git
 
 yum install -y openstack-tripleo-common
 
+{% if artib_overcloud_build_mode == 'openstack_overcloud_image_build' %}
+yum install -y python-tripleoclient
+{% endif %}
+
 {% if artib_dib_remove_epel %}
 
 # workaround to remove EPEL from images
