@@ -65,6 +65,16 @@ artib_undercloud_selinux_permissive: true
 # dib_build vars #
 ##################
 
+#
+# default  is to use an ansible module (python_module_tripleo_build_images) to invoke tripleo-common's python class directly
+# ansible-role-tripleo-image-build/library/tripleo_build_images.py
+#
+# setting this to openstack_overcloud_image_build will enable the upstream tripleo doc'd mechanism
+# https://docs.openstack.org/developer/tripleo-docs/post_deployment/build_single_image.html
+# note this is for ocata+ / osp 11+.
+#
+artib_overcloud_build_mode: python_module_tripleo_build_images
+
 # creates yaml file passed to the tripleo-common image building library
 artib_image_yaml_template: "dib-manifest-default.yaml.j2"
 
