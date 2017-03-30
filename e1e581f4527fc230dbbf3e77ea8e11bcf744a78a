@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1eaf8565_c38670c2",
+        "filename": "tasks/dib_build.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000586
+      },
+      "writtenOn": "2017-03-30T22:01:45Z",
+      "side": 1,
+      "message": "I don\u0027t think --config-file works on older releases.",
+      "range": {
+        "startLine": 55,
+        "startChar": 36,
+        "endLine": 55,
+        "endChar": 66
+      },
+      "revId": "e1e581f4527fc230dbbf3e77ea8e11bcf744a78a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
