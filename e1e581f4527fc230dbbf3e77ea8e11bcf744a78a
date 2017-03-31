@@ -22,6 +22,30 @@
       "revId": "e1e581f4527fc230dbbf3e77ea8e11bcf744a78a",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3285a82e_4071c7db",
+        "filename": "tasks/dib_build.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2017-03-31T13:31:01Z",
+      "side": 1,
+      "message": "Correct.  I considered doing something like this:\n\n- https://github.com/openstack/tripleo-quickstart-extras/blob/master/roles/build-images/templates/overcloud-image-build.sh.j2#L23\n\nbut wanted something simpler as a targeted stopgap until we can move things over to the new role.\n\nThis is just a stopgap for ocata RDO on RHEL and OSP 11 that can be dropped into existing CI, to satisfy request that we build images in CI like we do for customers (OOIB vs. this non-standard \"call the tripleo-common python guts directly\" approach we have in place now.\n\nI\u0027m expecting that we\u0027re going to need to land patches to the TQE role before it\u0027s workable for RHEL and internal purposes, and that could take a little while.  This is a stab at a transition plan.\n\nAlternatively I could respin this patch to auto-detect, but I really want to limit the scope and just make it \"opt in via flag variable\" vs. \"now existing jobs do something different\"",
+      "parentUuid": "1eaf8565_c38670c2",
+      "range": {
+        "startLine": 55,
+        "startChar": 36,
+        "endLine": 55,
+        "endChar": 66
+      },
+      "revId": "e1e581f4527fc230dbbf3e77ea8e11bcf744a78a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
