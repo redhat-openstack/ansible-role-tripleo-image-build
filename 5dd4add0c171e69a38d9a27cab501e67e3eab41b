@@ -16,6 +16,24 @@
       "revId": "5dd4add0c171e69a38d9a27cab501e67e3eab41b",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a77ba45b_cf2551f3",
+        "filename": "tasks/dib_build.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1007211
+      },
+      "writtenOn": "2017-04-06T21:40:03Z",
+      "side": 1,
+      "message": "ooooo neat.  I didn\u0027t know that :)  Thanks!",
+      "parentUuid": "f7d47043_4056c1ae",
+      "revId": "5dd4add0c171e69a38d9a27cab501e67e3eab41b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
