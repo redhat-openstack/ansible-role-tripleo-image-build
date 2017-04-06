@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7d47043_4056c1ae",
+        "filename": "tasks/dib_build.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003529
+      },
+      "writtenOn": "2017-04-06T18:18:26Z",
+      "side": 1,
+      "message": "not sure how pretty we care for this role to be... but a neat trick is that \"when\" takes a list and puts AND in for you. so:\n\nwhen:\n  - artib_overcloud_build_mode\u003d\u003d\"openstack_overcloud_image_build\"\n  - artib_release not in [\"newton\", \"mitaka\"]",
+      "revId": "5dd4add0c171e69a38d9a27cab501e67e3eab41b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
