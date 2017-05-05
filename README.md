@@ -187,6 +187,7 @@ artib_vc_trace                    | (default: false) set to true for trace/dbg v
 artib_dib_remove_epel             | if true, removes epel from the DIB elements tree with hostility
 artib_dib_workarounds             | enabled (true) by default, this causes an additional virt-customize pass specifically to massage DIB inputs for temporary workarouds
 artib_dib_workaround_script       | ^ the script for this
+artib_overcloud_build_mode        | python module (default), "openstack overcloud image build", or "tripleo-build-images"
 
 Here are the full defaults contained in defaults/main.yml.  Note that most are internal and should not be modified.
 
@@ -201,37 +202,53 @@ artib_start_over: true
 # repo_setup vars
 artib_minimal_base_image_url:
   http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
+# global build vars
+artib_working_dir: /var/lib/oooq-images
+
+# delete working directory prior to building images.
+artib_start_over: true
+
+# repo_setup vars
+artib_minimal_base_image_url:
+  http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
 artib_minimal_overwrite_existing: no
 artib_base_os: centos7
 artib_release: mitaka
 artib_build_system: delorean
+artib_image_stage_location: testing
 artib_repo_script: "repo-{{ artib_base_os }}-{{ artib_build_system }}.sh.j2"
+
+#swapfile arguments
+artib_swapfile_script: swapfile-create.sh.j2
 
 # package_install vars
 artib_overcloud_base_image_url:
   "file:///{{ artib_working_dir }}/minimal-base.qcow2"
 artib_overcloud_overwrite_existing: no
 artib_package_install_script: package-install-default.sh.j2
-artib_overcloud_package_list: package-list-{{ artib_release }}.yml
+artib_overcloud_package_list: default_package_list.yml
 
 # convert_undercloud vars
 artib_undercloud_base_image_url:
   "file:///{{ artib_working_dir }}/overcloud-base.qcow2"
 artib_undercloud_overwrite_existing: no
 artib_undercloud_convert_script: undercloud-convert-default.sh.j2
-artib_undercloud_disk_size: 40
+artib_undercloud_disk_size: 42
 
 artib_vc_ram: 8192
 artib_vc_cpu: 4
 artib_vc_verbose: false
 artib_vc_trace: false
 
+# undercloud == overcloud (+/-) packages
 artib_undercloud_remove_packages:
   - cloud-init
   - mariadb-galera-server
-
+  - openstack-sahara*
+  - python2-barbicanclient
 artib_undercloud_install_packages:
   - mariadb-server
+  - python-tripleoclient
   - openstack-tempest
   # -tests packages which contains tempest-style tests
   - python-aodh-tests
@@ -250,10 +267,26 @@ artib_undercloud_selinux_permissive: true
 # dib_build vars #
 ##################
 
-# default templates to use to create the yaml files
-# passed to the tripleo-common image building library
-artib_image_yaml_template: "dib-manifest-centos7-mitaka.yaml.j2"
+#
+# default  is to use an ansible module (python_module_tripleo_build_images) to invoke tripleo-common's python class directly
+# ansible-role-tripleo-image-build/library/tripleo_build_images.py
+#
+# "openstack_overcloud_image_build" enable the upstream tripleo doc'd mechanism
+# https://docs.openstack.org/developer/tripleo-docs/post_deployment/build_single_image.html
+# note this is for ocata+ / osp 11+.
+#
+# "tripleo_build_images" call tripleo-build-images from tripleo-common.
+# valid for mitaka/newton osp 9/10 only
+#
+artib_overcloud_build_mode: python_module_tripleo_build_images
 
+# creates yaml file passed to the tripleo-common image building library
+artib_image_yaml_template: "dib-manifest-default.yaml.j2"
+
+# sets the filesystem type for overcloud-full image
+artib_overcloud_fs_type: "xfs"
+
+# https://github.com/redhat-openstack/ansible-role-tripleo-image-build/issues/15
 artib_dib_workarounds: true
 artib_dib_workaround_script: dib-workaround-default.sh.j2
 
@@ -261,18 +294,19 @@ artib_dib_elements_path:
   - /usr/share/tripleo-image-elements
   - /usr/share/tripleo-puppet-elements
   - /usr/share/instack-undercloud/
-  - /usr/share/openstack-heat-templates/software-config/elements/
+  - "{% if artib_release == 'mitaka' %}/usr/share/openstack-heat-templates/software-config/elements/{% endif %}"
 
-# NOTE: for now this is where the tripleo-common library is installed (from master).
+# set up build host (build tools, etc)
 artib_dib_prepare_script: dib-prepare-centos7-default.sh.j2
 
 artib_dib_remove_epel: true
 
-# "http://rdoproject.org/repos/openstack-mitaka/rdo-release-mitaka.rpm"
+# TODO: currently we build by default with mitaka rpm...though IMHO this should track whatever release we are building
+# "http://rdoproject.org/repos/openstack-{{ artib_release }}/rdo-release-{{ artib_release }}.rpm"
 artib_dib_release_rpm:
-  "http://rdoproject.org/repos/openstack-{{ artib_release }}/rdo-release-{{ artib_release }}.rpm"
+  "http://rdoproject.org/repos/openstack-mitaka/rdo-release-mitaka.rpm"
 
-# these are injected into the undercloud.qcow2
+# injected --> undercloud.qcow2
 artib_overcloud_images:
   - ironic-python-agent.initramfs
   - ironic-python-agent.kernel
@@ -282,6 +316,24 @@ artib_overcloud_images:
 
 # fail, ignore, continue.  See http://libguestfs.org/virt-sparsify.1.html
 artib_virt_sparsify_checktmpdir_flag: fail
+
+# artib_publish_dest_user:     username
+# artib_publish_dest_host:     foo.example.com
+
+# artib_publish_dest_basepath: /var/www/html/yourchoice
+# artib_publish_create_dest_via_ssh: false
+
+artib_publish: false
+artib_publish_artifacts:
+  - undercloud.qcow2
+  - undercloud.qcow2.md5
+  - ironic-python-agent.tar
+  - ironic-python-agent.tar.md5
+  - overcloud-full.tar
+  - overcloud-full.tar.md5
+  - artib-logs.tar.gz
+  - artib-logs.tar.gz.md5
+
 ```
 
 Dependencies

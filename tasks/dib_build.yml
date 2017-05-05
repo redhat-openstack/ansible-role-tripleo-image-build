@@ -49,6 +49,16 @@
     output_directory: "{{ artib_working_dir }}"
   when: artib_overcloud_build_mode == "python_module_tripleo_build_images"
 
+# official mechanism for OSP 9/10 for overcloud image build.  This is only valid for mitaka/newton
+- name: Build the images using TBI
+  shell: |
+    tripleo-build-images --image-config-file dib-manifest.yml > tbi.log 2>&1
+  when:
+    - artib_overcloud_build_mode=="tripleo_build_images"
+    - artib_release in ["newton", "mitaka"]
+  args:
+    chdir: "{{ artib_working_dir }}"
+
 # supported upstream tripleo method for overcloud image build.  This is only valid for ocata+
 - name: Build the images using OOIB
   shell: |
