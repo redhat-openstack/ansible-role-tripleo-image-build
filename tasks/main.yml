@@ -52,7 +52,8 @@
       static: no
 
   rescue:
-    - fail:  msg='*** Image Build Error ***'
+    - name: Set image_build_failed fact
+      set_fact: image_build_failed=true
 
   always:
     - debug: msg="*** Generating Build Artifacts ***"
@@ -78,6 +79,10 @@
         chdir: "{{ artib_working_dir }}"
 
     - debug: msg="*** Image Generation Process --> Stop ***"
+
+- name: Throw error msg if image build is failing
+  fail: msg='*** Image Build Error ***'
+  when: image_build_failed|default(false)|bool
 
 # Optionally publish images
 - include: publish.yml
